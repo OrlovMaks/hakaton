@@ -1,0 +1,13 @@
+{
+    "colors": {
+        "initial":"light",
+        "light": {
+            "color":"black",
+            "background": "white"
+        },
+        "dark": {
+            "color": "white",
+            "background": "rgba(120, 120, 120, 0.8)"
+        }
+    }
+}
