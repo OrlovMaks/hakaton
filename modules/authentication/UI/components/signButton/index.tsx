@@ -13,12 +13,10 @@ interface IProps {
 export const SignButton: FC<IProps> = ({ title, backgroundColor, color, signFunc, disabled }) => {
 
     return (
-        <View>
-            <TouchableOpacity onPress={signFunc} disabled={!disabled}>
-                <View style={disabled ? { backgroundColor: backgroundColor } : { backgroundColor: '#b3c6ff' }}>
-                    <Text style={{ color: color || 'black' }}>{title}</Text>
-                </View>
-            </TouchableOpacity>
-        </View>
+        <TouchableOpacity onPress={signFunc} disabled={!disabled}>
+            <View style={[styles.container, disabled ? { backgroundColor: backgroundColor } : { backgroundColor: '#b3c6ff' }]}>
+                <Text style={[styles.textButton,{ color: color || 'black' }]}>{title}</Text>
+            </View>
+        </TouchableOpacity>
     );
 };
