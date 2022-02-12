@@ -6,7 +6,7 @@ import RadioForm from 'react-native-simple-radio-button';
 import { useDispatch } from 'react-redux';
 import { ILocalizationContext } from '../../../../../src/localization/entities/ILocalizationContext';
 import { AppDispatch } from '../../../../../src/appStore/redux/store';
-import { signOut } from '../../../../../src/appStore/redux/authenticationState/authenticationStateActions';
+import { signOutAction } from '../../../../../src/appStore/redux/authenticationState/authenticationStateActions';
 import { removeData } from '../../../../../src/appStore/asyncStorage/removeData';
 import { LocalizationContext } from '../../../../../src/localization';
 import { IThemesContext } from '../../../../../src/themes/entities/IThemesContext';
@@ -15,21 +15,25 @@ import { storeData } from '../../../../../src/appStore/asyncStorage/storeData';
 
 export const DrawerScreen: FC = () => {
     const LocalContext = useContext<ILocalizationContext>(LocalizationContext);
+    const theme = useContext<IThemesContext>(ThemesContext);
     const dispatch: AppDispatch = useDispatch();
     const [isEnabled, setIsEnabled] = useState<boolean>(false);
-    const theme = useContext<IThemesContext>(ThemesContext);
 
-    const toggleSwitch = (): void => {
+    const toggleSwitch = async (): Promise<void> => {
         theme.setTheme(theme.theme === 'LIGHT' ? 'DARK' : 'LIGHT');
-        storeData('localization', LocalContext.language);
-        storeData('theme', theme.theme)
         return setIsEnabled(previousState => !previousState);
     };
 
     const setSignOut = async (): Promise<void> => {
-        dispatch(signOut());
+        storeData('localization', LocalContext.language);
+        await storeData('theme', theme.theme);
         removeData('userData');
+        dispatch(signOutAction());
     }
+
+    const setLanguage = (value: ILanguages) => {
+        LocalContext.setLanguage(value);
+    };
 
     return (
         <View style={[styles.container, { backgroundColor: theme.colors.sideMenuBackground }]}>
@@ -48,7 +52,7 @@ export const DrawerScreen: FC = () => {
                 <RadioForm
                     radio_props={LocalContext.translations.LANGUAGES_NAMES}
                     initial={LocalContext.language}
-                    onPress={(value: ILanguages) => { LocalContext.setLanguage(value) }}
+                    onPress={(value: ILanguages) => { LocalContext.setLanguage(value); }}
                 />
             </View>
             <View >

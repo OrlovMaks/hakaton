@@ -23,7 +23,7 @@ export const ContainerNavigation: FC = () => {
     return (
         <SafeAreaView style={styles.safeArea}>
             <NavigationContainer>
-                {isLoading ? <LoadingStackNavigator /> : isUserSign ? <DrawerNavigator /> :<StackAuthenticationNavigator />}
+                {isLoading ? <LoadingStackNavigator /> : true ? <DrawerNavigator /> :<StackAuthenticationNavigator />}
             </NavigationContainer>
         </SafeAreaView>
     );

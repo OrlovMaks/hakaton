@@ -12,14 +12,14 @@ export const setIsAuthorizeAction = (value: boolean): IAuthorizeAction => {
     };
 };
 
-export const setUserData = (value: { [key: string]: string }): IAuthorizeAction => {
+export const setUserDataAction = (value: { [key: string]: string }): IAuthorizeAction => {
     return {
         type: 'SET_USER_DATA',
         payload: value,
     };
 }
 
-export const signOut = (): IAuthorizeAction => {
+export const signOutAction = (): IAuthorizeAction => {
     return {
         type: 'SIGN_OUT',
         payload: null
