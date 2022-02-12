@@ -9,8 +9,7 @@ export const userAuthorization = async (email: string, password: string): Promis
             email: email,
             password: password
         });
-        const key = 'access-token'
-        console.log('result======>>>', response.headers);
+        console.log('result======>>>', response);
         // return response;
     } catch (e: any) {
         Alert.alert(e);
