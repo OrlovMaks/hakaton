@@ -6,8 +6,8 @@ import { TournamentsScreen } from '../../../modules/tournaments/UI/screens/Tourn
 
 export const DrawerNavigator: FC = () => {
     const Drawer = createDrawerNavigator();
+    
     return (
-
         <Drawer.Navigator drawerContent={() => <DrawerScreen />} screenOptions={{ headerShown: false }}>
             <Drawer.Screen name={'Tournaments'} component={TournamentsScreen} />
         </Drawer.Navigator>
