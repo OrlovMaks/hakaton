@@ -4,13 +4,13 @@ import { SignHeader } from '../../components/signHeader';
 import { SignInput } from '../../components/signInput';
 import { SignButton } from '../../components/signButton';
 import { styles } from './styles';
-// import { NavigationProp } from '@react-navigation/native';
-import { signInUser } from '../../../../../src/appStore/redux/actions/signActions'
 import { useDispatch } from 'react-redux';
 import { userAuthorization } from '../../../useCases/signIn';
-import { getUserData, storeUserData } from '../../../../../src/appStore/asyncStorage/setUserData';
-import { setUserData } from '../../../../../src/appStore/redux/actions/signActions'
 import { NavigationProp } from '@react-navigation/native';
+import { setIsAuthorizeAction, setUserData } from '../../../../../src/appStore/redux/authenticationState/authenticationStateActions';
+import { AppDispatch } from '../../../../../src/appStore/redux/store';
+import { getData } from '../../../../../src/appStore/asyncStorage/getData';
+import { storeData } from '../../../../../src/appStore/asyncStorage/storeData';
 import { ForgotPass } from '../../components/forgotPasswordButton'
 
 interface IProps {
@@ -20,32 +20,31 @@ interface IProps {
 export const SignInScreen: FC<IProps> = ({ navigation }) => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const dispatch = useDispatch()
+    const dispatch: AppDispatch = useDispatch()
 
     const onGoToSignUp = () => {
-        navigation.navigate('SignUp')
+        navigation.navigate('SignUp');
     }
 
     useEffect(() => {
-        const checkUserAuthorization = async () => {
-            const getDataUser = await getUserData()
+        const checkUserAuthorization = async (): Promise<void> => {
+            const getDataUser: { [key: string]: string } | undefined = await getData('userData');
             if (getDataUser) {
-                dispatch(setUserData(getDataUser))
-                dispatch(signInUser(true))
+                dispatch(setUserData(getDataUser));
+                dispatch(setIsAuthorizeAction(true));
             }
         }
-        checkUserAuthorization()
-    }, [])
+        checkUserAuthorization();
+    }, []);
 
-    const authorization = useCallback(async () => {
-        const user = await userAuthorization(email, password)
+    const authorization = useCallback(async (): Promise<void> => {
+        const user: { [key: string]: any } | undefined = await userAuthorization(email, password)
         if (user) {
-            await storeUserData(JSON.stringify(user.data.data))
+            await storeData('userData', JSON.stringify(user.data.data))
             dispatch(setUserData(user.data))
-            dispatch(signInUser(true))
+            dispatch(setIsAuthorizeAction(true))
         }
-
-    }, [email, password])
+    }, [email, password]);
 
     return (
         <View style={styles.container}>

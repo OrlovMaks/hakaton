@@ -1,4 +1,4 @@
-import { ILanguages } from './ILanguages';
+import { ILanguages } from "./ILanguages";
 
 export interface ITranslations {
     AVAILABLE_LANGUAGE: Array<ILanguages>;
