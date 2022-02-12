@@ -4,48 +4,77 @@ import { SignHeader } from '../../components/signHeader';
 import { SignInput } from '../../components/signInput';
 import { SignButton } from '../../components/signButton';
 import { styles } from './styles';
-// import { NavigationProp } from '@react-navigation/native';
-import { signInUser } from '../../../../../src/appStore/redux/actions/signActions'
+import { signInUser } from '../../../../../src/appStore/redux/actions/signActions';
 import { useDispatch } from 'react-redux';
 import { userAuthorization } from '../../../useCases/signIn';
 import { getUserData, storeUserData } from '../../../../../src/appStore/asyncStorage/setUserData';
-import { setUserData } from '../../../../../src/appStore/redux/actions/signActions'
+import { setUserData } from '../../../../../src/appStore/redux/actions/signActions';
 import { NavigationProp } from '@react-navigation/native';
-import { ForgotPass } from '../../components/forgotPasswordButton'
+import { ForgotPass } from '../../components/forgotPasswordButton';
+import { isValidEmail, isValidPassword } from '../../../useCases/signUpValidation';
 
 interface IProps {
     navigation: NavigationProp<any>
-}
+};
 
 export const SignInScreen: FC<IProps> = ({ navigation }) => {
     const [email, setEmail] = useState<string>('');
+    const [emailValid, setEmailValid] = useState<boolean>(false);
     const [password, setPassword] = useState<string>('');
-    const dispatch = useDispatch()
+    const [passwordValid, setPasswordValid] = useState<boolean>(false);
+    const [buttonDisable, setButtonDisable] = useState<boolean>(false);
 
-    const onGoToSignUp = () => {
-        navigation.navigate('SignUp')
-    }
+    const dispatch = useDispatch();
 
-    useEffect(() => {
+    const onGoToSignUp = ():void => {
+        navigation.navigate('SignUp');
+    };
+    useEffect((): void => {
+        const validationEmail = isValidEmail(email);
+        if (validationEmail) {
+            setEmailValid(true);
+        } else {
+            setEmailValid(false);
+        };
+    }, [email])
+
+    useEffect((): void => {
+        const validationPassword = isValidPassword(password);
+        if (validationPassword) {
+            setPasswordValid(true);
+        } else {
+            setPasswordValid(false);
+        };
+    }, [password])
+
+    useEffect((): void => {
+        if (emailValid && passwordValid) {
+            setButtonDisable(true);
+        } else {
+            setButtonDisable(false);
+        };
+    }, [emailValid, passwordValid]);
+
+    useEffect((): void => {
         const checkUserAuthorization = async () => {
-            const getDataUser = await getUserData()
+            const getDataUser = await getUserData();
             if (getDataUser) {
-                dispatch(setUserData(getDataUser))
-                dispatch(signInUser(true))
-            }
-        }
-        checkUserAuthorization()
-    }, [])
+                dispatch(setUserData(getDataUser));
+                dispatch(signInUser(true));
+            };
+        };
+        checkUserAuthorization();
+    }, []);
 
-    const authorization = useCallback(async () => {
-        const user = await userAuthorization(email, password)
+    const authorization = useCallback(async (): Promise<void> => {
+        const user = await userAuthorization(email, password);
         if (user) {
-            await storeUserData(JSON.stringify(user.data.data))
-            dispatch(setUserData(user.data))
-            dispatch(signInUser(true))
-        }
+            await storeUserData(JSON.stringify(user.data.data));
+            dispatch(setUserData(user.data));
+            dispatch(signInUser(true));
+        };
 
-    }, [email, password])
+    }, [email, password]);
 
     return (
         <View style={styles.container}>
@@ -55,13 +84,13 @@ export const SignInScreen: FC<IProps> = ({ navigation }) => {
                     <SignHeader title={'SIGN IN'} nextScreen={"Sign Up"} onPress={onGoToSignUp} />
                 </View>
                 <View>
-                    <SignInput title={'EMAIL'} placeholder={'Email'} autoComplete={'email'} secureTextEntry={false} value={email} setValue={setEmail} titleColor={'white'} backgroundColor={'rgba(255, 255, 255, 0.3)'} isValid={true} />
-                    <SignInput title={'PASSWORD'} placeholder={'Password'} autoComplete={'password'} secureTextEntry={true} value={password} setValue={setPassword} titleColor={'white'} backgroundColor={'rgba(255, 255, 255, 0.3)'} isValid={true} />
+                    <SignInput title={'EMAIL'} placeholder={'Email'} autoComplete={'email'} secureTextEntry={false} value={email} setValue={setEmail} titleColor={'white'} backgroundColor={'rgba(255, 255, 255, 0.3)'} isValid={emailValid} />
+                    <SignInput title={'PASSWORD'} placeholder={'Password'} autoComplete={'password'} secureTextEntry={true} value={password} setValue={setPassword} titleColor={'white'} backgroundColor={'rgba(255, 255, 255, 0.3)'} isValid={passwordValid} />
                 </View>
             </View>
             <View>
                 <View style={styles.buttonWrapper}>
-                    <SignButton title={'SIGN IN'} backgroundColor={'#3366ff'} color={'white'} signFunc={authorization} disabled={true} />
+                    <SignButton title={'SIGN IN'} backgroundColor={'#3366ff'} color={'white'} signFunc={authorization} disabled={buttonDisable} />
                 </View>
                 <ForgotPass color={'white'} />
             </View>
