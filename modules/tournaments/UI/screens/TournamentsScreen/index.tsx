@@ -27,11 +27,11 @@ export const TournamentsScreen = () => {
 
     return (
         <View style={styles.container} >
-            <Pressable onPress={() => showActionSheet()} style={{ backgroundColor: 'black', width: 30, height: 30 }}>
+            <Pressable onPress={() => showActionSheet()} style={styles.filterButton}>
             </Pressable>
             {
                 isFiltersActionSheetVisible
-                    ? <FiltersActionSheet />
+                    ? <FiltersActionSheet changeVisibilityState={() => setIsFiltersActionSheetVisible()} />
                     : <View />
             }
         </View>
