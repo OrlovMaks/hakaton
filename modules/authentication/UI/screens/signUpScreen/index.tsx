@@ -15,6 +15,8 @@ interface IProps {
 }
 
 export const SignUpScreen: FC<IProps> = ({ navigation }) => {
+    const [name, setName] = useState<string>('');
+    const [nameValid, setNameValid] = useState<boolean>(false);
     const [email, setEmail] = useState<string>('');
     const [emailValid, setEmailValid] = useState<boolean>(false);
     const [password, setPassword] = useState<string>('');
@@ -29,6 +31,15 @@ export const SignUpScreen: FC<IProps> = ({ navigation }) => {
             navigation.navigate('SignIn')
         }
     }, [email, password])
+
+    useEffect(() => {
+        const validationFirstName = isValidName(name)
+        if (validationFirstName) {
+            setNameValid(true)
+        } else {
+            setNameValid(false)
+        }
+    }, [name])
 
     useEffect(() => {
         const validationEmail = isValidEmail(email)
@@ -58,12 +69,12 @@ export const SignUpScreen: FC<IProps> = ({ navigation }) => {
     }, [confirmPassword])
 
     useEffect(() => {
-        if (emailValid && passwordValid && confirmPasswordValid) {
+        if (emailValid && passwordValid && confirmPasswordValid && nameValid) {
             setButtonDisable(true)
         } else {
             setButtonDisable(false)
         }
-    }, [emailValid, passwordValid, confirmPasswordValid])
+    }, [emailValid, passwordValid, confirmPasswordValid, nameValid])
 
 
     return (
@@ -73,15 +84,16 @@ export const SignUpScreen: FC<IProps> = ({ navigation }) => {
                 <SignUpHeader navigation={navigation} />
                 <View style={styles.formWrapper}>
                     <View>
+                        <SignInput title={'NAME'} placeholder={'Ally'} autoComplete={'name'} secureTextEntry={false} value={name} setValue={setName} titleColor={"#626262"} backgroundColor={'rgba(0, 0, 0, 0.05)'} isValid={nameValid} />
                         <SignInput title={'EMAIL'} placeholder={'ally.watsan@gmail.com'} autoComplete={'email'} secureTextEntry={false} value={email} setValue={setEmail} titleColor={"#626262"} backgroundColor={'rgba(0, 0, 0, 0.05)'} isValid={emailValid} />
                         <SignInput title={'PASSWORD'} placeholder={'Password'} autoComplete={'password'} secureTextEntry={true} value={password} setValue={setPassword} titleColor={"#626262"} backgroundColor={'rgba(0, 0, 0, 0.05)'} isValid={passwordValid} />
                         <SignInput title={'CONFIRM PASSWORD'} placeholder={'Confirm password'} autoComplete={'password'} secureTextEntry={true} value={confirmPassword} setValue={setConfirmPassword} titleColor={"#626262"} backgroundColor={'rgba(0, 0, 0, 0.05)'} isValid={confirmPasswordValid} />
                     </View>
                     <View>
                         <View style={styles.buttonWrapp}>
-                                <SignButton title={'SIGN UP'} backgroundColor={'#3366ff'} color={'white'} signFunc={registration} disabled={buttonDisable} />
+                            <SignButton title={'SIGN UP'} backgroundColor={'#3366ff'} color={'white'} signFunc={registration} disabled={buttonDisable} />
                         </View>
-                        <View style = {styles.forgotPassWrapp}>
+                        <View style={styles.forgotPassWrapp}>
                             <ForgotPass color={'#626262'} />
                         </View>
                     </View>
