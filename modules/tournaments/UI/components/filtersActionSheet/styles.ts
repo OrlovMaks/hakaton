@@ -5,22 +5,21 @@ const windowHeight = Dimensions.get('window').height;
 export const styles = StyleSheet.create({
     container: {
         width: windowWidth,
-        height: windowHeight/2,
+        height: windowHeight,
+        backgroundColor: 'black'
+    },
+    visibleContainer: {
+        width: windowWidth,
+        height: windowHeight / 2,
         backgroundColor: 'aqua', ////////////////////////////
         position: 'absolute',
-        bottom: -30,
-        borderRadius: 50,
+        bottom: 0,
+        borderTopLeftRadius: 50,
+        borderTopRightRadius: 50,
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center'
-    },
-    header: {
-        backgroundColor: 'aqua',  ////////////////////////////////
-        width: windowWidth,
-        height: '10%',
-        display: 'flex',
-        flexDirection: 'row'
     },
     selector: {
         width: 200,
@@ -28,5 +27,9 @@ export const styles = StyleSheet.create({
         backgroundColor: 'white', ////////////////////////////
         borderColor: 'black',
         borderWidth: 2
+    },
+    hideButton: {
+        width: windowWidth,
+        height: windowHeight,
     }
 })
