@@ -11,6 +11,7 @@ import { removeData } from '../../../../../src/appStore/asyncStorage/removeData'
 import { LocalizationContext } from '../../../../../src/localization';
 import { IThemesContext } from '../../../../../src/themes/entities/IThemesContext';
 import { ThemesContext } from '../../../../../src/themes';
+import { storeData } from '../../../../../src/appStore/asyncStorage/storeData';
 
 export const DrawerScreen: FC = () => {
     const LocalContext = useContext<ILocalizationContext>(LocalizationContext);
@@ -20,8 +21,9 @@ export const DrawerScreen: FC = () => {
 
     const toggleSwitch = (): void => {
         theme.setTheme(theme.theme === 'LIGHT' ? 'DARK' : 'LIGHT');
+        storeData('localization', LocalContext.language);
+        storeData('theme', theme.theme)
         return setIsEnabled(previousState => !previousState);
-        
     };
 
     const setSignOut = async (): Promise<void> => {
