@@ -10,6 +10,8 @@ interface IProps {
     disabled: boolean
 };
 
+
+
 export const SignButton: FC<IProps> = ({ title, backgroundColor, color, signFunc, disabled }) => {
 
     return (
