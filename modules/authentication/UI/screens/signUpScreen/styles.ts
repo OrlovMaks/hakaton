@@ -33,5 +33,11 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingHorizontal: 20,
         height: FORM_WRAPPER_HEIGHT
+    },
+    buttonWrapp:{
+        marginBottom: 15
+    },
+    forgotPassWrapp:{
+        marginBottom: 5
     }
 });

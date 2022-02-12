@@ -11,29 +11,59 @@ import { setIsAuthorizeAction, setUserData } from '../../../../../src/appStore/r
 import { AppDispatch } from '../../../../../src/appStore/redux/store';
 import { getData } from '../../../../../src/appStore/asyncStorage/getData';
 import { storeData } from '../../../../../src/appStore/asyncStorage/storeData';
-import { ForgotPass } from '../../components/forgotPasswordButton'
+import { ForgotPass } from '../../components/forgotPasswordButton';
+import { isValidEmail, isValidPassword } from '../../../useCases/signUpValidation';
 
 interface IProps {
     navigation: NavigationProp<any>
-}
+};
 
 export const SignInScreen: FC<IProps> = ({ navigation }) => {
     const [email, setEmail] = useState<string>('');
+    const [emailValid, setEmailValid] = useState<boolean>(false);
     const [password, setPassword] = useState<string>('');
-    const dispatch: AppDispatch = useDispatch()
+    const [passwordValid, setPasswordValid] = useState<boolean>(false);
+    const [buttonDisable, setButtonDisable] = useState<boolean>(false);
 
-    const onGoToSignUp = () => {
+    const dispatch: AppDispatch = useDispatch();
+
+    const onGoToSignUp = ():void => {
         navigation.navigate('SignUp');
-    }
+    };
+    useEffect((): void => {
+        const validationEmail = isValidEmail(email);
+        if (validationEmail) {
+            setEmailValid(true);
+        } else {
+            setEmailValid(false);
+        };
+    }, [email])
 
-    useEffect(() => {
-        const checkUserAuthorization = async (): Promise<void> => {
-            const getDataUser: { [key: string]: string } | undefined = await getData('userData');
+    useEffect((): void => {
+        const validationPassword = isValidPassword(password);
+        if (validationPassword) {
+            setPasswordValid(true);
+        } else {
+            setPasswordValid(false);
+        };
+    }, [password])
+
+    useEffect((): void => {
+        if (emailValid && passwordValid) {
+            setButtonDisable(true);
+        } else {
+            setButtonDisable(false);
+        };
+    }, [emailValid, passwordValid]);
+
+    useEffect((): void => {
+        const checkUserAuthorization = async () => {
+            const getDataUser = await getData('userData');
             if (getDataUser) {
                 dispatch(setUserData(getDataUser));
                 dispatch(setIsAuthorizeAction(true));
-            }
-        }
+            };
+        };
         checkUserAuthorization();
     }, []);
 
@@ -54,13 +84,13 @@ export const SignInScreen: FC<IProps> = ({ navigation }) => {
                     <SignHeader title={'SIGN IN'} nextScreen={"Sign Up"} onPress={onGoToSignUp} />
                 </View>
                 <View>
-                    <SignInput title={'EMAIL'} placeholder={'Email'} autoComplete={'email'} secureTextEntry={false} value={email} setValue={setEmail} titleColor={'white'} backgroundColor={'rgba(255, 255, 255, 0.3)'} isValid={true} />
-                    <SignInput title={'PASSWORD'} placeholder={'Password'} autoComplete={'password'} secureTextEntry={true} value={password} setValue={setPassword} titleColor={'white'} backgroundColor={'rgba(255, 255, 255, 0.3)'} isValid={true} />
+                    <SignInput title={'EMAIL'} placeholder={'Email'} autoComplete={'email'} secureTextEntry={false} value={email} setValue={setEmail} titleColor={'white'} backgroundColor={'rgba(255, 255, 255, 0.3)'} isValid={emailValid} />
+                    <SignInput title={'PASSWORD'} placeholder={'Password'} autoComplete={'password'} secureTextEntry={true} value={password} setValue={setPassword} titleColor={'white'} backgroundColor={'rgba(255, 255, 255, 0.3)'} isValid={passwordValid} />
                 </View>
             </View>
             <View>
                 <View style={styles.buttonWrapper}>
-                    <SignButton title={'SIGN IN'} backgroundColor={'#3366ff'} color={'white'} signFunc={authorization} disabled={true} />
+                    <SignButton title={'SIGN IN'} backgroundColor={'#3366ff'} color={'white'} signFunc={authorization} disabled={buttonDisable} />
                 </View>
                 <ForgotPass color={'white'} />
             </View>
