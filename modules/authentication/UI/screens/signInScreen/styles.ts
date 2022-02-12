@@ -8,7 +8,9 @@ export const styles = StyleSheet.create({
         flex: 1,
         display: "flex",
         flexDirection: 'column',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        paddingVertical: 20,
+        paddingHorizontal: 20
     },
     image: {
         width: widthScreen,
@@ -17,6 +19,13 @@ export const styles = StyleSheet.create({
         position: 'absolute',
     },
     componentsWrap: {
-        paddingHorizontal: 20
+        marginTop:15,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        height: heightScreen * 30 / 100,
+    },
+    buttonWrapper: {
+        marginBottom:20,
     }
 });
