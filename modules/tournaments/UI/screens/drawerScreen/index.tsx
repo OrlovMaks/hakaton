@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useState } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import { View, Text, Switch, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 import { ILanguages } from '../../../../../src/localization/entities/ILanguages';
@@ -21,6 +21,7 @@ export const DrawerScreen: FC = () => {
     const toggleSwitch = (): void => {
         theme.setTheme(theme.theme === 'LIGHT' ? 'DARK' : 'LIGHT');
         return setIsEnabled(previousState => !previousState);
+        
     };
 
     const setSignOut = async (): Promise<void> => {

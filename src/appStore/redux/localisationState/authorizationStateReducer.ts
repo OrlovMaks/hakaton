@@ -1,4 +1,4 @@
-// import { IUser } from "../../../../modules/shared/entities/IUser"
+import { IUser } from "../../../../modules/shared/entities/IUser"
 import { IAction } from "./authenticationStateActions";
 
 const initialState: IAuthorizationReducer = {
@@ -7,7 +7,7 @@ const initialState: IAuthorizationReducer = {
 };
 
 interface IAuthorizationReducer {
-    [key: string]: boolean | { [key: string]: string } | null;
+    [key: string]: boolean | IUser | null;
 };
 
 export const authorizationReducer = (store = initialState, action: IAction) => {
