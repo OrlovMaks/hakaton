@@ -7,9 +7,7 @@ interface IProps {
     text: string;
 }
 
-
 export const CheckBox: FC<IProps> = ({ text }) => {
-
 
     return (
         <BouncyCheckbox iconStyle={style.checkBox}

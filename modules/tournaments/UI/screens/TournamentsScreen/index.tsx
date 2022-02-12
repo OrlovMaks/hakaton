@@ -18,10 +18,10 @@ export const TournamentsScreen = () => {
 
     const showActionSheet = () => {
         if (isFiltersActionSheetVisible) {
-            setIsFiltersActionSheetVisible(false)
+            setIsFiltersActionSheetVisible(false);
         }
         else {
-            setIsFiltersActionSheetVisible(true)
+            setIsFiltersActionSheetVisible(true);
         }
     }
 
