@@ -8,9 +8,9 @@ import { useDispatch } from 'react-redux';
 import { userAuthorization } from '../../../useCases/signIn';
 import { NavigationProp } from '@react-navigation/native';
 import { setIsAuthorizeAction, setUserData } from '../../../../../src/appStore/redux/authenticationState/authenticationStateActions';
+import { AppDispatch } from '../../../../../src/appStore/redux/store';
 import { getData } from '../../../../../src/appStore/asyncStorage/getData';
 import { storeData } from '../../../../../src/appStore/asyncStorage/storeData';
-import { AppDispatch } from '../../../../../src/appStore/redux/store';
 
 interface IProps {
     navigation: NavigationProp<any>
@@ -39,7 +39,7 @@ export const SignInScreen: FC<IProps> = ({ navigation }) => {
     const authorization = useCallback(async (): Promise<void> => {
         const user: { [key: string]: any } | undefined = await userAuthorization(email, password)
         if (user) {
-            await storeData(JSON.stringify(user.data.data))
+            await storeData('userData', JSON.stringify(user.data.data))
             dispatch(setUserData(user.data))
             dispatch(setIsAuthorizeAction(true))
         }
