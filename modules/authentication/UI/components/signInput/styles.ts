@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
         borderRadius: 5,
         height: 45,
         fontWeight: '700',
-        fontSize: 18,
+        fontSize: 16,
         color: "white",
         borderWidth: 1,
         borderColor: 'grey'

@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
     },
     signEmailText: {
         color: '#626262',
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: '600'
     },
     image: {
