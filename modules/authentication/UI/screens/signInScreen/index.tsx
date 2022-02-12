@@ -11,6 +11,7 @@ import { setIsAuthorizeAction, setUserData } from '../../../../../src/appStore/r
 import { AppDispatch } from '../../../../../src/appStore/redux/store';
 import { getData } from '../../../../../src/appStore/asyncStorage/getData';
 import { storeData } from '../../../../../src/appStore/asyncStorage/storeData';
+import { ForgotPass } from '../../components/forgotPasswordButton'
 
 interface IProps {
     navigation: NavigationProp<any>
@@ -47,14 +48,21 @@ export const SignInScreen: FC<IProps> = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Image source={require("../../../../../assets/signInBackground.jpg")} resizeMode='cover' style={styles.image} />
+            <Image source={require("../../../../../assets/signBackground.jpg")} resizeMode='cover' style={styles.image} />
             <View style={styles.componentsWrap}>
-                <SignHeader title={'SIGN IN'} nextScreen={"Sign Up"} onPress={onGoToSignUp} />
-                <SignInput title={'EMAIL'} placeholder={'Email'} autoComplete={'email'} secureTextEntry={false} value={email} setValue={setEmail} titleColor={'white'} backgroundColor={'rgba(255, 255, 255, 0.3)'} isValid={true} />
-                <SignInput title={'PASSWORD'} placeholder={'Password'} autoComplete={'password'} secureTextEntry={true} value={password} setValue={setPassword} titleColor={'white'} backgroundColor={'rgba(255, 255, 255, 0.3)'} isValid={true} />
+                <View>
+                    <SignHeader title={'SIGN IN'} nextScreen={"Sign Up"} onPress={onGoToSignUp} />
+                </View>
+                <View>
+                    <SignInput title={'EMAIL'} placeholder={'Email'} autoComplete={'email'} secureTextEntry={false} value={email} setValue={setEmail} titleColor={'white'} backgroundColor={'rgba(255, 255, 255, 0.3)'} isValid={true} />
+                    <SignInput title={'PASSWORD'} placeholder={'Password'} autoComplete={'password'} secureTextEntry={true} value={password} setValue={setPassword} titleColor={'white'} backgroundColor={'rgba(255, 255, 255, 0.3)'} isValid={true} />
+                </View>
             </View>
-            <View style={styles.componentsWrap}>
-                <SignButton title={'SIGN IN'} backgroundColor={'white'} color={'black'} signFunc={authorization} disabled={true} />
+            <View>
+                <View style={styles.buttonWrapper}>
+                    <SignButton title={'SIGN IN'} backgroundColor={'#3366ff'} color={'white'} signFunc={authorization} disabled={true} />
+                </View>
+                <ForgotPass color={'white'} />
             </View>
         </View>
     );

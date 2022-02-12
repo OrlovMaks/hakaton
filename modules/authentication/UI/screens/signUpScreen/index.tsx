@@ -1,12 +1,13 @@
 import { NavigationProp } from '@react-navigation/native';
 import React, { FC, useCallback, useEffect, useState } from 'react';
-import { View, ScrollView, Text } from 'react-native';
+import { View, ScrollView, Text, Image, KeyboardAvoidingView, Platform } from 'react-native';
 import { userRegistration } from '../../../useCases/signUp';
 import { isValidEmail, isValidName, isValidPassword } from '../../../useCases/signUpValidation';
 import { SignButton } from '../../components/signButton';
 import { SignInput } from '../../components/signInput';
 import { SignHeader } from '../../components/signHeader';
 import { styles } from './styles';
+import { SignUpHeader } from '../../components/signUpHeader';
 
 interface IProps {
     navigation: NavigationProp<any>
@@ -77,16 +78,20 @@ export const SignUpScreen: FC<IProps> = ({ navigation }) => {
 
     return (
         <ScrollView>
-            <SignHeader title = {'SIGN UP'} nextScreen={'Sign In'} onPress={()=>navigation.navigate('SignIn')}/>
+
             <View style={styles.container}>
+                <SignUpHeader navigation={navigation} />
                 <View style={styles.formWrapper}>
-                    <SignInput title={'FIRST NAME'} placeholder={'Ally'} autoComplete={'name'} secureTextEntry={false} value={name} setValue={setName} titleColor={"#626262"} backgroundColor={'rgba(0, 0, 0, 0.05)'} isValid={nameValid} />
-                    <SignInput title={'LAST NAME'} placeholder={'Watson'} autoComplete={'name'} secureTextEntry={false} value={lastName} setValue={setLastName} titleColor={"#626262"} backgroundColor={'rgba(0, 0, 0, 0.05)'} isValid={lastNameValid} />
-                    <SignInput title={'EMAIL'} placeholder={'ally.watsan@gmail.com'} autoComplete={'email'} secureTextEntry={false} value={email} setValue={setEmail} titleColor={"#626262"} backgroundColor={'rgba(0, 0, 0, 0.05)'} isValid={emailValid} />
-                    <SignInput title={'PASSWORD'} placeholder={'Password'} autoComplete={'password'} secureTextEntry={true} value={password} setValue={setPassword} titleColor={"#626262"} backgroundColor={'rgba(0, 0, 0, 0.05)'} isValid={passwordValid} />
-                    <SignButton title={'SIGN UP'} backgroundColor={'#3366ff'} color={'white'} signFunc={registration} disabled={buttonDisable} />
+                        <SignInput title={'EMAIL'} placeholder={'ally.watsan@gmail.com'} autoComplete={'email'} secureTextEntry={false} value={email} setValue={setEmail} titleColor={"#626262"} backgroundColor={'rgba(0, 0, 0, 0.05)'} isValid={emailValid} />
+                        <SignInput title={'PASSWORD'} placeholder={'Password'} autoComplete={'password'} secureTextEntry={true} value={password} setValue={setPassword} titleColor={"#626262"} backgroundColor={'rgba(0, 0, 0, 0.05)'} isValid={passwordValid} />
+                        <SignInput title={'CONFIRM PASSWORD'} placeholder={'Confirm password'} autoComplete={'password'} secureTextEntry={true} value={confirmPassword} setValue={setConfirmPassword} titleColor={"#626262"} backgroundColor={'rgba(0, 0, 0, 0.05)'} isValid={passwordValid} />
+                        <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
+                            <SignButton title={'SIGN UP'} backgroundColor={'#3366ff'} color={'white'} signFunc={registration} disabled={buttonDisable} />
+                        </KeyboardAvoidingView>
+                    
                 </View>
             </View>
-        </ScrollView>
+
+        </ScrollView >
     );
 };
