@@ -4,13 +4,13 @@ import { styles } from './styles';
 import { ILanguages } from '../../../../../src/localization/entities/ILanguages';
 import RadioForm from 'react-native-simple-radio-button';
 import { useDispatch } from 'react-redux';
-import { LocalizationContext } from '../../../../../src/localization';
-import { ThemesContext } from '../../../../../src/themes';
 import { ILocalizationContext } from '../../../../../src/localization/entities/ILocalizationContext';
 import { AppDispatch } from '../../../../../src/appStore/redux/store';
-import { IThemesContext } from '../../../../../src/themes/entities/IThemesContext';
 import { signOut } from '../../../../../src/appStore/redux/authenticationState/authenticationStateActions';
 import { removeData } from '../../../../../src/appStore/asyncStorage/removeData';
+import { LocalizationContext } from '../../../../../src/localization';
+import { IThemesContext } from '../../../../../src/themes/entities/IThemesContext';
+import { ThemesContext } from '../../../../../src/themes';
 
 export const DrawerScreen: FC = () => {
     const LocalContext = useContext<ILocalizationContext>(LocalizationContext);
@@ -23,7 +23,7 @@ export const DrawerScreen: FC = () => {
         return setIsEnabled(previousState => !previousState);
     };
 
-    const setSignOut = async () => {
+    const setSignOut = async (): Promise<void> => {
         dispatch(signOut());
         removeData('userData');
     }
