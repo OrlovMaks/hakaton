@@ -15,7 +15,7 @@ export const ContainerNavigation: FC = () => {
     return (
         <SafeAreaView style={styles.safeArea}>
             <NavigationContainer>
-                {true ? <DrawerNavigator /> : <StackAuthenticationNavigator />}
+                {isUserSign ? <DrawerNavigator /> : <StackAuthenticationNavigator />}
             </NavigationContainer>
         </SafeAreaView>
     );
