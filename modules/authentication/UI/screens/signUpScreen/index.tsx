@@ -26,7 +26,7 @@ export const SignUpScreen: FC<IProps> = ({ navigation }) => {
     const [buttonDisable, setButtonDisable] = useState<boolean>(false);
 
     const registration = useCallback(async () => {
-        const user = await userRegistration(email, password)
+        const user = await userRegistration(email, password, name)
         if (user) {
             navigation.navigate('SignIn')
         }
