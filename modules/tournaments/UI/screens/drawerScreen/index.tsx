@@ -21,12 +21,10 @@ export const DrawerScreen: FC = () => {
     const dispatch: AppDispatch = useDispatch();
     const [isEnabled, setIsEnabled] = useState<boolean>(false);
 
-    const toggleSwitch = (): void => {
+    const toggleSwitch = async (): Promise<void> => {
         const themeName: IThems = (theme.theme === 'LIGHT') ? 'DARK' : 'LIGHT';
         theme.setTheme(themeName);
-        async () => {
-            await storeData('theme', themeName);
-        }
+        await storeData('theme', themeName);
         return setIsEnabled(previousState => !previousState);
     };
 
