@@ -35,6 +35,8 @@ export const TournamentsScreen: FC<IProps> = ({ navigation }) => {
 
     return (
         <View style={styles.container} >
+     
+             <TournamentsList />
             <View style={styles.footer}>
                 <View style={styles.paginationButtons}>
                     <TouchableOpacity onPress={() => Alert.alert('Prev page')} style={styles.filterButton} />
@@ -49,7 +51,7 @@ export const TournamentsScreen: FC<IProps> = ({ navigation }) => {
                     ? <FiltersActionSheet changeVisibilityState={() => setIsFiltersActionSheetVisible()} />
                     : <View />
             }
-            <TournamentsList />
+           
         </View>
     );
 };
