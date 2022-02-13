@@ -4,7 +4,7 @@ import { BackgroundImage } from "react-native-elements/dist/config";
 
 export const styles = StyleSheet.create({
     container:{
-        backgroundColor:'#D55448',
+        // backgroundColor:'#D55448',
         height: 60,
         justifyContent: 'center',
         alignItems:'center'
@@ -12,6 +12,6 @@ export const styles = StyleSheet.create({
     buttonText:{
         fontSize:30,
         fontWeight:'700',
-        color: 'black'
+        // color: 'black'
     }
 });
