@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
     footer: {
         alignItems: 'center',
         position: 'absolute',
-        bottom: 5,
+        bottom: '1%',
         width: windowWidth,
         justifyContent: 'space-between',
         flexDirection: 'row',
@@ -38,7 +38,7 @@ export const styles = StyleSheet.create({
     },
     paginationButtons: {
         alignItems: 'center',
-        bottom: 5,
+        bottom: '1%',
         width: '50%',
         justifyContent: 'space-between',
         flexDirection: 'row',

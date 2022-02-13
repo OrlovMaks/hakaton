@@ -34,8 +34,8 @@ export const TournamentsScreen = () => {
                     <Text style={styles.textPage}>10</Text>
                     <TouchableOpacity onPress={() => Alert.alert('Next page')} style={styles.filterButton} />
                 </View>
+                <TouchableOpacity onPress={() => Alert.alert('Admin Button')} style={styles.filterButton} />
                 <TouchableOpacity onPress={() => showActionSheet()} style={styles.filterButton} />
-
             </View>
             {
                 isFiltersActionSheetVisible
