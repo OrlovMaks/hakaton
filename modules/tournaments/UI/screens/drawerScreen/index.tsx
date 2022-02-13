@@ -21,18 +21,19 @@ export const DrawerScreen: FC = () => {
 
     const toggleSwitch = async (): Promise<void> => {
         theme.setTheme(theme.theme === 'LIGHT' ? 'DARK' : 'LIGHT');
+        await storeData('theme', theme.theme);
         return setIsEnabled(previousState => !previousState);
     };
 
     const setSignOut = async (): Promise<void> => {
-        storeData('localization', LocalContext.language);
-        await storeData('theme', theme.theme);
         removeData('userData');
         dispatch(signOutAction());
     }
 
-    const setLanguage = (value: ILanguages) => {
+    const setLanguage = async (value: ILanguages) => {
         LocalContext.setLanguage(value);
+        storeData('localization', LocalContext.language);
+
     };
 
     return (
@@ -52,7 +53,7 @@ export const DrawerScreen: FC = () => {
                 <RadioForm
                     radio_props={LocalContext.translations.LANGUAGES_NAMES}
                     initial={LocalContext.language}
-                    onPress={(value: ILanguages) => { LocalContext.setLanguage(value); }}
+                    onPress={(value: ILanguages) => { setLanguage(value); }}
                 />
             </View>
             <View >
