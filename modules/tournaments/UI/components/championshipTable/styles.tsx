@@ -14,20 +14,22 @@ export const styles = StyleSheet.create({
     },
     table: {
         borderWidth: 2,
-        borderColor: '#fff'
+        borderColor: '#fff',
     },
     head: {
         width: '100%',
         height: 40,
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: '#fff'
     },
     text: {
         margin: 6,
         fontSize: 18,
         fontWeight: '500',
-        color: '#fff',
+        color: '#000',
     },
     rows: {
         width: '100%',
+        backgroundColor: '#fff'
     }
 });

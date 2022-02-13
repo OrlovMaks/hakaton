@@ -1,5 +1,7 @@
-import React, { FC, useState } from "react";
+import React, { FC, useContext, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
+import { ThemesContext } from "../../../../../src/themes";
+import { IThemesContext } from "../../../../../src/themes/entities/IThemesContext";
 import { SetScoreModal } from "../setScoreModal";
 import { styles } from "./styles";
 
@@ -18,8 +20,9 @@ interface MatchItemProps {
 }
 
 export const MatchItem: FC<MatchItemProps> = ({ item, disable }) => {
-    const [modalVisible, setModalVisible] = useState(false)
-    const [match, setMatch] = useState(false)
+    const [modalVisible, setModalVisible] = useState(false);
+    const [match, setMatch] = useState(false);
+    const theme = useContext<IThemesContext>(ThemesContext);
 
     const setScore = (item)=>{
         setMatch(item)
@@ -29,7 +32,7 @@ export const MatchItem: FC<MatchItemProps> = ({ item, disable }) => {
     return (
         <View>
             <TouchableOpacity disabled={disable} onPress={() => setScore(item)}>
-                <View style={styles.container}>
+                <View style={[styles.container, {backgroundColor: theme.colors.LIST_ITEMS}]}>
                     <View>
                         <Text style={styles.scoreText}>{item.firstPlayer}</Text>
                         <Text style={styles.dataText}>{item.place}</Text>
