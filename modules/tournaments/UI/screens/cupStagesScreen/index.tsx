@@ -4,6 +4,7 @@ import { FlatList, ListRenderItem, Text, TouchableOpacity, View } from 'react-na
 import { LocalizationContext } from '../../../../../src/localization';
 import { ThemesContext } from '../../../../../src/themes';
 import { CupStageItem } from '../../components/cupStageItem';
+import { HeaderComponent } from '../../components/HeaderComponent';
 import { TournamentsButton } from '../../components/tournamentsButton';
 import { styles } from './styles';
 
@@ -55,9 +56,7 @@ export const CupStagesScreen: FC<IProps> = ({ navigation }) => {
 
     return (
         <View style={[styles.container, { backgroundColor: theme.colors.BACKGROUND_COLOR }]}>
-            <View style={[styles.titleContainer, { backgroundColor: theme.colors.TITLE_BACKGROUND_COLOR }]}>
-                <Text style={[styles.title, { color: theme.colors.TEXT_COLOR }]}>{LocalContext.translations.CUP_STAGES_TITLE}</Text>
-            </View>
+            <HeaderComponent title={LocalContext.translations.CUP_STAGES_TITLE}/>
             <FlatList
                 style={styles.stagesList}
                 data={TEMP_STAGS}
@@ -65,7 +64,6 @@ export const CupStagesScreen: FC<IProps> = ({ navigation }) => {
                 keyExtractor={item => item.id}
             />
             <TournamentsButton onPress={() => { navigation.navigate('Matches') }} title={LocalContext.translations.BACK_BUTTON_TITLE} />
-
         </View>
     );
 };
