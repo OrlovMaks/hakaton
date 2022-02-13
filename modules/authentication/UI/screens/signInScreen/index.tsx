@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect, useState } from 'react';
+import React, { FC, useCallback, useContext, useEffect, useState } from 'react';
 import { View, Image } from 'react-native';
 import { SignHeader } from '../../components/signHeader';
 import { SignInput } from '../../components/signInput';
@@ -13,6 +13,8 @@ import { getData } from '../../../../../src/appStore/asyncStorage/getData';
 import { storeData } from '../../../../../src/appStore/asyncStorage/storeData';
 import { ForgotPass } from '../../components/forgotPasswordButton';
 import { isValidEmail, isValidPassword } from '../../../useCases/signUpValidation';
+import { LocalizationContext } from '../../../../../src/localization';
+import { ILocalizationContext } from '../../../../../src/localization/entities/ILocalizationContext';
 
 interface IProps {
     navigation: NavigationProp<any>
@@ -22,12 +24,12 @@ export const SignInScreen: FC<IProps> = ({ navigation }) => {
     const [email, setEmail] = useState<string>('');
     const [emailValid, setEmailValid] = useState<boolean>(false);
     const [password, setPassword] = useState<string>('');
+    const Localization = useContext<ILocalizationContext>(LocalizationContext);
     const [passwordValid, setPasswordValid] = useState<boolean>(false);
     const [buttonDisable, setButtonDisable] = useState<boolean>(false);
-
     const dispatch: AppDispatch = useDispatch();
 
-    const onGoToSignUp = ():void => {
+    const onGoToSignUp = (): void => {
         navigation.navigate('SignUp');
     };
     useEffect((): void => {
@@ -81,16 +83,16 @@ export const SignInScreen: FC<IProps> = ({ navigation }) => {
             <Image source={require("../../../../../assets/signBackground.jpg")} resizeMode='cover' style={styles.image} />
             <View style={styles.componentsWrap}>
                 <View>
-                    <SignHeader title={'SIGN IN'} nextScreen={"Sign Up"} onPress={onGoToSignUp} />
+                    <SignHeader title={Localization.translations.SIGN_IN_TITLE} nextScreen={Localization.translations.SIGN_UP_TITLE} onPress={onGoToSignUp} />
                 </View>
                 <View>
-                    <SignInput title={'EMAIL'} placeholder={'Email'} autoComplete={'email'} secureTextEntry={false} value={email} setValue={setEmail} titleColor={'white'} backgroundColor={'rgba(255, 255, 255, 0.3)'} isValid={emailValid} />
-                    <SignInput title={'PASSWORD'} placeholder={'Password'} autoComplete={'password'} secureTextEntry={true} value={password} setValue={setPassword} titleColor={'white'} backgroundColor={'rgba(255, 255, 255, 0.3)'} isValid={passwordValid} />
+                    <SignInput title={Localization.translations.EMAIL_TITLE} placeholder={Localization.translations.EMAIL_PLACEHOLDER} autoComplete={'email'} secureTextEntry={false} value={email} setValue={setEmail} titleColor={'white'} backgroundColor={'rgba(255, 255, 255, 0.3)'} isValid={emailValid} />
+                    <SignInput title={Localization.translations.PASSWORD_TITLE} placeholder={Localization.translations.PASSWORD_PLACEHOLDER} autoComplete={'password'} secureTextEntry={true} value={password} setValue={setPassword} titleColor={'white'} backgroundColor={'rgba(255, 255, 255, 0.3)'} isValid={passwordValid} />
                 </View>
             </View>
             <View>
                 <View style={styles.buttonWrapper}>
-                    <SignButton title={'SIGN IN'} backgroundColor={'#3366ff'} color={'white'} signFunc={authorization} disabled={buttonDisable} />
+                    <SignButton title={Localization.translations.SIGN_IN_TITLE} backgroundColor={'#3366ff'} color={'white'} signFunc={authorization} disabled={buttonDisable} />
                 </View>
                 <ForgotPass color={'white'} />
             </View>

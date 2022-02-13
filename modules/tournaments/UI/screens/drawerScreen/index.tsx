@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useState } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import { View, Text, Switch, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 import { ILanguages } from '../../../../../src/localization/entities/ILanguages';
@@ -6,34 +6,45 @@ import RadioForm from 'react-native-simple-radio-button';
 import { useDispatch } from 'react-redux';
 import { ILocalizationContext } from '../../../../../src/localization/entities/ILocalizationContext';
 import { AppDispatch } from '../../../../../src/appStore/redux/store';
-import { signOut } from '../../../../../src/appStore/redux/authenticationState/authenticationStateActions';
+import { signOutAction } from '../../../../../src/appStore/redux/authenticationState/authenticationStateActions';
 import { removeData } from '../../../../../src/appStore/asyncStorage/removeData';
 import { LocalizationContext } from '../../../../../src/localization';
 import { IThemesContext } from '../../../../../src/themes/entities/IThemesContext';
 import { ThemesContext } from '../../../../../src/themes';
+import { storeData } from '../../../../../src/appStore/asyncStorage/storeData';
+import { getData } from '../../../../../src/appStore/asyncStorage/getData';
+import { IThems } from '../../../../../src/themes/entities/IThems';
 
 export const DrawerScreen: FC = () => {
     const LocalContext = useContext<ILocalizationContext>(LocalizationContext);
+    const theme: IThemesContext = useContext<IThemesContext>(ThemesContext);
     const dispatch: AppDispatch = useDispatch();
     const [isEnabled, setIsEnabled] = useState<boolean>(false);
-    const theme = useContext<IThemesContext>(ThemesContext);
 
-    const toggleSwitch = (): void => {
-        theme.setTheme(theme.theme === 'LIGHT' ? 'DARK' : 'LIGHT');
+    const toggleSwitch = async (): Promise<void> => {
+        const themeName: IThems = (theme.theme === 'LIGHT') ? 'DARK' : 'LIGHT';
+        theme.setTheme(themeName);
+        await storeData('theme', themeName);
         return setIsEnabled(previousState => !previousState);
     };
 
     const setSignOut = async (): Promise<void> => {
-        dispatch(signOut());
         removeData('userData');
+        dispatch(signOutAction());
     }
+
+    const setLanguage = async (value: ILanguages) => {
+        LocalContext.setLanguage(value);
+        await storeData('localization', value);
+
+    };
 
     return (
         <View style={[styles.container, { backgroundColor: theme.colors.sideMenuBackground }]}>
             <View style={styles.themeWrapper}>
                 <Text style={{ color: theme.colors.color }}>{LocalContext.translations.THEME_SWITCH_TITLE}</Text>
                 <Switch
-                    trackColor={{ false: '#000', true: '#fff' }}
+                    trackColor={{ false: theme.colors.trackColor, true: theme.colors.trackColor }}
                     thumbColor={theme.colors.backgroundColor}
                     ios_backgroundColor={theme.colors.backgroundColor}
                     onValueChange={toggleSwitch}
@@ -45,7 +56,7 @@ export const DrawerScreen: FC = () => {
                 <RadioForm
                     radio_props={LocalContext.translations.LANGUAGES_NAMES}
                     initial={LocalContext.language}
-                    onPress={(value: ILanguages) => { LocalContext.setLanguage(value) }}
+                    onPress={(value: ILanguages) => { setLanguage(value); }}
                 />
             </View>
             <View >

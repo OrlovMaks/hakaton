@@ -10,14 +10,12 @@ export const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        width: '100%',
+        width: windowWidth,
         height: 100,
+        backgroundColor: 'rgb(0, 30, 66)',
+        marginTop: 5
     },
     itemText: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
         color: 'white',
         fontSize: 20,
     },

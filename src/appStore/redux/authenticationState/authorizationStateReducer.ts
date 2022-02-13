@@ -1,5 +1,5 @@
-import { IUser } from "../../../../modules/shared/entities/IUser"
-import { IAction } from "./authenticationStateActions";
+// import { IUser } from "../../../../modules/shared/entities/IUser"
+import { IAuthorizeAction } from "./authenticationStateActions";
 
 const initialState: IAuthorizationReducer = {
     isAuthorize: false,
@@ -7,11 +7,11 @@ const initialState: IAuthorizationReducer = {
 };
 
 interface IAuthorizationReducer {
-    [key: string]: boolean | IUser | null;
+    [key: string]: boolean | { [key: string]: string } | null;
 };
 
-export const authorizationReducer = (store = initialState, action: IAction) => {
-    const { type, payload }: IAction = { ...action };
+export const authorizationReducer = (store = initialState, action: IAuthorizeAction) => {
+    const { type, payload }: IAuthorizeAction = { ...action };
     switch (type) {
         case 'SET_AUTHORIZE': return {
             ...store,
