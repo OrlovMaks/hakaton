@@ -30,7 +30,10 @@ export const LoadingScreen: FC = () => {
                 LocalContext.setLanguage(previousLanguage);
                 ThemeContext.setTheme(previousTheme);
             }
-            console.log(previousLanguage, LocalContext);
+            console.log('================previousTheme====================');
+            console.log(previousTheme);
+            console.log('====================================');
+            console.log(ThemeContext.theme);
         };
         checkUserAuthorization();
 

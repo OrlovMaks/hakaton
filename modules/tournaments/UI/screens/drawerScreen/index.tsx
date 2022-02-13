@@ -12,16 +12,19 @@ import { LocalizationContext } from '../../../../../src/localization';
 import { IThemesContext } from '../../../../../src/themes/entities/IThemesContext';
 import { ThemesContext } from '../../../../../src/themes';
 import { storeData } from '../../../../../src/appStore/asyncStorage/storeData';
+import { getData } from '../../../../../src/appStore/asyncStorage/getData';
+import { IThems } from '../../../../../src/themes/entities/IThems';
 
 export const DrawerScreen: FC = () => {
     const LocalContext = useContext<ILocalizationContext>(LocalizationContext);
-    const theme = useContext<IThemesContext>(ThemesContext);
+    const theme: IThemesContext = useContext<IThemesContext>(ThemesContext);
     const dispatch: AppDispatch = useDispatch();
     const [isEnabled, setIsEnabled] = useState<boolean>(false);
 
     const toggleSwitch = async (): Promise<void> => {
-        theme.setTheme(theme.theme === 'LIGHT' ? 'DARK' : 'LIGHT');
-        await storeData('theme', theme.theme);
+        const themeName: IThems = (theme.theme === 'LIGHT') ? 'DARK' : 'LIGHT';
+        theme.setTheme(themeName);
+        await storeData('theme', themeName);
         return setIsEnabled(previousState => !previousState);
     };
 
@@ -32,7 +35,7 @@ export const DrawerScreen: FC = () => {
 
     const setLanguage = async (value: ILanguages) => {
         LocalContext.setLanguage(value);
-        storeData('localization', LocalContext.language);
+        await storeData('localization', value);
 
     };
 
@@ -41,7 +44,7 @@ export const DrawerScreen: FC = () => {
             <View style={styles.themeWrapper}>
                 <Text style={{ color: theme.colors.color }}>{LocalContext.translations.THEME_SWITCH_TITLE}</Text>
                 <Switch
-                    trackColor={{ false: '#000', true: '#fff' }}
+                    trackColor={{ false: theme.colors.trackColor, true: theme.colors.trackColor }}
                     thumbColor={theme.colors.backgroundColor}
                     ios_backgroundColor={theme.colors.backgroundColor}
                     onValueChange={toggleSwitch}
