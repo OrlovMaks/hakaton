@@ -12,7 +12,7 @@ import { AppDispatch } from '../../../../../src/appStore/redux/store';
 import { getData } from '../../../../../src/appStore/asyncStorage/getData';
 import { storeData } from '../../../../../src/appStore/asyncStorage/storeData';
 import { ForgotPass } from '../../components/forgotPasswordButton';
-import { isValidEmail, isValidPassword } from '../../../useCases/signUpValidation';
+import { isValidSignInEmail, isValidSignInPassword } from '../../../useCases/signUpValidation';
 import { LocalizationContext } from '../../../../../src/localization';
 import { ILocalizationContext } from '../../../../../src/localization/entities/ILocalizationContext';
 
@@ -33,7 +33,7 @@ export const SignInScreen: FC<IProps> = ({ navigation }) => {
         navigation.navigate('SignUp');
     };
     useEffect((): void => {
-        const validationEmail = isValidEmail(email);
+        const validationEmail = isValidSignInEmail(email);
         if (validationEmail) {
             setEmailValid(true);
         } else {
@@ -42,7 +42,7 @@ export const SignInScreen: FC<IProps> = ({ navigation }) => {
     }, [email])
 
     useEffect((): void => {
-        const validationPassword = isValidPassword(password);
+        const validationPassword = isValidSignInPassword(password);
         if (validationPassword) {
             setPasswordValid(true);
         } else {
@@ -61,6 +61,7 @@ export const SignInScreen: FC<IProps> = ({ navigation }) => {
     useEffect((): void => {
         const checkUserAuthorization = async () => {
             const getDataUser = await getData('userData');
+            console.log(getDataUser)
             if (getDataUser) {
                 dispatch(setUserDataAction(JSON.parse(getDataUser)));
                 dispatch(setIsAuthorizeAction(true));
@@ -73,9 +74,23 @@ export const SignInScreen: FC<IProps> = ({ navigation }) => {
         const user: { [key: string]: any } | undefined = await userAuthorization(email, password)
         if (user) {
 
-            await storeData('userData', JSON.stringify(user.data))
+            await storeData('userData', JSON.stringify({
+                userId: user.data.data.id,
+                role: user.data.data.role,
+                email: user.data.data.email,
+                client: user.headers.client,
+                uid: user.headers.uid,
+                accessToken: user.headers['access-token']
+            }))
 
-            dispatch(setUserDataAction(user.data))
+            dispatch(setUserDataAction({
+                userId: user.data.data.id,
+                role: user.data.data.role,
+                email: user.data.data.email,
+                client: user.headers.client,
+                uid: user.headers.uid,
+                accessToken: user.headers['access-token']
+            }))
             dispatch(setIsAuthorizeAction(true))
         }
     }, [email, password]);

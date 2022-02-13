@@ -13,7 +13,7 @@ export const userRegistration = async (email: string, password: string, name:str
         console.log("result========>>>>", response.data)
         return response
     } catch (e: any) {
-        Alert.alert(e)
+        Alert.alert('User already exists')
         return
     }
 
