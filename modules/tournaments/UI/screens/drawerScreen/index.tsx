@@ -43,80 +43,35 @@ export const DrawerScreen: FC = () => {
     };
 
     return (
-        <View style={[styles.container, { backgroundColor: theme.colors.sideMenuBackground }]}>
+        <View style={[styles.container, { backgroundColor: theme.colors.TITLE_BACKGROUND_COLOR }]}>
             <View style={styles.themeWrapper}>
-                <Text style={{ color: theme.colors.color }}>{LocalContext.translations.THEME_SWITCH_TITLE}</Text>
+                <Text style={{ color: theme.colors.BACKGROUND_COLOR }}>{LocalContext.translations.THEME_SWITCH_TITLE}</Text>
                 <Switch
-                    trackColor={{ false: theme.colors.trackColor, true: theme.colors.trackColor }}
-                    thumbColor={theme.colors.backgroundColor}
+                    trackColor={{ false: theme.colors.SWITCH_COLOR, true: theme.colors.SWITCH_COLOR }}
+                    thumbColor={theme.colors.BACKGROUND_COLOR}
                     ios_backgroundColor={theme.colors.backgroundColor}
                     onValueChange={toggleSwitch}
                     value={isEnabled}
                 />
             </View>
             <View>
-                <Text style={{ color: theme.colors.color }}>{LocalContext.translations.LANGUAGE_RADIO_BUTTON_TITLE}</Text>
+                <Text style={{ color: theme.colors.BACKGROUND_COLOR }}>{LocalContext.translations.LANGUAGE_RADIO_BUTTON_TITLE}</Text>
                 <RadioForm
                     radio_props={LocalContext.translations.LANGUAGES_NAMES}
                     initial={LocalContext.language}
                     onPress={(value: ILanguages) => { setLanguage(value); }}
+                    labelColor={theme.colors.BACKGROUND_COLOR}
+                    selectedButtonColor={theme.colors.BUTTON_COLOR}
+                    buttonColor={theme.colors.BUTTON_COLOR}
                 />
             </View>
-            <View >
+            <View>
                 <TouchableOpacity onPress={setSignOut}>
-                    <Text style={{ color: theme.colors.color }}>
+                    <Text style={{ color: theme.colors.BACKGROUND_COLOR }}>
                         {LocalContext.translations.LOG_OUT_BUTTON_TITLE}
                     </Text>
                 </TouchableOpacity>
             </View>
         </View>
     );
-    // const themesContext = useContext(ThemesContext);
-    // const LocalContext = useContext(LocalizationContext);
-    // const [isThemeEnabled, setThemeIsEnabled] = useState(false);
-
-
-
-    // const signOut = async () => {
-    //     removeUserData()
-    //     dispatch(setUserData(null))
-    //     dispatch(signInUser(false))
-    // }
-
-    // return (
-    //     <View style={[styles.container, { backgroundColor: colorTheme.background }]}>
-    //         <View style={styles.themeWrapper}>
-    //             <Text style={{ color: colorTheme.color }}>
-    //                 {LocalContext.translations.THEME_SWITCH_TITLE}
-    //             </Text>
-    //             <Switch
-    //                 trackColor={{ false: '#767577', true: '#81b0ff' }}
-    //                 thumbColor={isThemeEnabled ? '#f5dd4b' : '#f4f3f4'}
-    //                 ios_backgroundColor="#3e3e3e"
-    //                 onValueChange={toggleThemeSwitch}
-    //                 value={isThemeEnabled}
-    //             />
-    //         </View>
-    //         <View>
-    //             <RadioForm
-    //                 radio_props={LocalContext.translations.LANGUAGES_NAMES}
-    //                 initial={LocalContext.language}
-    //                 onPress={(value: ILanguages) => {
-    //                     LocalContext.setLanguage(value);
-    //                 }}
-    //                 buttonColor={'#000'}
-    //                 selectedButtonColor={'#000'}
-    //             />
-    //         </View>
-    //         <View style={{ width: '50%' }}>
-    //             <SignButton
-    //                 title={'SIGN OUT'}
-    //                 backgroundColor={'#3366ff'}
-    //                 color={'black'}
-    //                 signFunc={() => signOut()}
-    //                 disabled={true}
-    //             />
-    //         </View>
-    //     </View>
-    // );
 };

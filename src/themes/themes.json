@@ -5,6 +5,7 @@
     ],
     "LIGHT": {
         "BACKGROUND_COLOR": "#F9F9FF",
+        "SWITCH_COLOR": "#021C1E",
         "TEXT_COLOR": "#000",
         "BUTTON_COLOR": "#D55448",
         "LIST_ITEMS": "#FFA577",
@@ -12,6 +13,7 @@
     },
     "DARK": {
         "BACKGROUND_COLOR": "#021C1E",
+        "SWITCH_COLOR": "#F9F9FF",
         "TEXT_COLOR": "#fff",
         "BUTTON_COLOR": "#004445",
         "LIST_ITEMS": "#2C7873",
