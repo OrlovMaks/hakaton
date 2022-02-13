@@ -12,8 +12,13 @@ import { NavigationProp, useFocusEffect } from '@react-navigation/native';
 import { TournamentDescriptionModal } from '../../components/tournamentModalDescription';
 import { setUserDataAction } from '../../../../../src/appStore/redux/authenticationState/authenticationStateActions';
 import { selectUserData } from '../../../../../src/appStore/redux/authenticationState/authenticationStateSelector';
+
 import { selectTableInformation } from '../../../../../src/appStore/redux/tableInformationState/tableInformationSelector';
 import { sendFindMatchesRequest } from '../../../useCases/getMatches';
+
+import { IThemesContext } from '../../../../../src/themes/entities/IThemesContext';
+import { ThemesContext } from '../../../../../src/themes';
+
 
 interface IProps {
     navigation: NavigationProp<any>
@@ -72,6 +77,8 @@ export const MatchesScreen: FC<IProps> = ({ navigation }) => {
     const currentUserData = useSelector(selectUserData)
     const tournamentInfo = useSelector(selectTableInformation)
     const [matchData, setMatchData] = useState([])
+    const theme = useContext<IThemesContext>(ThemesContext);
+
 
     useEffect(() => {
 
@@ -99,9 +106,9 @@ export const MatchesScreen: FC<IProps> = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.header}>
+            <View style={[styles.header, {backgroundColor: theme.colors.TITLE_BACKGROUND_COLOR}]}>
                 <GoBackButton navigation={navigation} />
-                <Text style={styles.textTitle}>{LocalContext.translations.MATCHES_TITLE}</Text>
+                <Text style={[styles.textTitle, {color: theme.colors.TEXT_COLOR}]}>{LocalContext.translations.MATCHES_TITLE}</Text>
                 <InfoButton onPress={() => setModalVisible(true)} />
             </View>
             <SafeAreaView style={styles.container}>

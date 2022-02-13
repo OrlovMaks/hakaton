@@ -9,13 +9,13 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems:'center',
-        backgroundColor:'#896E69',
+        // backgroundColor:'#896E69',
         height: 70,
         paddingHorizontal: 10
     },
     textTitle:{
         fontSize:40,
         fontWeight:'700',
-        color: 'black'
+        // color: 'black'
     }
 });
