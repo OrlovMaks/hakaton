@@ -28,7 +28,9 @@
         "CUP_STAGES_TITLE": "ЭТАПЫ",
         "BACK_BUTTON_TITLE": "Назад",
         "MATCHES_TITLE":"Матчи",
-        "TABLE_BUTTON_TITLE":"Таблица"
+        "TABLE_BUTTON_TITLE":"Таблица",
+        "RESULT_MATCH_TITLE": "Результаты матчей",
+        "CHAMPIONSHIP_TITLE": "Чемпионат"
 
     },
     "EN": {
@@ -56,7 +58,9 @@
         "FORGOT_PASSWORD_TITLE": "Forgot password?",
         "CUP_STAGES_TITLE": "STAGES",
         "BACK_BUTTON_TITLE": "Back",
-        "TABLE_BUTTON_TITLE":"Table"
+        "TABLE_BUTTON_TITLE":"Table",
+        "RESULT_MATCH_TITLE": "Result match",
+        "CHAMPIONSHIP_TITLE": "Championship"
     },
     "INITIAL_LANGUAGE": "EN"
 }

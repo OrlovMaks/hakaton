@@ -1,4 +1,4 @@
-import React, { FC, useContext, } from 'react';
+import React, { FC, useContext, useState, } from 'react';
 import { styles } from './styles';
 import { Image,Text,TouchableOpacity, View } from 'react-native';
 import { LocalizationContext } from '../../../../../src/localization';
@@ -9,10 +9,11 @@ interface IProps{
 }
 
 export const TableButton:FC<IProps> = ({navigation}) => {
-    const LocalContext = useContext(LocalizationContext)
+    const LocalContext = useContext(LocalizationContext);
+    const [isCup, setIsCup] = useState<boolean>(false);
 
     return (
-        <TouchableOpacity onPress={()=>navigation.navigate('CupStages')}>
+        <TouchableOpacity onPress={()=>navigation.navigate(isCup? 'CupStages' : 'ChampionshipTable')}>
             <View style={styles.container}>
                 <Text style={styles.buttonText}>{LocalContext.translations.TABLE_BUTTON_TITLE}</Text>
             </View>

@@ -5,7 +5,7 @@
     ],
     "LIGHT": {
         "BACKGROUND_COLOR": "#F9F9FF",
-        "TEXT_COLOR": "#fff",
+        "TEXT_COLOR": "#000",
         "BUTTON_COLOR": "#D55448",
         "LIST_ITEMS": "#FFA577",
         "TITLE_BACKGROUND_COLOR": "#896E69"
