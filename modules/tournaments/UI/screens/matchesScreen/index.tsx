@@ -1,4 +1,4 @@
-import React, { FC, useContext, useState } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import { SafeAreaView, Text, View } from 'react-native';
 import { styles } from './styles';
 import { useSelector } from 'react-redux';
@@ -10,6 +10,8 @@ import { MatchItem } from '../../components/matchItem';
 import { TableButton } from '../../components/tableButton';
 import { NavigationProp } from '@react-navigation/native';
 import { TournamentDescriptionModal } from '../../components/tournamentModalDescription';
+import { setUserDataAction } from '../../../../../src/appStore/redux/authenticationState/authenticationStateActions';
+import { selectUserData } from '../../../../../src/appStore/redux/authenticationState/authenticationStateSelector';
 
 interface IProps {
     navigation: NavigationProp<any>
@@ -63,10 +65,22 @@ const DATA = [
 
 export const MatchesScreen: FC<IProps> = ({ navigation }) => {
     const [modalVisible, setModalVisible] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false)
     const LocalContext = useContext(LocalizationContext);
+    const currentUserData = useSelector(selectUserData)
+
+    useEffect(() => {
+        if (currentUserData.role === 'admin') {
+            setIsAdmin(true)
+        }
+        else {
+            setIsAdmin(false)
+        }
+    }, [])
+
 
     const renderItem: FC<MatchItemProps> = ({ item }) => (
-        <MatchItem item={item} />
+        <MatchItem item={item} disable={!isAdmin}/>
     );
 
     return (
@@ -74,7 +88,7 @@ export const MatchesScreen: FC<IProps> = ({ navigation }) => {
             <View style={styles.header}>
                 <GoBackButton navigation={navigation} />
                 <Text style={styles.textTitle}>{LocalContext.translations.MATCHES_TITLE}</Text>
-                <InfoButton onPress={() => setModalVisible(true)}/>
+                <InfoButton onPress={() => setModalVisible(true)} />
             </View>
             <SafeAreaView style={styles.container}>
                 <View style={{ paddingHorizontal: 5 }}>

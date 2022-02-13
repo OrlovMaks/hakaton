@@ -9,3 +9,21 @@ export const isValidPassword = (password: string): boolean => {
 export const isValidName = (name: string): boolean => {
     return /^(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{1,}$/s.test(name)
 }
+
+export const isValidSignInEmail = (email: string): boolean => {
+    if(email.length > 1){
+        return true
+    }
+    else{
+        return false
+    }
+}
+
+export const isValidSignInPassword = (password: string): boolean => {
+    if(password.length > 1){
+        return true
+    }
+    else{
+        return false
+    }
+}

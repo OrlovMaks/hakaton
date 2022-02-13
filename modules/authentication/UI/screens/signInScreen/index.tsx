@@ -12,7 +12,7 @@ import { AppDispatch } from '../../../../../src/appStore/redux/store';
 import { getData } from '../../../../../src/appStore/asyncStorage/getData';
 import { storeData } from '../../../../../src/appStore/asyncStorage/storeData';
 import { ForgotPass } from '../../components/forgotPasswordButton';
-import { isValidEmail, isValidPassword } from '../../../useCases/signUpValidation';
+import { isValidSignInEmail, isValidSignInPassword } from '../../../useCases/signUpValidation';
 import { LocalizationContext } from '../../../../../src/localization';
 import { ILocalizationContext } from '../../../../../src/localization/entities/ILocalizationContext';
 
@@ -33,7 +33,7 @@ export const SignInScreen: FC<IProps> = ({ navigation }) => {
         navigation.navigate('SignUp');
     };
     useEffect((): void => {
-        const validationEmail = isValidEmail(email);
+        const validationEmail = isValidSignInEmail(email);
         if (validationEmail) {
             setEmailValid(true);
         } else {
@@ -42,7 +42,7 @@ export const SignInScreen: FC<IProps> = ({ navigation }) => {
     }, [email])
 
     useEffect((): void => {
-        const validationPassword = isValidPassword(password);
+        const validationPassword = isValidSignInPassword(password);
         if (validationPassword) {
             setPasswordValid(true);
         } else {
