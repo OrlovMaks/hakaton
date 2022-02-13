@@ -12,7 +12,11 @@ import { FiltersActionSheet } from '../../components/filtersActionSheet'
 import { selectUserData } from '../../../../../src/appStore/redux/authenticationState/authenticationStateSelector';
 import { TournamentsList } from '../../components/tournamentsList';
 
-export const TournamentsScreen = () => {
+interface IProps{
+    
+}
+
+export const TournamentsScreen = ({navigation}) => {
     const currentUserData = useSelector(selectUserData)
     const LocalContext = useContext(LocalizationContext);
     const [isFiltersActionSheetVisible, setIsFiltersActionSheetVisible]: [boolean, Function] = useState(false)
@@ -42,7 +46,7 @@ export const TournamentsScreen = () => {
                     ? <FiltersActionSheet changeVisibilityState={() => setIsFiltersActionSheetVisible()} />
                     : <View />
             }
-            <TournamentsList />
+            <TournamentsList navigation={navigation}/>
         </View>
     );
 };

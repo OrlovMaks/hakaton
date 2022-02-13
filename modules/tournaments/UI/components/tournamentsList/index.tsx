@@ -11,7 +11,7 @@ interface IProps {
 
 }
 
-export const TournamentsList: FC = memo(() => {
+export const TournamentsList: FC = memo(({navigation}) => {
     const [userRoomsListState, setUserRoomsListState] = useState([])
 
 
@@ -58,7 +58,7 @@ export const TournamentsList: FC = memo(() => {
 
 
     const Item = ({ title }) => (
-        <TouchableOpacity style={styles.item} >
+        <TouchableOpacity style={styles.item} onPress={()=>navigation.navigate('Matches')}>
             <Text style={styles.itemText}>{title}</Text>
         </TouchableOpacity>
     );
