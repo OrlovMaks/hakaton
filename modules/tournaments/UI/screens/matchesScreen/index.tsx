@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useState } from 'react';
+import React, { FC, useCallback, useContext, useEffect, useState } from 'react';
 import { SafeAreaView, Text, View } from 'react-native';
 import { styles } from './styles';
 import { useSelector } from 'react-redux';
@@ -8,12 +8,17 @@ import { InfoButton } from '../../components/tournamentInfoButton';
 import { FlatList } from 'react-native-gesture-handler';
 import { MatchItem } from '../../components/matchItem';
 import { TableButton } from '../../components/tableButton';
-import { NavigationProp } from '@react-navigation/native';
+import { NavigationProp, useFocusEffect } from '@react-navigation/native';
 import { TournamentDescriptionModal } from '../../components/tournamentModalDescription';
 import { setUserDataAction } from '../../../../../src/appStore/redux/authenticationState/authenticationStateActions';
 import { selectUserData } from '../../../../../src/appStore/redux/authenticationState/authenticationStateSelector';
+
+import { selectTableInformation } from '../../../../../src/appStore/redux/tableInformationState/tableInformationSelector';
+import { sendFindMatchesRequest } from '../../../useCases/getMatches';
+
 import { IThemesContext } from '../../../../../src/themes/entities/IThemesContext';
 import { ThemesContext } from '../../../../../src/themes';
+
 
 interface IProps {
     navigation: NavigationProp<any>
@@ -69,10 +74,14 @@ export const MatchesScreen: FC<IProps> = ({ navigation }) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false)
     const LocalContext = useContext(LocalizationContext);
-    const currentUserData = useSelector(selectUserData);
+    const currentUserData = useSelector(selectUserData)
+    const tournamentInfo = useSelector(selectTableInformation)
+    const [matchData, setMatchData] = useState([])
     const theme = useContext<IThemesContext>(ThemesContext);
 
+
     useEffect(() => {
+
         if (currentUserData.role === 'admin') {
             setIsAdmin(true)
         }
@@ -81,9 +90,18 @@ export const MatchesScreen: FC<IProps> = ({ navigation }) => {
         }
     }, [])
 
+    useFocusEffect(useCallback(() => {
+        getMatchesData();
+    }, [tournamentInfo]))
+
+    const getMatchesData = async () => {
+        const responseMatches = await sendFindMatchesRequest(tournamentInfo.id);
+        console.log('aaaaaaaaaaaaaaaaaa', responseMatches);
+        setMatchData(responseMatches)
+    };
 
     const renderItem: FC<MatchItemProps> = ({ item }) => (
-        <MatchItem item={item} disable={!isAdmin}/>
+        <MatchItem item={item} disable={!isAdmin} />
     );
 
     return (
