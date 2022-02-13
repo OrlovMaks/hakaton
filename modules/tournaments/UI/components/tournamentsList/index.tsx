@@ -1,9 +1,6 @@
 import { NavigationProp } from '@react-navigation/native';
 import React, { FC, memo, useEffect, useMemo, useState, } from 'react';
 import { View, TouchableOpacity, Text, FlatList, Image, Pressable } from 'react-native';
-import { TouchableHighlight } from 'react-native-gesture-handler';
-import { findUserRooms } from '../../../useCases/findUserRooms';
-import { SignButton } from '../signButton';
 
 
 import { styles } from './style';
@@ -57,7 +54,7 @@ export const TournamentsList: FC<IProps> = memo(({ navigation }) => {
     ]
 
     const Item = ({ title }) => (
-        <TouchableOpacity style={styles.item}>
+        <TouchableOpacity style={styles.item} onPress={()=>navigation.navigate('Matches')}>
             <View style={styles.tournamentInfoButton}>
                 <View>
                     <Text style={styles.itemText}>{title}</Text>
