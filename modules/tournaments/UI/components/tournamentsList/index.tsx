@@ -1,17 +1,15 @@
+import { NavigationProp } from '@react-navigation/native';
 import React, { FC, memo, useEffect, useMemo, useState, } from 'react';
 import { View, TouchableOpacity, Text, FlatList, Image, Pressable } from 'react-native';
-import { findUserRooms } from '../../../useCases/findUserRooms';
-import { SignButton } from '../signButton';
 import { styles } from './style';
 
 const axios = require("axios");
 
 interface IProps {
-    value: string;
-
+    navigation: NavigationProp<any>
 }
 
-export const TournamentsList: FC = memo(({navigation}) => {
+export const TournamentsList: FC<IProps> = memo(({navigation}) => {
     const [userRoomsListState, setUserRoomsListState] = useState([])
 
 
