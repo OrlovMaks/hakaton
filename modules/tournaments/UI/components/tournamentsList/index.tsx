@@ -1,6 +1,11 @@
 import { NavigationProp } from '@react-navigation/native';
 import React, { FC, memo, useEffect, useMemo, useState, } from 'react';
 import { View, TouchableOpacity, Text, FlatList, Image, Pressable } from 'react-native';
+import { TouchableHighlight } from 'react-native-gesture-handler';
+import { findUserRooms } from '../../../useCases/findUserRooms';
+import { SignButton } from '../signButton';
+
+
 import { styles } from './style';
 
 const axios = require("axios");
@@ -56,27 +61,26 @@ export const TournamentsList: FC<IProps> = memo(({ navigation }) => {
 
 
     const Item = ({ title }) => (
-        <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('Matches')}>
-            <Text style={styles.itemText}>{title}</Text>
-            <Text style={styles.itemText}>{title}</Text>
-            <View>
-                <Text style={styles.itemText}>{title}</Text>
-                <Text style={styles.itemText}>{title}</Text>
+        <TouchableOpacity style={styles.item}>
+            <View style={styles.tournamentInfoButton}>
+                <View>
+                    <Text style={styles.itemText}>{title}</Text>
+                    <Text style={styles.itemText}>{title}</Text>
+                </View>
+                <View>
+                    <Text style={styles.itemText}>{title}</Text>
+                    <Text style={styles.itemText}>{title}</Text>
+                </View>
+
             </View>
-        </TouchableOpacity>
+            <TouchableOpacity style={styles.registrationButton} />
+        </TouchableOpacity >
     );
 
     const renderItem = ({ item }) => (
         <Item title={item.title} />
     );
-
-    useMemo(() => {
-    }, [userRoomsListState])
-
-    useEffect(() => {
-
-    }, [])
-
+    
     return (
         <View style={styles.list}>
             <FlatList
