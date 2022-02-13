@@ -2,10 +2,14 @@ import React, { FC, } from 'react';
 import { styles } from './styles';
 import { Image, TouchableOpacity, View } from 'react-native';
 
-export const InfoButton = ({onPress}) => {
+interface IProps {
+    onPress: () => void
+}
+
+export const InfoButton: FC<IProps> = ({ onPress }) => {
 
     return (
-        
+
         <TouchableOpacity onPress={onPress}>
             <View>
                 <Image
