@@ -46,7 +46,7 @@ export const SignInScreen: FC<IProps> = ({ navigation }) => {
         if (validationPassword) {
             setPasswordValid(true);
         } else {
-            setPasswordValid(false);
+            setPasswordValid(true);
         };
     }, [password])
 

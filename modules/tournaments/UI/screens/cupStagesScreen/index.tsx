@@ -46,7 +46,6 @@ export const CupStagesScreen: FC<IProps> = ({ navigation }) => {
     const LocalContext = useContext(LocalizationContext);
     const theme = useContext(ThemesContext);
 
-
     const renderStage: ListRenderItem<{ [key: string]: string; }> = ({ item }) => {
         return (
             <CupStageItem title={item.title} navigation={navigation} />

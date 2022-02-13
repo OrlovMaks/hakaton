@@ -6,14 +6,7 @@ export const styles = StyleSheet.create({
     container: {
         width: windowWidth,
         height: windowHeight,
-        backgroundColor: '#005B4C'
-    },
-    header: {
-        backgroundColor: 'aqua',  ////////////////////////////////
-        width: windowWidth,
-        height: '10%',
-        display: 'flex',
-        flexDirection: 'row'
+        alignItems: 'center'
     },
     selector: {
         width: 200,
@@ -22,24 +15,27 @@ export const styles = StyleSheet.create({
         borderWidth: 2
     },
     filterButton: {
-        backgroundColor: 'black',
-        width: 70,
-        height: 70,
-        borderRadius: 50
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 100,
+        height: 50,
     },
     footer: {
         alignItems: 'center',
         position: 'absolute',
-        bottom: '1%',
-        width: windowWidth,
+        bottom: '2%',
+        width: windowWidth/1.1,
+        height: 70,
         justifyContent: 'space-between',
         flexDirection: 'row',
-        zIndex: 1
+        borderRadius: 5,
+        zIndex: 1,
+        paddingRight: 5
     },
     paginationButtons: {
         alignItems: 'center',
         bottom: '1%',
-        width: '50%',
+        width: '40%',
         justifyContent: 'space-between',
         flexDirection: 'row',
         zIndex: 1
@@ -47,5 +43,24 @@ export const styles = StyleSheet.create({
     textPage:{
         color: 'white',
         fontSize: 20
+    },
+    header: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: windowWidth,
+        height: 70,
+        paddingHorizontal: 10
+    },
+    textTitle: {
+        fontSize: 25,
+        fontWeight: '700',
+        color: 'black'
+    },
+    pageButtons:{
+        backgroundColor:'green',
+        width: 30,
+        height: 30
     }
 })

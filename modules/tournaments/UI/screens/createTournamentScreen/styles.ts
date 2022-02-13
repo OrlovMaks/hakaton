@@ -6,17 +6,26 @@ export const styles = StyleSheet.create({
     container: {
         width: windowWidth,
         height: windowHeight,
-        backgroundColor: '#005B4C'
+        backgroundColor: 'white',
+        flexDirection: 'column'
     },
     inputs:{
-      
         width: '100%',
         height: '20%',
-        backgroundColor: 'white'
+        backgroundColor: 'green'
     },
-    textArea:{
+    inputsBlock:{
         width: '100%',
-        height: '40%',
-        backgroundColor: 'white'
+        height: '50%',
+        backgroundColor: 'green'
+    },
+    selectorsBlock:{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+       width: '100%',
+       backgroundColor: 'black',
+       height: windowHeight
     }
 })
