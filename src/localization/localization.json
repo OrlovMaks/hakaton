@@ -17,7 +17,14 @@
                 "label": "английский",
                 "value": "EN"
             }
-        ]
+        ],
+        "SIGN_IN_TITLE": "Вход",
+        "SIGN_UP_TITLE": "Регистрация",
+        "EMAIL_TITLE": "ПОЧТА",
+        "EMAIL_PLACEHOLDER": "Почта",
+        "PASSWORD_TITLE": "ПАРОЛЬ",
+        "PASSWORD_PLACEHOLDER": "Пароль",
+        "FORGOT_PASSWORD_TITLE": "Забыли пароль?"
 
     },
     "EN": {
@@ -36,11 +43,12 @@
             }
         ],
         "SIGN_IN_TITLE": "SIGN IN",
-        "SIGN_UP": "Sign Up",
+        "SIGN_UP_TITLE": "Sign Up",
         "EMAIL_TITLE": "EMAIL",
         "EMAIL_PLACEHOLDER": "Email",
         "PASSWORD_TITLE": "PASSWORD",
-        "PASSWORD_PLACEHOLDER": "Password"
+        "PASSWORD_PLACEHOLDER": "Password",
+        "FORGOT_PASSWORD_TITLE": "Forgot password?"
     },
     "INITIAL_LANGUAGE": "EN"
 }

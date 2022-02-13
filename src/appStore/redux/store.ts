@@ -1,6 +1,7 @@
 import { createStore } from 'redux';
-//import { IUser } from '../../../modules/shared/entities/IUser';
+import { ILanguages } from '../../localization/entities/ILanguages';
 import { rootReducer } from './rootReducer';
+//import { IUser } from '../../../modules/shared/entities/IUser';
 
 export const store = createStore(rootReducer);
 
