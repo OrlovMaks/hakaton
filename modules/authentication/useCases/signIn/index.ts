@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Alert } from "react-native";
 
-const AUTHORIZATION_URL: string = 'https://enigmatic-meadow-94776.herokuapp.com/authorization'
+const AUTHORIZATION_URL: string = 'https://tournament-t.herokuapp.com/auth/sign_in'
 
 export const userAuthorization = async (email: string, password: string): Promise<{ [key: string]: string } | undefined> => {
     try {
@@ -10,7 +10,7 @@ export const userAuthorization = async (email: string, password: string): Promis
             password: password
         });
         console.log('result======>>>', response);
-        return response;
+        // return response;
     } catch (e: any) {
         Alert.alert(e);
         return undefined;

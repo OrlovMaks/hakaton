@@ -3,7 +3,7 @@ import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { useState } from 'react';
 import SelectDropdown from 'react-native-select-dropdown'
 import { DropDownPicker } from '../DropDownPicker';
-import { View, Pressable } from 'react-native';
+import { View, Pressable, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 import { CheckBox } from '../checkBox';
 import { SearchButton } from '../searchButton'
@@ -17,8 +17,8 @@ export const FiltersActionSheet: FC<IProps> = memo(({ changeVisibilityState }) =
         <View style={styles.container}>
             <Pressable style={styles.hideButton} onPress={() => changeVisibilityState(false)} />
             <View style={styles.visibleContainer}>
-                <SearchButton onPress={() => changeVisibilityState(false)} />
-                <View>
+
+                <View style={styles.checkBoxBlock}>
                     <CheckBox text='Cup' />
                     <CheckBox text='Championships' />
                 </View>
@@ -26,6 +26,9 @@ export const FiltersActionSheet: FC<IProps> = memo(({ changeVisibilityState }) =
                     <DropDownPicker options={['a', 'as']} />
                     <DropDownPicker options={['a', 'as']} />
                     <DropDownPicker options={['a', 'as']} />
+                </View>
+                <View style={styles.searchButton}>
+                    <SearchButton onPress={() => changeVisibilityState(false)} />
                 </View>
             </View>
 

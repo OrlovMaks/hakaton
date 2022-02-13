@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     container: {
         width: windowWidth,
         height: windowHeight,
-        backgroundColor: 'red', ////////////////////////////
+        backgroundColor: '#005B4C'
     },
     header: {
         backgroundColor: 'aqua',  ////////////////////////////////
@@ -19,15 +19,33 @@ export const styles = StyleSheet.create({
         width: 200,
         height: 30,
         backgroundColor: 'white', ////////////////////////////
-        borderColor: 'black',
         borderWidth: 2
     },
     filterButton: {
         backgroundColor: 'black',
-        width: 30,
-        height: 30,
+        width: 70,
+        height: 70,
+        borderRadius: 50
+    },
+    footer: {
+        alignItems: 'center',
         position: 'absolute',
-        bottom: 0,
-        right: 0,
+        bottom: 5,
+        width: windowWidth,
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        zIndex: 1
+    },
+    paginationButtons: {
+        alignItems: 'center',
+        bottom: 5,
+        width: '50%',
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        zIndex: 1
+    },
+    textPage:{
+        color: 'white',
+        fontSize: 20
     }
 })

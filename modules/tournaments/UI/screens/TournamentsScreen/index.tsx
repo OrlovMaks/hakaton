@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Text, View, Pressable } from 'react-native';
+import { Text, View, Pressable, TouchableOpacity, Alert } from 'react-native';
 import { styles } from './styles';
 import { useSelector } from 'react-redux';
 import { LocalizationContext } from '../../../../../src/localization';
@@ -10,6 +10,7 @@ import SelectDropdown from 'react-native-select-dropdown'
 import { DropDownPicker } from '../../components/DropDownPicker';
 import { FiltersActionSheet } from '../../components/filtersActionSheet'
 import { selectUserData } from '../../../../../src/appStore/redux/authenticationState/authenticationStateSelector';
+import { TournamentsList } from '../../components/tournamentsList';
 
 export const TournamentsScreen = () => {
     const currentUserData = useSelector(selectUserData)
@@ -27,13 +28,21 @@ export const TournamentsScreen = () => {
 
     return (
         <View style={styles.container} >
-            <Pressable onPress={() => showActionSheet()} style={styles.filterButton}>
-            </Pressable>
+            <View style={styles.footer}>
+                <View style={styles.paginationButtons}>
+                    <TouchableOpacity onPress={() => Alert.alert('Prev page')} style={styles.filterButton} />
+                    <Text style={styles.textPage}>10</Text>
+                    <TouchableOpacity onPress={() => Alert.alert('Next page')} style={styles.filterButton} />
+                </View>
+                <TouchableOpacity onPress={() => showActionSheet()} style={styles.filterButton} />
+
+            </View>
             {
                 isFiltersActionSheetVisible
                     ? <FiltersActionSheet changeVisibilityState={() => setIsFiltersActionSheetVisible()} />
                     : <View />
             }
+            <TournamentsList />
         </View>
     );
 };
