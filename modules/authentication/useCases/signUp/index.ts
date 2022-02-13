@@ -1,16 +1,16 @@
 import axios from "axios";
 import { Alert } from "react-native";
 
-const REGISTRATION_URL = 'https://enigmatic-meadow-94776.herokuapp.com/registration'
+const REGISTRATION_URL = 'http://tournament-t.herokuapp.com/auth'
 
-export const userRegistration = async (firstName: string, lastName: string, email: string, password: string) => {
+export const userRegistration = async (email: string, password: string, name:string) => {
     try {
         const response = await axios.post(REGISTRATION_URL, {
-            name: firstName.concat(' ', lastName),
+            name: name,
             email: email,
             password: password
         })
-        console.log("result========>>>>", response)
+        console.log("result========>>>>", response.data)
         return response
     } catch (e: any) {
         Alert.alert(e)

@@ -31,7 +31,7 @@ export const SignInput: FC<IProps> = ({ title, placeholder, autoComplete, secure
 
 
     return (
-        <View>
+        <View style={styles.container}>
             <Text style={[styles.title, { color: titleColor || "white" }]}>{title}</Text>
             <TextInput
                 style={[styles.input, { backgroundColor: backgroundColor, color: titleColor }, inputStyle]}

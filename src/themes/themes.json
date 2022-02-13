@@ -1,0 +1,19 @@
+{
+    "AVAILABLE_THEMES": [
+        "LIGHT",
+        "DARK"
+    ],
+    "LIGHT": {
+        "backgroundColor": "#fff",
+        "color": "#000",
+        "sideMenuBackground": "#fff",
+        "trackColor": "#000"
+    },
+    "DARK": {
+        "backgroundColor": "#000",
+        "color": "#fff",
+        "sideMenuBackground": "#424242",
+        "trackColor": "#fff"
+    },
+    "INITIAL_THEME": "DARK"
+}

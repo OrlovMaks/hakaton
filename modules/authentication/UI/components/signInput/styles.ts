@@ -2,6 +2,8 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     container: {
+        marginTop:5,
+        marginBottom:5
     },
     title: {
         fontSize: 13,
@@ -15,7 +17,7 @@ export const styles = StyleSheet.create({
         borderRadius: 5,
         height: 45,
         fontWeight: '700',
-        fontSize: 18,
+        fontSize: 16,
         color: "white",
         borderWidth: 1,
         borderColor: 'grey'
