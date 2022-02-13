@@ -11,6 +11,13 @@ interface IProps {
     navigation: NavigationProp<any>
 }
 
+interface PropsItem {
+    title: {
+        id: string,
+        title: string
+    }
+}
+
 export const TournamentsList: FC<IProps> = memo(({ navigation }) => {
     const [userRoomsListState, setUserRoomsListState] = useState([])
 
@@ -57,8 +64,8 @@ export const TournamentsList: FC<IProps> = memo(({ navigation }) => {
 
 
 
-    const Item = ({ title }) => (
-        <TouchableOpacity style={styles.item} onPress={()=>navigation.navigate('Matches')}>
+    const Item: FC<PropsItem> = ({ title }) => (
+        <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('Matches')}>
             <View style={styles.tournamentInfoButton}>
                 <View>
                     <Text style={styles.itemText}>{title}</Text>
@@ -77,7 +84,7 @@ export const TournamentsList: FC<IProps> = memo(({ navigation }) => {
     const renderItem = ({ item }) => (
         <Item title={item.title} />
     );
-    
+
     return (
         <View style={styles.list}>
             <FlatList
