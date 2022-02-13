@@ -1,5 +1,5 @@
 import { Alert } from 'react-native';
-import { getStoreData } from '../getStorageData';
+
 
 const axios = require("axios");
 
@@ -17,18 +17,11 @@ interface IProps {
     accessToken: string
 }
 
-export const sendCreateTournamentRequest = async (name, place, description, participants, mode, scenario, status, level, startDate, lastRegistrationDate, accessToken, uid, client) => {
-    console.log(name,  mode, participants, scenario, status, level,  accessToken, uid, client)
+export const sendFindTournamentsRequest = async (accessToken, client, uid, setTournamentsData) => {
+
 
     try {
-        let response = await axios.post('https://tournament-t.herokuapp.com/tournaments',
-          {  name: name,
-            mode: mode,
-            participants: participants,
-            scenario: scenario,
-            status: status,
-            level: level 
-        },
+        let response = await axios.get('https://tournament-t.herokuapp.com/tournaments',
             {
                 headers: {
                     'access-token': accessToken,
@@ -38,7 +31,7 @@ export const sendCreateTournamentRequest = async (name, place, description, part
             }
         );
         console.log(response.data)
-
+         setTournamentsData(response.data)
     }
 
     catch (error) {

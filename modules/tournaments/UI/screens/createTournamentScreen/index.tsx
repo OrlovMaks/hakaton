@@ -29,7 +29,7 @@ export const CreateTournamentsScreen: FC<IProps> = memo(({ navigation }) => {
     const [tournamentDescription, setTournamentDescription]: [string, Function] = useState('');
     const [status, setStatus]: [string, Function] = useState('');
     const currentUserData = useSelector(selectUserData)
-    
+
     const sendRequest = () => {
 
     }
@@ -42,25 +42,25 @@ export const CreateTournamentsScreen: FC<IProps> = memo(({ navigation }) => {
             <DateSelector setOpenState={() => setOpenStateLastRegistrationDate()} setDate={() => setLastRegistrationDate(lastRegistrationDate)} date={lastRegistrationDate} openState={openStateLastRegistrationDate} />
             <View style={styles.inputsBlock}>
                 <TextInput placeholder='Place' style={styles.inputs} onChangeText={setTournamentPlace} />
-                <TextInput placeholder='Name' maxLength={255} style={styles.inputs} onChangeText={setTournamentName} value={tournamentName}/>
+                <TextInput placeholder='Name' maxLength={255} style={styles.inputs} onChangeText={setTournamentName} value={tournamentName} />
                 <TextInput placeholder='Description' maxLength={10000} style={styles.inputs} multiline={true} numberOfLines={4} onChangeText={setTournamentDescription} />
             </View>
 
-            <DropDownPicker options={['Beginner', 'Middle', 'Advanced']} defaultText={'Tournament level'} setValue={setSelectedLevel} />
-            <DropDownPicker options={['Canceled', 'In progress', 'Finished']} defaultText={'Status'} setValue={setStatus} />
-            <DropDownPicker options={['CUP', 'CHAMPIONSHIP']} defaultText={'Tournament type'} setValue={setSelectedType} />
-            {selectedType === 'CUP'
+            <DropDownPicker options={['beginner', 'Middle', 'Advanced']} defaultText={'Tournament level'} setValue={setSelectedLevel} />
+            <DropDownPicker options={['Canceled', 'in-progress', 'Finished']} defaultText={'Status'} setValue={setStatus} />
+            <DropDownPicker options={['cup', 'CHAMPIONSHIP']} defaultText={'Tournament type'} setValue={setSelectedType} />
+            {selectedType === 'cup'
                 ?
                 <View>
                     <DropDownPicker options={['128', '64', '32', '16', '8', '4']} defaultText={'Count of members'} setValue={setCountOfCupMembers} />
-                    <DropDownPicker options={['One-match', 'Two-matches', 'To three wins']} defaultText={'Scenario'} setValue={setScenario} />
+                    <DropDownPicker options={['one-match', 'Two-matches', 'To-three-wins']} defaultText={'Scenario'} setValue={setScenario} />
                 </View>
                 :
                 <DropDownPicker options={['1', '2', '3', '4', '5', '6', '7', '8', '9']} defaultText={'Count or members'} setValue={setCountOfChampionshipMembers} />
             }
             <Button title="Send" onPress={() => {
-                console.log(tournamentName, selectedType, countOfCupMembers, scenario, status, selectedLevel, startDate, lastRegistrationDate, tournamentPlace, tournamentDescription, 'aaaaaaaaaa', currentUserData)
-                sendCreateTournamentRequest(tournamentName, selectedType, countOfCupMembers, scenario, status, selectedLevel, startDate, lastRegistrationDate, tournamentPlace, tournamentDescription, currentUserData.accessToken)
+                console.log(tournamentName, selectedType, countOfCupMembers, scenario, status, selectedLevel, startDate, lastRegistrationDate, tournamentPlace, tournamentDescription, 'aaaaaaaaaa', currentUserData.accessToken, currentUserData.uid, currentUserData.client)
+                sendCreateTournamentRequest(tournamentName, tournamentPlace, tournamentDescription, countOfCupMembers, selectedType, scenario, status, selectedLevel, startDate, lastRegistrationDate, currentUserData.accessToken, currentUserData.uid, currentUserData.client)
             }} />
         </View >
     );

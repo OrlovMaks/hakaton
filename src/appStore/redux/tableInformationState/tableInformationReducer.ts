@@ -13,11 +13,11 @@ export const tableInformationReducer = (store = initialState, action: ITableInfo
     switch (type) {
         case 'SET_TABLE': return {
             ...store,
-            isAuthorize: payload,
+            tableInfo: payload,
         };
         case 'DELETE_TABLE': return {
-            isAuthorize: false,
-            userData: null,
+            ...store,
+            tableInfo: null,
         };
         default: return store;
     };
