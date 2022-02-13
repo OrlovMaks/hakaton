@@ -1,4 +1,4 @@
-import React, { FC, memo } from 'react';
+import React, { FC, memo, useEffect } from 'react';
 import { style } from './style';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { useState } from 'react';
@@ -6,15 +6,18 @@ import SelectDropdown from 'react-native-select-dropdown'
 
 interface IProps {
     options: string[];
+    defaultText: string;
+    setValue: (prop:string)=> void;
 }
 
-export const DropDownPicker: FC<IProps> = memo(({ options }) => {
-    console.log(options)
+export const DropDownPicker: FC<IProps> = ({ options, defaultText, setValue }) => {
+ 
     return (
         <SelectDropdown
             data={options}
-            onSelect={(selectedItem, index) => {
-                console.log(selectedItem, index);
+            onSelect={(selectedItem) => {
+                setValue(selectedItem);
+                console.log(selectedItem)
             }}
             buttonTextAfterSelection={(selectedItem, index) => {
                 return selectedItem;
@@ -22,6 +25,7 @@ export const DropDownPicker: FC<IProps> = memo(({ options }) => {
             rowTextForSelection={(item, index) => {
                 return item;
             }}
+            defaultButtonText={defaultText}
         />
     )
-});
+};

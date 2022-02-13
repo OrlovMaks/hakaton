@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, FC } from 'react';
 import { Text, View, Pressable, TouchableOpacity, Alert } from 'react-native';
 import { styles } from './styles';
 import { useSelector } from 'react-redux';
@@ -11,11 +11,18 @@ import { DropDownPicker } from '../../components/DropDownPicker';
 import { FiltersActionSheet } from '../../components/filtersActionSheet'
 import { selectUserData } from '../../../../../src/appStore/redux/authenticationState/authenticationStateSelector';
 import { TournamentsList } from '../../components/tournamentsList';
+import { NavigationProp } from '@react-navigation/native';
 
-export const TournamentsScreen = () => {
+interface IProps {
+    navigation: NavigationProp<any>
+}
+
+export const TournamentsScreen: FC<IProps> = ({ navigation }) => {
     const currentUserData = useSelector(selectUserData)
     const LocalContext = useContext(LocalizationContext);
     const [isFiltersActionSheetVisible, setIsFiltersActionSheetVisible]: [boolean, Function] = useState(false)
+
+
 
     const showActionSheet = () => {
         if (isFiltersActionSheetVisible) {
@@ -34,7 +41,7 @@ export const TournamentsScreen = () => {
                     <Text style={styles.textPage}>10</Text>
                     <TouchableOpacity onPress={() => Alert.alert('Next page')} style={styles.filterButton} />
                 </View>
-                <TouchableOpacity onPress={() => Alert.alert('Admin Button')} style={styles.filterButton} />
+                <TouchableOpacity onPress={() => navigation.navigate('CreateTournaments')} style={styles.filterButton} />
                 <TouchableOpacity onPress={() => showActionSheet()} style={styles.filterButton} />
             </View>
             {

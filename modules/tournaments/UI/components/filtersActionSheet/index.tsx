@@ -17,7 +17,6 @@ export const FiltersActionSheet: FC<IProps> = memo(({ changeVisibilityState }) =
         <View style={styles.container}>
             <Pressable style={styles.hideButton} onPress={() => changeVisibilityState(false)} />
             <View style={styles.visibleContainer}>
-
                 <View style={styles.checkBoxBlock}>
                     <CheckBox text='Cup' />
                     <CheckBox text='Championships' />
@@ -31,7 +30,6 @@ export const FiltersActionSheet: FC<IProps> = memo(({ changeVisibilityState }) =
                     <SearchButton onPress={() => changeVisibilityState(false)} />
                 </View>
             </View>
-
         </View>
     )
 });
