@@ -18,6 +18,7 @@ interface IProps {
 }
 
 export const TournamentsScreen: FC<IProps> = ({ navigation }) => {
+
     const currentUserData = useSelector(selectUserData)
     const LocalContext = useContext(LocalizationContext);
     const [isFiltersActionSheetVisible, setIsFiltersActionSheetVisible]: [boolean, Function] = useState(false)
@@ -49,7 +50,7 @@ export const TournamentsScreen: FC<IProps> = ({ navigation }) => {
                     ? <FiltersActionSheet changeVisibilityState={() => setIsFiltersActionSheetVisible()} />
                     : <View />
             }
-            <TournamentsList />
+            <TournamentsList navigation={navigation}/>
         </View>
     );
 };
