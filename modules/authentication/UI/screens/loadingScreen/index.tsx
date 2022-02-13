@@ -25,15 +25,11 @@ export const LoadingScreen: FC = () => {
                 dispatch(setIsAuthorizeAction(true));
             };
             const previousLanguage: string | undefined = await getData('localization');
-            const previousTheme = await getData('theme');
-            if (previousLanguage && previousTheme) {
+            const previousTheme: string | undefined = await getData('theme');
+            if ((previousLanguage === 'RU' || previousLanguage === 'EN') && (previousTheme === 'LIGHT' || previousTheme === 'DARK')) {
                 LocalContext.setLanguage(previousLanguage);
                 ThemeContext.setTheme(previousTheme);
-            }
-            console.log('================previousTheme====================');
-            console.log(previousTheme);
-            console.log('====================================');
-            console.log(ThemeContext.theme);
+            };
         };
         checkUserAuthorization();
 

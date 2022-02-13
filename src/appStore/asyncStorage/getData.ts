@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ILanguages } from '../../localization/entities/ILanguages';
 
-export const getData = async (key: string): Promise<string | undefined> => {
+export const getData = async (key: string): Promise<string | ILanguages | undefined> => {
     try {
         const value = await AsyncStorage.getItem(key);
         if (value !== null) {

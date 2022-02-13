@@ -25,9 +25,6 @@ export const ThemesProvider: FC = ({ children }) => {
     useEffect(() => {
         if (THEMES_JSON[theme]) {
             setColors(THEMES_JSON[theme]);
-            console.log('===============theme=====================');
-            console.log(theme);
-            console.log('====================================');
         };
     }, [theme])
 
