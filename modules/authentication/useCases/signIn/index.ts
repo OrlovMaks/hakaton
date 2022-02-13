@@ -9,11 +9,15 @@ export const userAuthorization = async (email: string, password: string): Promis
             email: email,
             password: password
         });
-        console.log('result======>>>', response);
+        // console.log('result======>>>', response.data.data.email);
+        // console.log('result======>>>', response.data.data.id);
+        // console.log('result======>>>', response.data.data.role);
+        // console.log('result======>>>', response.headers.client);
+        // console.log('result======>>>', response.headers.uid);
+        // console.log('result======>>>', response.headers['access-token']);
         return response;
     } catch (e: any) {
-        console.log(e);
+        Alert.alert('Invalid password or email')
         return undefined;
     }
-
 }

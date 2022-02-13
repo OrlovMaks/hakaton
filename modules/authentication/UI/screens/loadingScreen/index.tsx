@@ -36,6 +36,8 @@ export const LoadingScreen: FC = () => {
     }, []);
 
     return (
-        <View style={styles.container}></View>
+        <View style={styles.container}>
+            <Image source={require("../../../../../assets/loadBackground.jpg")} resizeMode='cover' style={styles.image}/>
+        </View>
     );
 };

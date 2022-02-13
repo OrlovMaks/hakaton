@@ -60,7 +60,10 @@
         "BACK_BUTTON_TITLE": "Back",
         "TABLE_BUTTON_TITLE":"Table",
         "RESULT_MATCH_TITLE": "Result match",
-        "CHAMPIONSHIP_TITLE": "Championship"
+        "CHAMPIONSHIP_TITLE": "Championship",
+        "TOURNAMENTS_TITLE":"Tournaments",
+        "PARTICIPATE_TITLE":"Participate",
+        "CREATETOURNAMENT_TITLE":"Create tournament"
     },
     "INITIAL_LANGUAGE": "EN"
 }
