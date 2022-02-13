@@ -26,10 +26,13 @@
         "PASSWORD_PLACEHOLDER": "Пароль",
         "FORGOT_PASSWORD_TITLE": "Забыли пароль?",
         "CUP_STAGES_TITLE": "ЭТАПЫ",
-        "BACK_BUTTON_TITLE": "Назад"
+        "BACK_BUTTON_TITLE": "Назад",
+        "MATCHES_TITLE":"Матчи",
+        "TABLE_BUTTON_TITLE":"Таблица"
 
     },
     "EN": {
+        "MATCHES_TITLE":"Matches",
         "TITLE": "Home",
         "LANGUAGE_RADIO_BUTTON_TITLE": "Language",
         "THEME_SWITCH_TITLE": "Theme",
@@ -52,7 +55,8 @@
         "PASSWORD_PLACEHOLDER": "Password",
         "FORGOT_PASSWORD_TITLE": "Forgot password?",
         "CUP_STAGES_TITLE": "STAGES",
-        "BACK_BUTTON_TITLE": "Back"
+        "BACK_BUTTON_TITLE": "Back",
+        "TABLE_BUTTON_TITLE":"Table"
     },
     "INITIAL_LANGUAGE": "EN"
 }
