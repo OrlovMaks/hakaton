@@ -10,7 +10,7 @@ export const userAuthorization = async (email: string, password: string): Promis
             password: password
         });
         console.log('result======>>>', response);
-        // return response;
+        return response;
     } catch (e: any) {
         Alert.alert(e);
         return undefined;

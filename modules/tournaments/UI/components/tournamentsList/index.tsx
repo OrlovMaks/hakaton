@@ -18,7 +18,7 @@ export const TournamentsList: FC = memo(() => {
     const data = [
         {
             id: 'bd7acea-c1b1-46c2-aed5-3ad53abb28ba',
-            title: 'First Item',
+            title: 'Cup',
         },
         {
             id: '3ac68fc-c605-48d3-a4f8-fbd91aa97f63',
@@ -60,6 +60,11 @@ export const TournamentsList: FC = memo(() => {
     const Item = ({ title }) => (
         <TouchableOpacity style={styles.item} >
             <Text style={styles.itemText}>{title}</Text>
+            <Text style={styles.itemText}>{title}</Text>
+            <View>
+            <Text style={styles.itemText}>{title}</Text>
+            <Text style={styles.itemText}>{title}</Text>
+            </View>
         </TouchableOpacity>
     );
 
