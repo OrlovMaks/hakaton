@@ -20,5 +20,4 @@ export const userAuthorization = async (email: string, password: string): Promis
         Alert.alert('Invalid password or email')
         return undefined;
     }
-
 }

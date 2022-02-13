@@ -1,6 +1,8 @@
 import { NavigationProp } from '@react-navigation/native';
-import React, { FC, memo, useEffect, useMemo, useState, } from 'react';
-import { View, TouchableOpacity, Text, FlatList, Image, Pressable } from 'react-native';
+import React, { FC, memo, useContext, useEffect, useMemo, useState } from 'react';
+import { View, TouchableOpacity, Text, FlatList, Image, Pressable, SafeAreaView } from 'react-native';
+import { ThemesContext } from '../../../../../src/themes';
+import { LocalizationContext } from '../../../../../src/localization';
 
 
 import { styles } from './style';
@@ -20,7 +22,8 @@ interface PropsItem {
 
 export const TournamentsList: FC<IProps> = memo(({ navigation }) => {
     const [userRoomsListState, setUserRoomsListState] = useState([])
-
+    const LocalContext = useContext(LocalizationContext)
+    const theme = useContext(ThemesContext);
 
     const data = [
         {
@@ -62,10 +65,9 @@ export const TournamentsList: FC<IProps> = memo(({ navigation }) => {
     ]
 
 
+    const Item = ({ title }) => (
+        <TouchableOpacity style={[styles.item, { backgroundColor: theme.colors.LIST_ITEMS }]} onPress={() => navigation.navigate('Matches')}>
 
-
-    const Item: FC<PropsItem> = ({ title }) => (
-        <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('Matches')}>
             <View style={styles.tournamentInfoButton}>
                 <View>
                     <Text style={styles.itemText}>{title}</Text>
@@ -75,9 +77,10 @@ export const TournamentsList: FC<IProps> = memo(({ navigation }) => {
                     <Text style={styles.itemText}>{title}</Text>
                     <Text style={styles.itemText}>{title}</Text>
                 </View>
-
             </View>
-            <TouchableOpacity style={styles.registrationButton} />
+            <TouchableOpacity style={[styles.registrationButton, { backgroundColor: theme.colors.BUTTON_COLOR }]} >
+                <Text style={ { color: theme.colors.TEXT_COLOR }}>{LocalContext.translations.PARTICIPATE_TITLE}</Text>
+            </TouchableOpacity>
         </TouchableOpacity >
     );
 
@@ -86,13 +89,14 @@ export const TournamentsList: FC<IProps> = memo(({ navigation }) => {
     );
 
     return (
-        <View style={styles.list}>
-            <FlatList
-                showsVerticalScrollIndicator={false}
-                data={data}
-                renderItem={renderItem}
-                keyExtractor={item => item.id}
-            />
-        </View>
+       
+            <View style={styles.list}>
+                <FlatList
+                    data={data}
+                    renderItem={renderItem}
+                    keyExtractor={item => item.id}
+                />
+            </View>
+  
     );
 });

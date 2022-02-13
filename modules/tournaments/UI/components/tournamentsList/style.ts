@@ -8,22 +8,21 @@ export const styles = StyleSheet.create({
     item: {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between',
         alignItems: 'center',
-        width: windowWidth,
+        width: windowWidth / 1.1,
         height: 100,
         backgroundColor: 'rgb(0, 30, 66)',
-        marginTop: 5
+        marginTop: 10
+
     },
     itemText: {
         color: 'white',
         fontSize: 20,
     },
     list: {
-        height: windowHeight / 1.15,
+        height: windowHeight / 1.3,
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
         flexDirection: 'column',
         width: windowWidth,
     },
@@ -32,13 +31,20 @@ export const styles = StyleSheet.create({
         position: 'absolute'
     },
     registrationButton: {
-        width: '100%',
+        marginRight: 30,
+        width: 100,
         height: '40%',
         backgroundColor: 'rgb(10, 200, 66)',
+        justifyContent: 'center',
+        alignItems: 'center',
         zIndex: 2
     },
     tournamentInfoButton: {
-        width: '80%',
+        width: '70%',
         height: '100%'
+    },
+    buttonText: {
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 });
