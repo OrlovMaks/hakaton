@@ -9,7 +9,7 @@ interface IProps {
     navigation: NavigationProp<any>
 }
 
-export const TournamentsList: FC<IProps> = memo(({navigation}) => {
+export const TournamentsList: FC<IProps> = memo(({ navigation }) => {
     const [userRoomsListState, setUserRoomsListState] = useState([])
 
 
@@ -56,12 +56,12 @@ export const TournamentsList: FC<IProps> = memo(({navigation}) => {
 
 
     const Item = ({ title }) => (
-        <TouchableOpacity style={styles.item} onPress={()=>navigation.navigate('Matches')}>
+        <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('Matches')}>
             <Text style={styles.itemText}>{title}</Text>
             <Text style={styles.itemText}>{title}</Text>
             <View>
-            <Text style={styles.itemText}>{title}</Text>
-            <Text style={styles.itemText}>{title}</Text>
+                <Text style={styles.itemText}>{title}</Text>
+                <Text style={styles.itemText}>{title}</Text>
             </View>
         </TouchableOpacity>
     );

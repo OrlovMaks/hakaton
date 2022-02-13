@@ -62,7 +62,7 @@ export const SignInScreen: FC<IProps> = ({ navigation }) => {
         const checkUserAuthorization = async () => {
             const getDataUser = await getData('userData');
             if (getDataUser) {
-                dispatch(setUserDataAction(getDataUser));
+                dispatch(setUserDataAction(JSON.parse(getDataUser)));
                 dispatch(setIsAuthorizeAction(true));
             };
         };
@@ -72,7 +72,9 @@ export const SignInScreen: FC<IProps> = ({ navigation }) => {
     const authorization = useCallback(async (): Promise<void> => {
         const user: { [key: string]: any } | undefined = await userAuthorization(email, password)
         if (user) {
+
             await storeData('userData', JSON.stringify(user.data))
+
             dispatch(setUserDataAction(user.data))
             dispatch(setIsAuthorizeAction(true))
         }
