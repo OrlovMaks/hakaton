@@ -25,6 +25,8 @@
         "PASSWORD_TITLE": "ПАРОЛЬ",
         "PASSWORD_PLACEHOLDER": "Пароль",
         "FORGOT_PASSWORD_TITLE": "Забыли пароль?",
+        "CUP_STAGES_TITLE": "ЭТАПЫ",
+        "BACK_BUTTON_TITLE": "Назад",
         "MATCHES_TITLE":"Матчи",
         "TABLE_BUTTON_TITLE":"Таблица"
 
@@ -52,6 +54,8 @@
         "PASSWORD_TITLE": "PASSWORD",
         "PASSWORD_PLACEHOLDER": "Password",
         "FORGOT_PASSWORD_TITLE": "Forgot password?",
+        "CUP_STAGES_TITLE": "STAGES",
+        "BACK_BUTTON_TITLE": "Back",
         "TABLE_BUTTON_TITLE":"Table"
     },
     "INITIAL_LANGUAGE": "EN"
