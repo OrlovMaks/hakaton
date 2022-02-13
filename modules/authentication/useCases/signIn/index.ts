@@ -12,7 +12,7 @@ export const userAuthorization = async (email: string, password: string): Promis
         console.log('result======>>>', response);
         return response;
     } catch (e: any) {
-        Alert.alert(e);
+        console.log(e);
         return undefined;
     }
 }

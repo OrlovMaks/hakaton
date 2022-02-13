@@ -17,10 +17,20 @@
                 "label": "английский",
                 "value": "EN"
             }
-        ]
+        ],
+        "SIGN_IN_TITLE": "Вход",
+        "SIGN_UP_TITLE": "Регистрация",
+        "EMAIL_TITLE": "ПОЧТА",
+        "EMAIL_PLACEHOLDER": "Почта",
+        "PASSWORD_TITLE": "ПАРОЛЬ",
+        "PASSWORD_PLACEHOLDER": "Пароль",
+        "FORGOT_PASSWORD_TITLE": "Забыли пароль?",
+        "MATCHES_TITLE":"Матчи",
+        "TABLE_BUTTON_TITLE":"Таблица"
 
     },
     "EN": {
+        "MATCHES_TITLE":"Matches",
         "TITLE": "Home",
         "LANGUAGE_RADIO_BUTTON_TITLE": "Language",
         "THEME_SWITCH_TITLE": "Theme",
@@ -36,11 +46,13 @@
             }
         ],
         "SIGN_IN_TITLE": "SIGN IN",
-        "SIGN_UP": "Sign Up",
+        "SIGN_UP_TITLE": "Sign Up",
         "EMAIL_TITLE": "EMAIL",
         "EMAIL_PLACEHOLDER": "Email",
         "PASSWORD_TITLE": "PASSWORD",
-        "PASSWORD_PLACEHOLDER": "Password"
+        "PASSWORD_PLACEHOLDER": "Password",
+        "FORGOT_PASSWORD_TITLE": "Forgot password?",
+        "TABLE_BUTTON_TITLE":"Table"
     },
     "INITIAL_LANGUAGE": "EN"
 }

@@ -1,15 +1,20 @@
-import React, { FC, memo, useState, } from 'react';
-import { View, TouchableOpacity, Text, FlatList } from 'react-native';
+import { NavigationProp } from '@react-navigation/native';
+import React, { FC, memo, useEffect, useMemo, useState, } from 'react';
+import { View, TouchableOpacity, Text, FlatList, Image, Pressable } from 'react-native';
+import { TouchableHighlight } from 'react-native-gesture-handler';
+import { findUserRooms } from '../../../useCases/findUserRooms';
+import { SignButton } from '../signButton';
+
+
 import { styles } from './style';
 
 const axios = require("axios");
 
 interface IProps {
-    value: string;
-
+    navigation: NavigationProp<any>
 }
 
-export const TournamentsList: FC = memo(() => {
+export const TournamentsList: FC<IProps> = memo(({ navigation }) => {
     const [userRoomsListState, setUserRoomsListState] = useState([])
 
     const data = [
@@ -62,6 +67,7 @@ export const TournamentsList: FC = memo(() => {
                     <Text style={styles.itemText}>{title}</Text>
                     <Text style={styles.itemText}>{title}</Text>
                 </View>
+
             </View>
             <TouchableOpacity style={styles.registrationButton} />
         </TouchableOpacity >
