@@ -14,58 +14,67 @@ import { styles } from './styles';
 
 
 
-const TEMP_STAGS: Array<any> = [
-    {
-        id: '0',
-        title: 'AAA',
-        win: 4,
-        draw: 0,
-        loss: 1,
+const TEMP_STAGS = {
+    tableHead: [
+        'title',
+        'win',
+        'draw',
+        'less',
+        'total'
+    ],
+    tableData: [
+        [
+            'AAA',
+            4,
+            0,
+            1,
+            12
 
-    },
-    {
-        id: '1',
-        title: 'BBB',
-        win: 4,
-        draw: 1,
-        loss: 1,
-    },
-    {
-        id: '2',
-        title: 'CCC',
-        win: 3,
-        draw: 2,
-        loss: 1,
-    },
-    {
-        id: '3',
-        title: 'DDD',
-        win: 4,
-        draw: 0,
-        loss: 1,
-    },
-    {
-        id: '4',
-        title: 'EEE',
-        win: 4,
-        draw: 0,
-        loss: 1,
-    },
-    {
-        id: '5',
-        title: 'FFF',
-        win: 4,
-        draw: 0,
-        loss: 1,
-    },
-    {
-        id: '6',
-        title: 'GGG',
-        win: 4,
-        draw: 0,
-        loss: 1,
-    }
-]
+        ],
+        [
+            'BBB',
+            4,
+            1,
+            1,
+            11
+        ],
+        [
+            'CCC',
+            3,
+            2,
+            1,
+            10
+        ],
+        [
+            'DDD',
+            4,
+            0,
+            1,
+            9
+        ],
+        [
+            'EEE',
+            4,
+            0,
+            1,
+            8
+        ],
+        [
+            'FFF',
+            4,
+            0,
+            1,
+            7
+        ],
+        [
+            'GGG',
+            4,
+            0,
+            1,
+            6
+        ]
+    ]
+};
 
 interface IProps {
     navigation: NavigationProp<{ [key: string]: unknown }>
@@ -75,18 +84,11 @@ export const ChampionshipTableScreen: FC<IProps> = ({ navigation }) => {
     const LocalContext = useContext<ILocalizationContext>(LocalizationContext);
     const theme = useContext<IThemesContext>(ThemesContext);
 
-    const renderStage: ListRenderItem<{ [key: string]: string; }> = ({ item }) => {
-        return (
-            // <ChampionshipTableItem title={item.title} />
-            <Text>item.title</Text>
-        );
-    }
-
     return (
         <View style={[styles.container, { backgroundColor: theme.colors.BACKGROUND_COLOR }]}>
             <HeaderComponent title={LocalContext.translations.CHAMPIONSHIP_TITLE} />
             <View style={styles.resultsList}>
-                
+                <ChampionshipTable tableHeader={TEMP_STAGS.tableHead} tableRows={TEMP_STAGS.tableData}/>
             </View>
             <TournamentsButton onPress={() => { navigation.navigate('Matches') }} title={LocalContext.translations.BACK_BUTTON_TITLE} />
         </View>

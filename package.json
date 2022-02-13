@@ -39,6 +39,7 @@
     "@types/jest": "^26.0.23",
     "@types/react-native": "^0.66.15",
     "@types/react-native-simple-radio-button": "^2.7.2",
+    "@types/react-native-table-component": "^1.2.3",
     "@types/react-test-renderer": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
