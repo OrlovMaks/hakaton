@@ -12,7 +12,6 @@ import { LocalizationContext } from '../../../../../src/localization';
 import { IThemesContext } from '../../../../../src/themes/entities/IThemesContext';
 import { ThemesContext } from '../../../../../src/themes';
 import { storeData } from '../../../../../src/appStore/asyncStorage/storeData';
-import { getData } from '../../../../../src/appStore/asyncStorage/getData';
 import { IThems } from '../../../../../src/themes/entities/IThems';
 
 export const DrawerScreen: FC = () => {
@@ -21,10 +20,12 @@ export const DrawerScreen: FC = () => {
     const dispatch: AppDispatch = useDispatch();
     const [isEnabled, setIsEnabled] = useState<boolean>(false);
 
-    const toggleSwitch = async (): Promise<void> => {
+    const toggleSwitch = (): void => {
         const themeName: IThems = (theme.theme === 'LIGHT') ? 'DARK' : 'LIGHT';
         theme.setTheme(themeName);
-        await storeData('theme', themeName);
+        async () => {
+            await storeData('theme', themeName);
+        }
         return setIsEnabled(previousState => !previousState);
     };
 

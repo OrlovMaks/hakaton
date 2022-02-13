@@ -12,4 +12,7 @@ export interface RootState {
         isAuthorize: boolean;
         userData: { [key: string]: string } | null;
     }
+    tableInformationReducer: {
+        tableInfo: { [key: string]: string } | null
+    }
 };
