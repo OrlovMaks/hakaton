@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import { Text, View, Pressable, TouchableOpacity, Alert } from 'react-native';
 import { styles } from './styles';
 import { useSelector } from 'react-redux';
@@ -11,12 +11,13 @@ import { DropDownPicker } from '../../components/DropDownPicker';
 import { FiltersActionSheet } from '../../components/filtersActionSheet'
 import { selectUserData } from '../../../../../src/appStore/redux/authenticationState/authenticationStateSelector';
 import { TournamentsList } from '../../components/tournamentsList';
+import { NavigationProp } from '@react-navigation/native';
 
 interface IProps{
-    
+    navigation: NavigationProp<any>
 }
 
-export const TournamentsScreen = ({navigation}) => {
+export const TournamentsScreen:FC<IProps> = ({navigation}) => {
     const currentUserData = useSelector(selectUserData)
     const LocalContext = useContext(LocalizationContext);
     const [isFiltersActionSheetVisible, setIsFiltersActionSheetVisible]: [boolean, Function] = useState(false)

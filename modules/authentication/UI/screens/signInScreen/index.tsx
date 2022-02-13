@@ -7,7 +7,7 @@ import { styles } from './styles';
 import { useDispatch } from 'react-redux';
 import { userAuthorization } from '../../../useCases/signIn';
 import { NavigationProp } from '@react-navigation/native';
-import { setIsAuthorizeAction, setUserData } from '../../../../../src/appStore/redux/authenticationState/authenticationStateActions';
+import { setIsAuthorizeAction, setUserDataAction } from '../../../../../src/appStore/redux/authenticationState/authenticationStateActions';
 import { AppDispatch } from '../../../../../src/appStore/redux/store';
 import { getData } from '../../../../../src/appStore/asyncStorage/getData';
 import { storeData } from '../../../../../src/appStore/asyncStorage/storeData';
@@ -62,7 +62,7 @@ export const SignInScreen: FC<IProps> = ({ navigation }) => {
         const checkUserAuthorization = async () => {
             const getDataUser = await getData('userData');
             if (getDataUser) {
-                dispatch(setUserData(getDataUser));
+                dispatch(setUserDataAction(JSON.parse(getDataUser)));
                 dispatch(setIsAuthorizeAction(true));
             };
         };
@@ -73,7 +73,7 @@ export const SignInScreen: FC<IProps> = ({ navigation }) => {
         const user: { [key: string]: any } | undefined = await userAuthorization(email, password)
         if (user) {
             await storeData('userData', JSON.stringify(user.data.data))
-            dispatch(setUserData(user.data))
+            dispatch(setUserDataAction(user.data))
             dispatch(setIsAuthorizeAction(true))
         }
     }, [email, password]);
