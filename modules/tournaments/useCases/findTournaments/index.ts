@@ -30,7 +30,7 @@ export const sendFindTournamentsRequest = async (accessToken, client, uid, setTo
                 }
             }
         );
-        console.log(response.data)
+        // console.log(response.data)
          setTournamentsData(response.data)
     }
 

@@ -5,7 +5,7 @@ export const getData = async (key: string): Promise<string | ILanguages | undefi
     try {
         const value = await AsyncStorage.getItem(key);
         if (value !== null) {
-            console.log('getData', value);
+            // console.log('getData', value);
             return value;
         }
     } catch (e) {

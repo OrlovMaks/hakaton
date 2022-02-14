@@ -18,7 +18,7 @@ export const DateSelector: FC<IProps> = ({ setOpenState, setDate, date, openStat
             onConfirm={(date) => {
                 setOpenState(false)
                 setDate(date)
-                console.log(date)
+                // console.log(date)
             }}
             onCancel={() => {
                 setOpenState(false)

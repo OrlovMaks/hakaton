@@ -18,9 +18,6 @@ interface IProps {
 }
 
 export const sendFindMatchesRequest = async (id) => {
-
-    console.log(`https://tournament-t.herokuapp.com/tournaments/${id}/matche`);
-
     try {
         let response = await axios.get(`https://tournament-t.herokuapp.com/tournament/${id}/matches`
         );

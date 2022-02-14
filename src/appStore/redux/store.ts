@@ -15,4 +15,7 @@ export interface RootState {
     tableInformationReducer: {
         tableInfo: { [key: string]: string } | null
     }
+    matchReducer: {
+        match: { [key: string]: string } | null;
+    }
 };

@@ -59,7 +59,7 @@ export const CreateTournamentsScreen: FC<IProps> = memo(({ navigation }) => {
                 <DropDownPicker options={['1', '2', '3', '4', '5', '6', '7', '8', '9']} defaultText={'Count or members'} setValue={setCountOfChampionshipMembers} />
             }
             <Button title="Send" onPress={() => {
-                console.log(tournamentName, selectedType, countOfCupMembers, scenario, status, selectedLevel, startDate, lastRegistrationDate, tournamentPlace, tournamentDescription, 'aaaaaaaaaa', currentUserData.accessToken, currentUserData.uid, currentUserData.client)
+                // console.log(tournamentName, selectedType, countOfCupMembers, scenario, status, selectedLevel, startDate, lastRegistrationDate, tournamentPlace, tournamentDescription, 'aaaaaaaaaa', currentUserData.accessToken, currentUserData.uid, currentUserData.client)
                 sendCreateTournamentRequest(tournamentName, tournamentPlace, tournamentDescription, countOfCupMembers, selectedType, scenario, status, selectedLevel, startDate, lastRegistrationDate, currentUserData.accessToken, currentUserData.uid, currentUserData.client)
             }} />
         </View >

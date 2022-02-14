@@ -17,7 +17,7 @@ export const DropDownPicker: FC<IProps> = ({ options, defaultText, setValue }) =
             data={options}
             onSelect={(selectedItem) => {
                 setValue(selectedItem);
-                console.log(selectedItem)
+                // console.log(selectedItem)
             }}
             buttonTextAfterSelection={(selectedItem, index) => {
                 return selectedItem;

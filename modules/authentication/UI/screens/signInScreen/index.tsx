@@ -61,7 +61,7 @@ export const SignInScreen: FC<IProps> = ({ navigation }) => {
     useEffect((): void => {
         const checkUserAuthorization = async () => {
             const getDataUser = await getData('userData');
-            console.log(getDataUser)
+            // console.log(getDataUser)
             if (getDataUser) {
                 dispatch(setUserDataAction(JSON.parse(getDataUser)));
                 dispatch(setIsAuthorizeAction(true));

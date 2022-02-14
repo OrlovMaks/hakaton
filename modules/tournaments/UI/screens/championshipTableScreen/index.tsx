@@ -1,18 +1,16 @@
 import { NavigationProp } from '@react-navigation/native';
 import React, { FC, useContext } from 'react';
-import { FlatList, ListRenderItem, Text, TouchableOpacity, View } from 'react-native';
+import { View } from 'react-native';
+import { useSelector } from 'react-redux';
+import { selectTableInformation } from '../../../../../src/appStore/redux/tableInformationState/tableInformationSelector';
 import { LocalizationContext } from '../../../../../src/localization';
 import { ILocalizationContext } from '../../../../../src/localization/entities/ILocalizationContext';
 import { ThemesContext } from '../../../../../src/themes';
 import { IThemesContext } from '../../../../../src/themes/entities/IThemesContext';
 import { ChampionshipTable } from '../../components/championshipTable';
-import { CupTableItem } from '../../components/cupTableItem';
 import { HeaderComponent } from '../../components/HeaderComponent';
 import { TournamentsButton } from '../../components/tournamentsButton';
 import { styles } from './styles';
-// import { styles } from './styles';
-
-
 
 const TEMP_STAGS = {
     tableHead: [
@@ -83,6 +81,7 @@ interface IProps {
 export const ChampionshipTableScreen: FC<IProps> = ({ navigation }) => {
     const LocalContext = useContext<ILocalizationContext>(LocalizationContext);
     const theme = useContext<IThemesContext>(ThemesContext);
+    
 
     return (
         <View style={[styles.container, { backgroundColor: theme.colors.BACKGROUND_COLOR }]}>

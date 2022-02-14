@@ -1,6 +1,8 @@
 import { NavigationProp } from '@react-navigation/native';
 import React, { FC, useContext } from 'react';
 import { FlatList, ListRenderItem, Text, TouchableOpacity, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import { selectTableInformation } from '../../../../../src/appStore/redux/tableInformationState/tableInformationSelector';
 import { LocalizationContext } from '../../../../../src/localization';
 import { ILocalizationContext } from '../../../../../src/localization/entities/ILocalizationContext';
 import { ThemesContext } from '../../../../../src/themes';
@@ -57,6 +59,10 @@ interface IProps {
 export const CupTablesScreen: FC<IProps> = ({ navigation }) => {
     const LocalContext = useContext<ILocalizationContext>(LocalizationContext);
     const theme = useContext<IThemesContext>(ThemesContext);
+    const matchInfo = useSelector(selectTableInformation);
+    console.log('=============matchInfo=======================');
+    console.log(matchInfo);
+    console.log('====================================');
 
     const renderStage: ListRenderItem<{ [key: string]: string; }> = ({ item }) => {
         return (
