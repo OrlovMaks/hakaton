@@ -55,7 +55,7 @@ export const CupStagesScreen: FC<IProps> = ({ navigation }) => {
         const matchStageSet = new Set(matchInfo.map((match) => {
             return match.stage;
         }));
-        setStage(matchStageSet);
+        setStage([...matchStageSet]);
     }, [matchInfo]))
 
     const renderStage: ListRenderItem<number> = ({ item }) => {
@@ -71,7 +71,6 @@ export const CupStagesScreen: FC<IProps> = ({ navigation }) => {
                 style={styles.stagesList}
                 data={stage}
                 renderItem={renderStage}
-            // keyExtractor={item => item}
             />
             <TournamentsButton onPress={() => { navigation.navigate('Matches') }} title={LocalContext.translations.BACK_BUTTON_TITLE} />
         </View>
