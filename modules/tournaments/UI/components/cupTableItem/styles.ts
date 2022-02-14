@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
 
     },
     title: {
-        fontSize: 24,
+        fontSize: 17,
         fontWeight: '500',
     },
     winner: {
