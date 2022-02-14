@@ -8,18 +8,18 @@ import { styles } from "./styles";
 interface MatchItemProps {
     item: {
         id: string,
-        firstPlayer: string,
-        secondPlayer: string,
+        user_1_id: string,
+        user_2_id: string,
         date: string,
         place: string,
-        scoreFirstPlayer: string,
-        scoreSecondPlayer: string,
+        score_user_1: string,
+        score_user_2: string,
         status: string
     },
     disable: boolean
 }
 
-export const MatchItem: FC<MatchItemProps> = ({ item, disable }) => {
+export const MatchItem: FC<MatchItemProps> = ({ item, disable, tournamentInfo }) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [match, setMatch] = useState(false);
     const theme = useContext<IThemesContext>(ThemesContext);
@@ -34,26 +34,26 @@ export const MatchItem: FC<MatchItemProps> = ({ item, disable }) => {
             <TouchableOpacity disabled={disable} onPress={() => setScore(item)}>
                 <View style={[styles.container, {backgroundColor: theme.colors.LIST_ITEMS}]}>
                     <View>
-                        <Text style={styles.scoreText}>{item.firstPlayer}</Text>
-                        <Text style={styles.dataText}>{item.place}</Text>
+                        <Text style={styles.scoreText}>{item.user_1_id}</Text>
+                        <Text style={styles.dataText}>sfgh</Text>
                     </View>
                     <View>
                         <View style={styles.scoreWrapper}>
-                            <Text style={styles.scoreText}>{item.scoreFirstPlayer}</Text>
+                            <Text style={styles.scoreText}>{item.score_user_1}</Text>
                             <Text style={styles.scoreText}>:</Text>
-                            <Text style={styles.scoreText}>{item.scoreSecondPlayer}</Text>
+                            <Text style={styles.scoreText}>{item.score_user_2}</Text>
                         </View>
                         <View>
                             <Text style={styles.dataText}>{item.status}</Text>
                         </View>
                     </View>
                     <View>
-                        <Text style={styles.scoreText}>{item.secondPlayer}</Text>
-                        <Text style={styles.dataText}>{item.date}</Text>
+                        <Text style={styles.scoreText}>{item.user_2_id}</Text>
+                        <Text style={styles.dataText}>Stage {item.stage}</Text>
                     </View>
                 </View>
             </TouchableOpacity>
-            <SetScoreModal modalVisible={modalVisible} setModalVisible={setModalVisible} match={match}/>
+            <SetScoreModal modalVisible={modalVisible} setModalVisible={setModalVisible} match={match} tournamentInfo={tournamentInfo}/>
         </View>
     )
 };

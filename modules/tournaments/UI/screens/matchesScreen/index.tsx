@@ -101,7 +101,7 @@ export const MatchesScreen: FC<IProps> = ({ navigation }) => {
     };
 
     const renderItem: FC<MatchItemProps> = ({ item }) => (
-        <MatchItem item={item} disable={!isAdmin} />
+        <MatchItem item={item} disable={!isAdmin}/>
     );
 
     return (
@@ -114,14 +114,14 @@ export const MatchesScreen: FC<IProps> = ({ navigation }) => {
             <SafeAreaView style={styles.container}>
                 <View style={{ paddingHorizontal: 5 }}>
                     <FlatList
-                        data={DATA}
+                        data={matchData}
                         renderItem={renderItem}
                         keyExtractor={item => item.id}
                     />
                 </View>
             </SafeAreaView>
-            <TableButton navigation={navigation} />
-            <TournamentDescriptionModal modalVisible={modalVisible} setModalVisible={setModalVisible} />
+            <TableButton navigation={navigation} tournamentInfo={tournamentInfo}/>
+            <TournamentDescriptionModal modalVisible={modalVisible} setModalVisible={setModalVisible} tournamentInfo={tournamentInfo}/>
         </View>
     );
 };

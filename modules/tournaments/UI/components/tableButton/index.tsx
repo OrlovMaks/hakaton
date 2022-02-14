@@ -10,7 +10,7 @@ interface IProps{
     navigation: NavigationProp<any>
 }
 
-export const TableButton:FC<IProps> = ({navigation}) => {
+export const TableButton:FC<IProps> = ({navigation, tournamentInfo}) => {
     const LocalContext = useContext(LocalizationContext);
     const [isCup, setIsCup] = useState<boolean>(false);
     const theme = useContext<IThemesContext>(ThemesContext);

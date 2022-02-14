@@ -10,7 +10,7 @@ interface IProps {
 const tournamentInfo = 'difhgduhgduhfguhdfghghghghghghghghghghghghghghghghghghghghghghghghghghgh gggggggggggggggg ggggggggggggg gggggggggggggggggggggggggggggggg gggggggggggggggggggggggggg gggggggggggggggggggggggggggggg hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhh'
 
 
-export const TournamentDescriptionModal: FC<IProps> = ({ modalVisible, setModalVisible}) => {
+export const TournamentDescriptionModal: FC<IProps> = ({ modalVisible, setModalVisible, tournamentInfo}) => {
 
 
     return (
@@ -24,7 +24,7 @@ export const TournamentDescriptionModal: FC<IProps> = ({ modalVisible, setModalV
         >
             <View style={styles.centeredView}>
                 <View style={styles.modalView}>
-                    <Text>{tournamentInfo}</Text>
+                    <Text>{tournamentInfo.description}</Text>
                     <TouchableOpacity
                         style={[styles.button, styles.buttonClose]}
                         onPress={() => setModalVisible(!modalVisible)}
