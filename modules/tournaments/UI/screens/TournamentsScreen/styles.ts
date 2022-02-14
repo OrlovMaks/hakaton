@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
     footer: {
         alignItems: 'center',
         position: 'absolute',
-        bottom: '2%',
+        bottom: windowHeight/35,
         width: windowWidth/1.1,
         height: 70,
         justifyContent: 'space-between',
