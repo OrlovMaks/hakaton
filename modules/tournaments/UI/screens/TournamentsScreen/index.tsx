@@ -27,6 +27,7 @@ export const TournamentsScreen: FC<IProps> = ({ navigation }) => {
     const [isFiltersActionSheetVisible, setIsFiltersActionSheetVisible]: [boolean, Function] = useState(false)
     const [tournamentsList, setTournamentsList]: [Array<string>, Function] = useState([])
     const theme = useContext(ThemesContext);
+    const [page, setPage] = useState(1)
 
     const showActionSheet = () => {
         if (isFiltersActionSheetVisible) {
@@ -37,34 +38,49 @@ export const TournamentsScreen: FC<IProps> = ({ navigation }) => {
         }
     }
 
-    useEffect(() => {
-        sendFindTournamentsRequest(setTournamentsList)
-    }, [])
+    const setNextPage = () => {
+      setPage(page+1)
+      sendFindTournamentsRequest(setTournamentsList, page)
+    }
 
-    return (
-        <View style={[styles.container, { backgroundColor: theme.colors.BACKGROUND_COLOR }]} >
-            <View style={[styles.header, { backgroundColor: theme.colors.TITLE_BACKGROUND_COLOR }]}>
-                <Text style={[styles.textTitle, { color: theme.colors.TEXT_COLOR }]}>{LocalContext.translations.TOURNAMENTS_TITLE}</Text>
-            </View>
-            <TournamentsList navigation={navigation} data={tournamentsList} />
-            <View style={[styles.footer, { backgroundColor: theme.colors.LIST_ITEMS }]}>
-                <View style={styles.paginationButtons}>
-                    <PaginationButton icon={require('../../../../../assets/arrowLeft.png')} buttonFunction={''} />
-                    <Text style={styles.textPage}>10</Text>
-                    <PaginationButton icon={require('../../../../../assets/arrowRight.png')} buttonFunction={''} />
-                </View>
-                <TouchableOpacity onPress={() => navigation.navigate('CreateTournaments')} style={[styles.filterButton, { backgroundColor: theme.colors.BUTTON_COLOR }]}>
-                    <Text style={{ color: theme.colors.TEXT_COLOR }}>{LocalContext.translations.CREATETOURNAMENT_TITLE}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={[styles.filterButton, { backgroundColor: theme.colors.BUTTON_COLOR }]} onPress={() => setIsFiltersActionSheetVisible(true)} >
-                    <Text style={{ color: theme.colors.TEXT_COLOR }}>{LocalContext.translations.PARTICIPATE_TITLE}</Text>
-                </TouchableOpacity>
-            </View>
-            {
-                isFiltersActionSheetVisible
-                    ? <FiltersActionSheet changeVisibilityState={() => setIsFiltersActionSheetVisible()} />
-                    : <View />
-            }
+    const setPrevPage = () => {
+        if (page - 1 <= 0) {
+         return   Alert.alert('There is no more info here :(')
+        } else {
+            setPage(page - 1)
+        }
+    }
+
+
+
+useEffect(() => {
+    sendFindTournamentsRequest(setTournamentsList, page)
+}, [])
+
+return (
+    <View style={[styles.container, { backgroundColor: theme.colors.BACKGROUND_COLOR }]} >
+        <View style={[styles.header, { backgroundColor: theme.colors.TITLE_BACKGROUND_COLOR }]}>
+            <Text style={[styles.textTitle, { color: theme.colors.TEXT_COLOR }]}>{LocalContext.translations.TOURNAMENTS_TITLE}</Text>
         </View>
-    );
+        <TournamentsList navigation={navigation} data={tournamentsList} />
+        <View style={[styles.footer, { backgroundColor: theme.colors.LIST_ITEMS }]}>
+            <View style={styles.paginationButtons}>
+                <PaginationButton icon={require('../../../../../assets/arrowLeft.png')} buttonFunction={setPrevPage} />
+                <Text style={styles.textPage}>{page}</Text>
+                <PaginationButton icon={require('../../../../../assets/arrowRight.png')} buttonFunction={setNextPage} />
+            </View>
+            <TouchableOpacity onPress={() => navigation.navigate('CreateTournaments')} style={[styles.filterButton, { backgroundColor: theme.colors.BUTTON_COLOR }]}>
+                <Text style={{ color: theme.colors.TEXT_COLOR }}>{LocalContext.translations.CREATETOURNAMENT_TITLE}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.filterButton, { backgroundColor: theme.colors.BUTTON_COLOR }]} onPress={() => setIsFiltersActionSheetVisible(true)} >
+                <Text style={{ color: theme.colors.TEXT_COLOR }}>{LocalContext.translations.PARTICIPATE_TITLE}</Text>
+            </TouchableOpacity>
+        </View>
+        {
+            isFiltersActionSheetVisible
+                ? <FiltersActionSheet changeVisibilityState={() => setIsFiltersActionSheetVisible()} />
+                : <View />
+        }
+    </View>
+);
 };
