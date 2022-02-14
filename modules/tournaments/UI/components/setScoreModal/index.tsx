@@ -21,6 +21,7 @@ interface IProps {
 export const SetScoreModal: FC<IProps> = ({ modalVisible, setModalVisible, match }) => {
     const [scoreFirstPlayer, setScoreFirstPlayer] = useState('')
     const [scoreSecondPlayer, setScoreSecondPlayer] = useState('')
+    console.log(match)
 
 
     return (
@@ -36,7 +37,7 @@ export const SetScoreModal: FC<IProps> = ({ modalVisible, setModalVisible, match
                 <View style={styles.modalView}>
                     <View style={styles.inputsWrapper}>
                         <View style={styles.playerWrapper}>
-                            <Text style={styles.playerText}>{match.firstPlayer}</Text>
+                            <Text style={styles.playerText}>{match.user_1}</Text>
                             <TextInput
                                 style={styles.scoreInput}
                                 onChangeText={setScoreFirstPlayer}
@@ -45,7 +46,7 @@ export const SetScoreModal: FC<IProps> = ({ modalVisible, setModalVisible, match
                             />
                         </View>
                         <View style={styles.playerWrapper}>
-                            <Text style={styles.playerText}>{match.secondPlayer}</Text>
+                            <Text style={styles.playerText}>{match.user_2}</Text>
                             <TextInput
                                 style={styles.scoreInput}
                                 onChangeText={setScoreSecondPlayer}

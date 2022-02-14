@@ -22,7 +22,8 @@ export const styles = StyleSheet.create({
         color: 'black',
         fontSize: 18,
         fontWeight: '700',
-        marginBottom: 5
+        marginBottom: 5,
+        marginHorizontal: 2
     },
     dataText:{
         color: 'black',

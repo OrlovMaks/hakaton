@@ -34,7 +34,7 @@ export const MatchItem: FC<MatchItemProps> = ({ item, disable, tournamentInfo })
             <TouchableOpacity disabled={disable} onPress={() => setScore(item)}>
                 <View style={[styles.container, {backgroundColor: theme.colors.LIST_ITEMS}]}>
                     <View>
-                        <Text style={styles.scoreText}>{item.user_1_id}</Text>
+                        <Text style={styles.scoreText}>{item.user_1}</Text>
                         <Text style={styles.dataText}>sfgh</Text>
                     </View>
                     <View>
@@ -48,7 +48,7 @@ export const MatchItem: FC<MatchItemProps> = ({ item, disable, tournamentInfo })
                         </View>
                     </View>
                     <View>
-                        <Text style={styles.scoreText}>{item.user_2_id}</Text>
+                        <Text style={styles.scoreText}>{item.user_2}</Text>
                         <Text style={styles.dataText}>Stage {item.stage}</Text>
                     </View>
                 </View>

@@ -101,7 +101,7 @@ export const MatchesScreen: FC<IProps> = ({ navigation }) => {
     };
 
     const renderItem: FC<MatchItemProps> = ({ item }) => (
-        <MatchItem item={item} disable={!isAdmin}/>
+        <MatchItem item={item} disable={!isAdmin} tournamentInfo={tournamentInfo}/>
     );
 
     return (
