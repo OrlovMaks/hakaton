@@ -2,6 +2,7 @@ import { NavigationProp, useFocusEffect } from '@react-navigation/native';
 import React, { FC, useCallback, useContext, useState } from 'react';
 import { FlatList, ListRenderItem, Text, TouchableOpacity, View } from 'react-native';
 import { useSelector } from 'react-redux';
+import { storeData } from '../../../../../src/appStore/asyncStorage/storeData';
 import { selectMatch } from '../../../../../src/appStore/redux/tableInformationState/tableInformationSelector';
 import { LocalizationContext } from '../../../../../src/localization';
 import { ThemesContext } from '../../../../../src/themes';
@@ -58,7 +59,10 @@ export const CupStagesScreen: FC<IProps> = ({ navigation }) => {
         setStage([...matchStageSet]);
     }, [matchInfo]))
 
+    const setMatch = async (item) => await storeData('stage', String(item));
+
     const renderStage: ListRenderItem<number> = ({ item }) => {
+        setMatch(item);
         return (
             <CupStageItem title={++item} navigation={navigation} />
         );
@@ -72,7 +76,7 @@ export const CupStagesScreen: FC<IProps> = ({ navigation }) => {
                 data={stage}
                 renderItem={renderStage}
             />
-            <TournamentsButton onPress={() => { navigation.navigate('Matches') }} title={LocalContext.translations.BACK_BUTTON_TITLE} />
+            <TournamentsButton onPress={() => { navigation.navigate('Matches'); }} title={LocalContext.translations.BACK_BUTTON_TITLE} />
         </View>
     );
 };

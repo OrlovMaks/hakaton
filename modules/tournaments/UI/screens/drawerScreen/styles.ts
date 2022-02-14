@@ -1,21 +1,20 @@
 import { StyleSheet } from "react-native";
-//import {theme} from "../../../../../src/theme/config/theme.json"
 
 export const styles = StyleSheet.create({
-    container:{
-        flex:1,
+    container: {
+        flex: 1,
         display: "flex",
-        flexDirection:"column",
+        flexDirection: "column",
         justifyContent: "flex-start",
-        alignItems:"center",
+        alignItems: "center",
     },
     themeWrapper: {
         display: "flex",
-        flexDirection:"row",
+        flexDirection: "row",
         justifyContent: "space-around",
-        alignItems:"center"
+        alignItems: "center"
     },
-    languageDrop:{
-        width:"70%"
+    languageDrop: {
+        width: "70%"
     }
 })

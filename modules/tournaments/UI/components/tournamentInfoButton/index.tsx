@@ -7,9 +7,7 @@ interface IProps {
 }
 
 export const InfoButton: FC<IProps> = ({ onPress }) => {
-
     return (
-
         <TouchableOpacity onPress={onPress}>
             <View>
                 <Image

@@ -1,17 +1,17 @@
 import { Dimensions, StyleSheet } from "react-native";
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+const WINDOW_WIDTH = Dimensions.get('window').width;
+const WINDOW_HEIGHT = Dimensions.get('window').height;
 
 export const styles = StyleSheet.create({
     container: {
-        width: windowWidth,
-        height: windowHeight,
+        width: WINDOW_WIDTH,
+        height: WINDOW_HEIGHT,
         position: 'absolute',
         zIndex: 1,
     },
     visibleContainer: {
-        width: windowWidth,
-        height: windowHeight / 2,
+        width: WINDOW_WIDTH,
+        height: WINDOW_HEIGHT / 2,
         backgroundColor: 'rgb(0, 63, 68)',
         position: 'absolute',
         bottom: 0,
@@ -23,8 +23,8 @@ export const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     hideButton: {
-        width: windowWidth,
-        height: windowHeight,
+        width: WINDOW_WIDTH,
+        height: WINDOW_HEIGHT,
         backgroundColor: 'rgba(0, 0, 0, 0.5)'
     },
     checkBoxBlock: {

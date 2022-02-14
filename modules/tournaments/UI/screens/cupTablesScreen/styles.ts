@@ -6,7 +6,6 @@ const LIST_HEIGHT = WINDOW_HEIGHT - 210;
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // alignItems: 'center'
     },
     resultsList: {
         height: LIST_HEIGHT,

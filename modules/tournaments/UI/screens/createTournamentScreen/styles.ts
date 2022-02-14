@@ -24,11 +24,9 @@ export const styles = StyleSheet.create({
     inputsBlock: {
         width: '90%',
         height: '35%',
-
     },
     selectorsBlock: {
         height: '30%',
-
     },
     header: {
         justifyContent: 'center',
@@ -41,7 +39,6 @@ export const styles = StyleSheet.create({
         fontWeight: '700',
         color: 'black'
     },
-
     buttons: {
         backgroundColor: '#004445',
         width: 200,

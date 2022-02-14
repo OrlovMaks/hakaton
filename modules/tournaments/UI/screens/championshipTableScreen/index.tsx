@@ -1,18 +1,14 @@
 import { NavigationProp } from '@react-navigation/native';
 import React, { FC, useContext } from 'react';
-import { FlatList, ListRenderItem, Text, TouchableOpacity, View } from 'react-native';
+import { View } from 'react-native';
 import { LocalizationContext } from '../../../../../src/localization';
 import { ILocalizationContext } from '../../../../../src/localization/entities/ILocalizationContext';
 import { ThemesContext } from '../../../../../src/themes';
 import { IThemesContext } from '../../../../../src/themes/entities/IThemesContext';
 import { ChampionshipTable } from '../../components/championshipTable';
-import { CupTableItem } from '../../components/cupTableItem';
 import { HeaderComponent } from '../../components/HeaderComponent';
 import { TournamentsButton } from '../../components/tournamentsButton';
 import { styles } from './styles';
-// import { styles } from './styles';
-
-
 
 const TEMP_STAGS = {
     tableHead: [
@@ -88,7 +84,7 @@ export const ChampionshipTableScreen: FC<IProps> = ({ navigation }) => {
         <View style={[styles.container, { backgroundColor: theme.colors.BACKGROUND_COLOR }]}>
             <HeaderComponent title={LocalContext.translations.CHAMPIONSHIP_TITLE} />
             <View style={styles.resultsList}>
-                <ChampionshipTable tableHeader={TEMP_STAGS.tableHead} tableRows={TEMP_STAGS.tableData}/>
+                <ChampionshipTable tableHeader={TEMP_STAGS.tableHead} tableRows={TEMP_STAGS.tableData} />
             </View>
             <TournamentsButton onPress={() => { navigation.navigate('Matches') }} title={LocalContext.translations.BACK_BUTTON_TITLE} />
         </View>

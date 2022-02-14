@@ -10,12 +10,9 @@ import { MatchItem } from '../../components/matchItem';
 import { TableButton } from '../../components/tableButton';
 import { NavigationProp, useFocusEffect } from '@react-navigation/native';
 import { TournamentDescriptionModal } from '../../components/tournamentModalDescription';
-import { setUserDataAction } from '../../../../../src/appStore/redux/authenticationState/authenticationStateActions';
 import { selectUserData } from '../../../../../src/appStore/redux/authenticationState/authenticationStateSelector';
-
 import { selectTableInformation } from '../../../../../src/appStore/redux/tableInformationState/tableInformationSelector';
 import { sendFindMatchesRequest } from '../../../useCases/getMatches';
-
 import { IThemesContext } from '../../../../../src/themes/entities/IThemesContext';
 import { ThemesContext } from '../../../../../src/themes';
 import { setMatchAction } from '../../../../../src/appStore/redux/tableInformationState/tableInformationActions';
@@ -48,7 +45,6 @@ export const MatchesScreen: FC<IProps> = ({ navigation }) => {
     const theme = useContext<IThemesContext>(ThemesContext);
     const dispatch = useDispatch();
 
-
     useEffect(() => {
         if (currentUserData.role === 'admin') {
             setIsAdmin(true)
@@ -64,19 +60,17 @@ export const MatchesScreen: FC<IProps> = ({ navigation }) => {
 
     const getMatchesData = async () => {
         const responseMatches = await sendFindMatchesRequest(tournamentInfo.id, currentUserData.uid, currentUserData.client, currentUserData);
-        console.log('aaaaaaaaaaaaaaaaaa', responseMatches);
         setMatchData(responseMatches);
         dispatch(setMatchAction(responseMatches));
     };
 
     const renderItem: FC<MatchItemProps> = ({ item }) => (
-        <MatchItem item={item} disable={!isAdmin} tournamentInfo={tournamentInfo} updateScore={()=>getMatchesData()}/>
+        <MatchItem item={item} disable={!isAdmin} tournamentInfo={tournamentInfo} updateScore={() => getMatchesData()} />
     );
 
     return (
-
-        <View style={[styles.container, {backgroundColor: theme.colors.BACKGROUND_COLOR}]}>
-            <View style={[styles.header, {backgroundColor: theme.colors.TITLE_BACKGROUND_COLOR}]}>
+        <View style={[styles.container, { backgroundColor: theme.colors.BACKGROUND_COLOR }]}>
+            <View style={[styles.header, { backgroundColor: theme.colors.TITLE_BACKGROUND_COLOR }]}>
                 <GoBackButton navigation={navigation} />
                 <Text style={[styles.textTitle, { color: theme.colors.TEXT_COLOR }]}>{LocalContext.translations.MATCHES_TITLE}</Text>
                 <InfoButton onPress={() => setModalVisible(true)} />
@@ -90,8 +84,8 @@ export const MatchesScreen: FC<IProps> = ({ navigation }) => {
                     />
                 </View>
             </SafeAreaView>
-            <TableButton navigation={navigation} tournamentInfo={tournamentInfo}/>
-            <TournamentDescriptionModal modalVisible={modalVisible} setModalVisible={setModalVisible} tournamentInfo={tournamentInfo}/>
+            <TableButton navigation={navigation} tournamentInfo={tournamentInfo} />
+            <TournamentDescriptionModal modalVisible={modalVisible} setModalVisible={setModalVisible} tournamentInfo={tournamentInfo} />
         </View>
     );
 };

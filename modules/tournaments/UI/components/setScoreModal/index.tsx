@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { View, TouchableOpacity, Text, Image, Keyboard, Modal, TextInput } from "react-native";
+import { View, TouchableOpacity, Text, Modal, TextInput } from "react-native";
 import { useSelector } from "react-redux";
 import { selectUserData } from "../../../../../src/appStore/redux/authenticationState/authenticationStateSelector";
 import { sendSetScoreRequest } from "../../../useCases/setScore";
@@ -18,9 +18,9 @@ interface IProps {
         scoreFirstPlayer: string,
         scoreSecondPlayer: string,
         status: string
-    }
+    },
+    updateScore: any,
 }
-
 
 export const SetScoreModal: FC<IProps> = ({ modalVisible, setModalVisible, match, updateScore }) => {
     const [scoreFirstPlayer, setScoreFirstPlayer] = useState('')
@@ -29,13 +29,11 @@ export const SetScoreModal: FC<IProps> = ({ modalVisible, setModalVisible, match
     const [status, setStatus] = useState('in_progress')
     console.log(match)
 
-    const setScoreRequest = async()=>{
+    const setScoreRequest = async () => {
         sendSetScoreRequest(match.id, scoreFirstPlayer, scoreSecondPlayer, status, userData.uid, userData.client, userData.accessToken)
         updateScore();
         setModalVisible(false)
     }
-    
-    
 
     return (
         <Modal

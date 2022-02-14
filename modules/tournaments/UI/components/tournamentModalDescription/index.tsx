@@ -9,10 +9,7 @@ interface IProps {
 
 const tournamentInfo = 'difhgduhgduhfguhdfghghghghghghghghghghghghghghghghghghghghghghghghghghgh gggggggggggggggg ggggggggggggg gggggggggggggggggggggggggggggggg gggggggggggggggggggggggggg gggggggggggggggggggggggggggggg hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhh'
 
-
-export const TournamentDescriptionModal: FC<IProps> = ({ modalVisible, setModalVisible, tournamentInfo}) => {
-
-
+export const TournamentDescriptionModal: FC<IProps> = ({ modalVisible, setModalVisible, tournamentInfo }) => {
     return (
         <Modal
             animationType="slide"
@@ -34,5 +31,5 @@ export const TournamentDescriptionModal: FC<IProps> = ({ modalVisible, setModalV
                 </View>
             </View>
         </Modal>
-    )
+    );
 }
