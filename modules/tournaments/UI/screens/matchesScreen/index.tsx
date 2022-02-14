@@ -38,39 +38,6 @@ interface MatchItemProps {
     }
 }
 
-const DATA = [
-    {
-        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-        firstPlayer: 'Vasya',
-        secondPlayer: 'Petya',
-        date: '23.5.2022',
-        place: 'Dnipro-arena',
-        scoreFirstPlayer: '3',
-        scoreSecondPlayer: '1',
-        status: 'finished'
-    },
-    {
-        id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-        firstPlayer: 'Vasya',
-        secondPlayer: 'Petya',
-        date: '23.5.2022',
-        place: 'Dnipro-arena',
-        scoreFirstPlayer: '3',
-        scoreSecondPlayer: '1',
-        status: 'finished'
-    },
-    {
-        id: '58694a0f-3da1-471f-bd96-145571e29d72',
-        firstPlayer: 'Vasya',
-        secondPlayer: 'Petya',
-        date: '23.5.2022',
-        place: 'Dnipro-arena',
-        scoreFirstPlayer: '3',
-        scoreSecondPlayer: '1',
-        status: 'finished'
-    },
-];
-
 export const MatchesScreen: FC<IProps> = ({ navigation }) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false)
@@ -96,14 +63,14 @@ export const MatchesScreen: FC<IProps> = ({ navigation }) => {
     }, [tournamentInfo]))
 
     const getMatchesData = async () => {
-        const responseMatches = await sendFindMatchesRequest(tournamentInfo.id);
+        const responseMatches = await sendFindMatchesRequest(tournamentInfo.id, currentUserData.uid, currentUserData.client, currentUserData);
         console.log('aaaaaaaaaaaaaaaaaa', responseMatches);
         setMatchData(responseMatches);
         dispatch(setMatchAction(responseMatches));
     };
 
     const renderItem: FC<MatchItemProps> = ({ item }) => (
-        <MatchItem item={item} disable={!isAdmin} tournamentInfo={tournamentInfo} updateScore={getMatchesData}/>
+        <MatchItem item={item} disable={!isAdmin} tournamentInfo={tournamentInfo} updateScore={()=>getMatchesData()}/>
     );
 
     return (
