@@ -16,6 +16,6 @@ export interface RootState {
         tableInfo: { [key: string]: string } | null
     }
     matchReducer: {
-        match: Array<number> | null;
+        match: Array<{ [key: string]: string | number }> | null;
     }
 };
