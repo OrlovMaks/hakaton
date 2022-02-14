@@ -17,15 +17,17 @@ interface IProps {
     accessToken: string
 }
 
-export const sendFindTournamentsRequest = async (setTournamentsData, page) => {
+export const sendFindTournamentsRequest = async (setTournamentsData, page, setPage) => {
     try {
         let response = await axios.get(`https://tournament-t.herokuapp.com/tournaments/${page}`,
         );
-        console.log(response.data)
         setTournamentsData(response.data)
-        if (response.data.tournament.length <= 0){
-            return
+        console.log(response.data)
+        if (response.data.tournament.length <= 0) {
+            Alert.alert('There is no more info here :(')
+            setPage(page - 1)
         }
+
     }
     catch (error) {
         console.log(error)
