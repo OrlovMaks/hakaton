@@ -19,15 +19,13 @@ interface IProps {
 
 export const sendFindTournamentsRequest = async (setTournamentsData, page, setPage) => {
     try {
-        let response = await axios.get(`https://tournament-t.herokuapp.com/tournaments/${page}`,
-        );
+        let response = await axios.get(`https://tournament-t.herokuapp.com/tournaments/?page=${page}`);
         setTournamentsData(response.data)
         console.log(response.data)
         if (response.data.tournament.length <= 0) {
             Alert.alert('There is no more info here :(')
             setPage(page - 1)
         }
-
     }
     catch (error) {
         console.log(error)
