@@ -3,8 +3,11 @@ import React, { FC, useCallback, useContext, useEffect, useState } from 'react';
 import { FlatList, ListRenderItem, Text, TouchableOpacity, View } from 'react-native';
 import { useSelector } from 'react-redux';
 import { selectMatch } from '../../../../../src/appStore/redux/matchState/matchSelector';
+import { RootState } from '../../../../../src/appStore/redux/store';
 import { LocalizationContext } from '../../../../../src/localization';
+import { ILocalizationContext } from '../../../../../src/localization/entities/ILocalizationContext';
 import { ThemesContext } from '../../../../../src/themes';
+import { IThemesContext } from '../../../../../src/themes/entities/IThemesContext';
 import { CupStageItem } from '../../components/cupStageItem';
 import { HeaderComponent } from '../../components/HeaderComponent';
 import { TournamentsButton } from '../../components/tournamentsButton';
@@ -15,25 +18,21 @@ interface IProps {
 }
 
 export const CupStagesScreen: FC<IProps> = ({ navigation }) => {
-    const LocalContext = useContext(LocalizationContext);
-    const theme = useContext(ThemesContext);
-    const [stages, setStages] = useState<Array<any>>([{ id: 0, stage: 1 }])
-    const matchInfo = useSelector(selectMatch);
+    const LocalContext = useContext<ILocalizationContext>(LocalizationContext);
+    const theme = useContext<IThemesContext>(ThemesContext);
+    const [stages, setStages] = useState<Array<number>>([0])
+    const matchInfo = useSelector<RootState>(selectMatch);
 
     useFocusEffect(useCallback(() => {
-        const newStages = new Set(matchInfo.map(element => element.stage));
-        //const formattedStages = newStages.map((element) => {return {id: element, stage: ++element}});
-
-        // setStages([
-        // ]);
-        // console.log('====================================');
-        // console.log(newStages);
-        // console.log('====================================');
-    }, [matchInfo]))
+        const newStages: Set<number> = new Set(matchInfo.map((element: number) => element.stage));
+        setStages([
+            ...newStages
+        ]);
+    }, [matchInfo]));
 
     const renderStage: ListRenderItem<{ [key: string]: string; }> = ({ item }) => {
         return (
-            <CupStageItem title={item.stage} navigation={navigation} />
+            <CupStageItem title={++item} navigation={navigation} />
         );
     }
 
@@ -44,7 +43,7 @@ export const CupStagesScreen: FC<IProps> = ({ navigation }) => {
                 style={styles.stagesList}
                 data={stages}
                 renderItem={renderStage}
-                keyExtractor={item => item.id}
+                keyExtractor={item => item}
             />
             <TournamentsButton onPress={() => { navigation.navigate('Matches') }} title={LocalContext.translations.BACK_BUTTON_TITLE} />
         </View>

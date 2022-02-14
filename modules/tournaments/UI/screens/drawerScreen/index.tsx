@@ -39,13 +39,12 @@ export const DrawerScreen: FC = () => {
     const setLanguage = async (value: ILanguages) => {
         LocalContext.setLanguage(value);
         await storeData('localization', value);
-        
     };
 
     return (
         <View style={[styles.container, { backgroundColor: theme.colors.TITLE_BACKGROUND_COLOR }]}>
             <View style={styles.themeWrapper}>
-                <Text  style={{ color: theme.colors.BACKGROUND_COLOR }}>{LocalContext.translations.THEME_SWITCH_TITLE}</Text>
+                <Text style={{ color: theme.colors.BACKGROUND_COLOR }}>{LocalContext.translations.THEME_SWITCH_TITLE}</Text>
                 <Switch
                     trackColor={{ false: theme.colors.SWITCH_COLOR, true: theme.colors.SWITCH_COLOR }}
                     thumbColor={theme.colors.BACKGROUND_COLOR}
