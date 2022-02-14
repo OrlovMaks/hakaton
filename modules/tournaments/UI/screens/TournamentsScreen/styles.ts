@@ -23,8 +23,8 @@ export const styles = StyleSheet.create({
     footer: {
         alignItems: 'center',
         position: 'absolute',
-        bottom: windowHeight/35,
-        width: windowWidth/1.1,
+        bottom: windowHeight / 35,
+        width: windowWidth / 1.1,
         height: 70,
         justifyContent: 'space-between',
         flexDirection: 'row',
@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         zIndex: 1
     },
-    textPage:{
+    textPage: {
         color: 'white',
         fontSize: 20
     },
@@ -58,8 +58,8 @@ export const styles = StyleSheet.create({
         fontWeight: '700',
         color: 'black'
     },
-    pageButtons:{
-        backgroundColor:'green',
+    pageButtons: {
+        backgroundColor: 'green',
         width: 30,
         height: 30
     }

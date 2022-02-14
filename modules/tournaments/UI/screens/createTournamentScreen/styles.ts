@@ -7,25 +7,57 @@ export const styles = StyleSheet.create({
         width: windowWidth,
         height: windowHeight,
         backgroundColor: 'white',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        alignItems: 'center'
     },
-    inputs:{
+    inputs: {
+        marginBottom: 10,
         width: '100%',
         height: '20%',
-        backgroundColor: 'green'
+        backgroundColor: '#2C7873'
     },
-    inputsBlock:{
+    inputArea: {
         width: '100%',
-        height: '50%',
-        backgroundColor: 'green'
+        height: '40%',
+        backgroundColor: '#2C7873'
     },
-    selectorsBlock:{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
+    inputsBlock: {
+        width: '90%',
+        height: '35%',
+
+    },
+    selectorsBlock: {
+        height: '30%',
+
+    },
+    header: {
         justifyContent: 'center',
-       width: '100%',
-       backgroundColor: 'black',
-       height: windowHeight
+        alignItems: 'center',
+        width: windowWidth,
+        height: 70,
+    },
+    textTitle: {
+        fontSize: 25,
+        fontWeight: '700',
+        color: 'black'
+    },
+
+    buttons: {
+        backgroundColor: '#004445',
+        width: 200,
+        height: '50%'
+    },
+    buttonsBlock: {
+
+        alignItems: 'center',
+        width: '100%',
+        height: 100,
+    },
+    applyButton: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 300,
+        height: '60%',
+        backgroundColor: '#004445',
     }
 })

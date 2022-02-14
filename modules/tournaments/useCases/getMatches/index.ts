@@ -17,13 +17,22 @@ interface IProps {
     accessToken: string
 }
 
-export const sendFindMatchesRequest = async (id) => {
+export const sendFindMatchesRequest = async (id, uid, client, accessToken) => {
 
     console.log(`https://tournament-t.herokuapp.com/tournaments/${id}/matche`);
 
     try {
-        let response = await axios.get(`https://tournament-t.herokuapp.com/tournament/${id}/matches`
+        let response = await axios.get(`https://tournament-t.herokuapp.com/tournament/${id}/matches`,
+        {
+            headers:{
+                'access-token': accessToken,
+                'client': client,
+                'uid': uid,
+
+            }
+        }
         );
+        console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",response.data)
         return response.data.matches;
     }
 
