@@ -9,7 +9,6 @@ interface IProps {
 }
 
 export const SearchButton: FC<IProps> = ({ onPress }) => {
-
     return (
         <TouchableOpacity style={styles.container} onPress={onPress}>
             <Text>Apply filters</Text>

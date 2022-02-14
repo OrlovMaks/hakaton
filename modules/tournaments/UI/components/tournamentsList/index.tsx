@@ -1,14 +1,12 @@
 import { NavigationProp } from '@react-navigation/native';
-import React, { FC, memo, useContext, useEffect, useMemo, useState } from 'react';
-import { View, TouchableOpacity, Text, FlatList, Image, Pressable, SafeAreaView } from 'react-native';
+import React, { FC, memo, useContext, useState } from 'react';
+import { View, TouchableOpacity, Text, FlatList } from 'react-native';
 import { ThemesContext } from '../../../../../src/themes';
 import { LocalizationContext } from '../../../../../src/localization';
 import { styles } from './style';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectTableInformation } from '../../../../../src/appStore/redux/tableInformationState/tableInformationSelector';
 import { setTableInfoAction } from '../../../../../src/appStore/redux/tableInformationState/tableInformationActions';
 import { selectUserData } from '../../../../../src/appStore/redux/authenticationState/authenticationStateSelector';
-import { style } from '../checkBox/style';
 
 const axios = require("axios");
 
@@ -16,8 +14,6 @@ interface IProps {
     navigation: NavigationProp<any>
     data: [],
 }
-
-
 
 export const TournamentsList: FC<IProps> = memo(({ navigation, data }) => {
     const [userRoomsListState, setUserRoomsListState] = useState([])
@@ -36,8 +32,7 @@ export const TournamentsList: FC<IProps> = memo(({ navigation, data }) => {
         const registrationToTournament = async (tournamentId, uid, client, accessToken) => {
             console.log(tournamentId, uid, client, accessToken)
             setIsRegTOtournament(true)
-    
-    
+
             try {
                 let response = await axios.post(`https://tournament-t.herokuapp.com/users_tournaments`,
                     {
@@ -51,15 +46,11 @@ export const TournamentsList: FC<IProps> = memo(({ navigation, data }) => {
                         tournament_id: tournamentId
                     }
                 );
-                console.log(response.data)
-                
-            }
-    
-            catch (error) {
+            } catch (error) {
                 console.log(error)
             }
         }
-        
+
         return (
             <TouchableOpacity style={[styles.item, { backgroundColor: theme.colors.LIST_ITEMS }]} onPress={() => setInformation(tournament)}>
                 <View style={styles.tournamentInfoButton}>
@@ -96,7 +87,6 @@ export const TournamentsList: FC<IProps> = memo(({ navigation, data }) => {
     );
 
     return (
-
         <View style={styles.list}>
             <FlatList
                 data={data.tournament}
@@ -104,6 +94,5 @@ export const TournamentsList: FC<IProps> = memo(({ navigation, data }) => {
                 keyExtractor={item => item.id}
             />
         </View>
-
     );
 });

@@ -1,7 +1,7 @@
 import React, { useContext, useState, FC, memo } from 'react';
-import { View, Button, TextInput, Text } from 'react-native';
+import { View, TextInput, Text } from 'react-native';
 import { styles } from './styles';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { LocalizationContext } from '../../../../../src/localization';
 import { DropDownPicker } from '../../components/DropDownPicker';
 import { selectUserData } from '../../../../../src/appStore/redux/authenticationState/authenticationStateSelector';
@@ -10,7 +10,6 @@ import { DateSelector } from '../../components/datePicker';
 import { sendCreateTournamentRequest } from '../../../useCases/createTournament'
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { ThemesContext } from '../../../../../src/themes';
-import { style } from '../../components/checkBox/style';
 
 
 interface IProps {
@@ -69,8 +68,8 @@ export const CreateTournamentsScreen: FC<IProps> = memo(({ navigation }) => {
                     <TouchableOpacity style={styles.buttons} onPress={() => {
                         console.log(tournamentName, selectedType, countOfMembers, scenario, status, selectedLevel, startDate, lastRegistrationDate, tournamentPlace, tournamentDescription, 'aaaaaaaaaa', currentUserData.accessToken, currentUserData.uid, currentUserData.client)
                         sendCreateTournamentRequest(tournamentName, tournamentPlace, tournamentDescription, countOfMembers, selectedType, scenario, status, selectedLevel, startDate, lastRegistrationDate, currentUserData.accessToken, currentUserData.uid, currentUserData.client)
-                    }} > 
-                    <Text>Send</Text>
+                    }} >
+                        <Text>Send</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.buttons} onPress={() => setOpenStateStartDate(true)}>
                         <Text>Select start date</Text>

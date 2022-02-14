@@ -1,6 +1,5 @@
-import { NavigationProp } from "@react-navigation/native";
 import React, { FC, useContext } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Text, View } from "react-native";
 import { ThemesContext } from "../../../../../src/themes";
 import { styles } from "./styles";
 
@@ -14,9 +13,7 @@ interface IProps {
 
 export const CupTableItem: FC<IProps> = ({ title, score1, title2, score2 }) => {
     const theme = useContext(ThemesContext);
-    console.log('====================================');
-    console.log(score2);
-    console.log('====================================');
+
     return (
         <View style={styles.container}>
             <View>

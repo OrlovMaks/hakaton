@@ -44,31 +44,31 @@ export const styles = StyleSheet.create({
         marginBottom: 15,
         textAlign: "center"
     },
-    inputsWrapper:{
-        display:'flex',
-        flexDirection:'column',
+    inputsWrapper: {
+        display: 'flex',
+        flexDirection: 'column',
     },
-    playerWrapper:{
-        display:'flex',
+    playerWrapper: {
+        display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         margin: 5
     },
-    scoreInput:{
-        borderWidth:2,
+    scoreInput: {
+        borderWidth: 2,
         borderColor: 'black',
         width: 55,
         textAlign: 'center'
     },
-    playerText:{
-        fontSize:25,
+    playerText: {
+        fontSize: 25,
         fontWeight: '500',
         color: 'black',
         marginRight: 10
     },
-    dropDawnWrapper:{
-        marginVertical:5
+    dropDawnWrapper: {
+        marginVertical: 5
     }
 
 });

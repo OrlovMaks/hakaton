@@ -1,10 +1,8 @@
 import { Dimensions, StyleSheet } from "react-native";
-import { BackgroundImage } from "react-native-elements/dist/config";
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 export const styles = StyleSheet.create({
-
     item: {
         display: 'flex',
         flexDirection: 'row',
