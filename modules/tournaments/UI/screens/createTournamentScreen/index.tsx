@@ -62,7 +62,7 @@ export const CreateTournamentsScreen: FC<IProps> = memo(({ navigation }) => {
                             <DropDownPicker options={['one_match', 'two_match', 'to_three_win']} defaultText={'Scenario'} setValue={setScenario} />
                         </View>
                         :
-                        <DropDownPicker options={['1', '2', '3', '4', '5', '6', '7', '8', '9']} defaultText={'Count or members'} setValue={setCountOfMembers} />
+                        <DropDownPicker options={['1', '2', '3', '4', '5', '6', '7', '8', '9']} defaultText={'Count of members'} setValue={setCountOfMembers} />
                     }
                 </View>
                 <View style={styles.buttonsBlock}>
