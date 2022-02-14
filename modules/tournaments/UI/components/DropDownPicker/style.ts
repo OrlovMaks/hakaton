@@ -1,16 +1,12 @@
 import { StyleSheet } from "react-native";
+import { color } from "react-native-reanimated";
 
 
 export const style = StyleSheet.create({
-    checkBox: {
-        borderRadius: 5,
-        backgroundColor: "transparent",
-        borderColor: "white",
-        width: 20,
-        height: 20,
-    },
-    checkBoxText: {
-        color: 'white',
-        fontSize: 14
-    }
+selector:{
+    width: '90%',
+    marginTop: 10,
+    height: 40,
+    backgroundColor: '#2C7873'
+}
 });

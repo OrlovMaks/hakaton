@@ -12,7 +12,7 @@ interface IProps {
 }
 
 export const FiltersActionSheet: FC<IProps> = memo(({ changeVisibilityState }) => {
-
+    const []
     return (
         <View style={styles.container}>
             <Pressable style={styles.hideButton} onPress={() => changeVisibilityState(false)} />
