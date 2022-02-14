@@ -58,7 +58,7 @@ export const styles = StyleSheet.create({
     scoreInput:{
         borderWidth:2,
         borderColor: 'black',
-        minWidth: 55,
+        width: 55,
         textAlign: 'center'
     },
     playerText:{
@@ -66,6 +66,9 @@ export const styles = StyleSheet.create({
         fontWeight: '500',
         color: 'black',
         marginRight: 10
+    },
+    dropDawnWrapper:{
+        marginVertical:5
     }
 
 });
