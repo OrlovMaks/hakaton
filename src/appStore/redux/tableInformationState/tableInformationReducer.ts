@@ -2,10 +2,12 @@ import { ITableInfoAction } from "./tableInformationActions";
 
 const initialState: ITableInfoReducer = {
     tableInfo: null,
+    match: null
 };
 
 interface ITableInfoReducer {
     tableInfo: { [key: string]: string } | null;
+    match: { [key: string]: string } | null;
 };
 
 export const tableInformationReducer = (store = initialState, action: ITableInfoAction) => {
@@ -18,6 +20,10 @@ export const tableInformationReducer = (store = initialState, action: ITableInfo
         case 'DELETE_TABLE': return {
             ...store,
             tableInfo: null,
+        };
+        case 'SET_MATCH': return {
+            ...store,
+            match: payload,
         };
         default: return store;
     };

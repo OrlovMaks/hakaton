@@ -1,7 +1,7 @@
 import React, { FC, useCallback, useContext, useEffect, useState } from 'react';
 import { SafeAreaView, Text, View } from 'react-native';
 import { styles } from './styles';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { LocalizationContext } from '../../../../../src/localization';
 import { GoBackButton } from '../../components/goBackButton';
 import { InfoButton } from '../../components/tournamentInfoButton';
@@ -18,6 +18,7 @@ import { sendFindMatchesRequest } from '../../../useCases/getMatches';
 
 import { IThemesContext } from '../../../../../src/themes/entities/IThemesContext';
 import { ThemesContext } from '../../../../../src/themes';
+import { setMatchAction } from '../../../../../src/appStore/redux/tableInformationState/tableInformationActions';
 
 
 interface IProps {
@@ -78,6 +79,7 @@ export const MatchesScreen: FC<IProps> = ({ navigation }) => {
     const tournamentInfo = useSelector(selectTableInformation)
     const [matchData, setMatchData] = useState([])
     const theme = useContext<IThemesContext>(ThemesContext);
+    const dispatch = useDispatch();
 
 
     useEffect(() => {
@@ -96,7 +98,8 @@ export const MatchesScreen: FC<IProps> = ({ navigation }) => {
     const getMatchesData = async () => {
         const responseMatches = await sendFindMatchesRequest(tournamentInfo.id);
         console.log('aaaaaaaaaaaaaaaaaa', responseMatches);
-        setMatchData(responseMatches)
+        setMatchData(responseMatches);
+        dispatch(setMatchAction(responseMatches));
     };
 
     const renderItem: FC<MatchItemProps> = ({ item }) => (

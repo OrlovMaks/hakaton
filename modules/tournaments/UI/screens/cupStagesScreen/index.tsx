@@ -1,6 +1,8 @@
 import { NavigationProp } from '@react-navigation/native';
 import React, { FC, useContext } from 'react';
 import { FlatList, ListRenderItem, Text, TouchableOpacity, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import { selectMatch } from '../../../../../src/appStore/redux/tableInformationState/tableInformationSelector';
 import { LocalizationContext } from '../../../../../src/localization';
 import { ThemesContext } from '../../../../../src/themes';
 import { CupStageItem } from '../../components/cupStageItem';
@@ -46,6 +48,7 @@ interface IProps {
 export const CupStagesScreen: FC<IProps> = ({ navigation }) => {
     const LocalContext = useContext(LocalizationContext);
     const theme = useContext(ThemesContext);
+    const matchInfo = useSelector(selectMatch);
 
     const renderStage: ListRenderItem<{ [key: string]: string; }> = ({ item }) => {
         return (
