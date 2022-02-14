@@ -13,6 +13,7 @@ export interface RootState {
         userData: { [key: string]: string } | null;
     }
     tableInformationReducer: {
-        tableInfo: { [key: string]: string } | null
+        tableInfo: { [key: string]: string } | null;
+        match: { [key: string]: string } | null;
     }
 };

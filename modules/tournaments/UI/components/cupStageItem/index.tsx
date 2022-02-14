@@ -6,7 +6,7 @@ import { styles } from "./styles";
 
 
 interface IProps {
-    title: string
+    title: number
     navigation: NavigationProp<{ [key: string]: unknown }>
 }
 
