@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     container: {
@@ -10,7 +10,8 @@ export const styles = StyleSheet.create({
         marginVertical: 5,
         paddingHorizontal: 10,
         borderRadius: 5,
-        minHeight: 60 
+        minHeight: 60,
+        width: "100%" 
     },
     scoreWrapper: {
         display: 'flex',
@@ -19,13 +20,15 @@ export const styles = StyleSheet.create({
         alignItems:'center',
     },
     scoreText:{
+        maxWidth: "90%",
         color: 'black',
         fontSize: 18,
         fontWeight: '700',
         marginBottom: 5,
-        marginHorizontal: 2
+        marginHorizontal: 3
     },
     dataText:{
+        textAlign: 'center',
         color: 'black',
         fontSize: 14,
         fontWeight: '400',
