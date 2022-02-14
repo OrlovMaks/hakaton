@@ -14,6 +14,8 @@ export const DropDownPicker: FC<IProps> = ({ options, defaultText, setValue }) =
  
     return (
         <SelectDropdown
+        dropdownIconPosition={'right'}
+            buttonStyle={style.selector}
             data={options}
             onSelect={(selectedItem) => {
                 setValue(selectedItem);
