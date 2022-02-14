@@ -1,5 +1,5 @@
-import { NavigationProp } from '@react-navigation/native';
-import React, { FC, useContext } from 'react';
+import { NavigationProp, useFocusEffect } from '@react-navigation/native';
+import React, { FC, useCallback, useContext, useState } from 'react';
 import { FlatList, ListRenderItem, Text, TouchableOpacity, View } from 'react-native';
 import { useSelector } from 'react-redux';
 import { selectMatch } from '../../../../../src/appStore/redux/tableInformationState/tableInformationSelector';
@@ -49,21 +49,29 @@ export const CupStagesScreen: FC<IProps> = ({ navigation }) => {
     const LocalContext = useContext(LocalizationContext);
     const theme = useContext(ThemesContext);
     const matchInfo = useSelector(selectMatch);
+    const [stage, setStage] = useState([0]);
 
-    const renderStage: ListRenderItem<{ [key: string]: string; }> = ({ item }) => {
+    useFocusEffect(useCallback(() => {
+        const matchStageSet = new Set(matchInfo.map((match) => {
+            return match.stage;
+        }));
+        setStage(matchStageSet);
+    }, [matchInfo]))
+
+    const renderStage: ListRenderItem<number> = ({ item }) => {
         return (
-            <CupStageItem title={item.title} navigation={navigation} />
+            <CupStageItem title={++item} navigation={navigation} />
         );
     }
 
     return (
         <View style={[styles.container, { backgroundColor: theme.colors.BACKGROUND_COLOR }]}>
-            <HeaderComponent title={LocalContext.translations.CUP_STAGES_TITLE}/>
+            <HeaderComponent title={LocalContext.translations.CUP_STAGES_TITLE} />
             <FlatList
                 style={styles.stagesList}
-                data={TEMP_STAGS}
+                data={stage}
                 renderItem={renderStage}
-                keyExtractor={item => item.id}
+            // keyExtractor={item => item}
             />
             <TournamentsButton onPress={() => { navigation.navigate('Matches') }} title={LocalContext.translations.BACK_BUTTON_TITLE} />
         </View>
