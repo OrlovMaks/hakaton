@@ -24,13 +24,13 @@ export const CupStagesScreen: FC<IProps> = ({ navigation }) => {
     const matchInfo = useSelector<RootState>(selectMatch);
 
     useFocusEffect(useCallback(() => {
-        const newStages: Set<number> = new Set(matchInfo.map((element: number) => element.stage));
+        const newStages: Set<number> = new Set(matchInfo.map((element: { [key: string]: number }) => element.stage));
         setStages([
             ...newStages
         ]);
     }, [matchInfo]));
 
-    const renderStage: ListRenderItem<{ [key: string]: string; }> = ({ item }) => {
+    const renderStage: ListRenderItem<number> = ({ item }) => {
         return (
             <CupStageItem title={++item} navigation={navigation} />
         );
@@ -43,7 +43,7 @@ export const CupStagesScreen: FC<IProps> = ({ navigation }) => {
                 style={styles.stagesList}
                 data={stages}
                 renderItem={renderStage}
-                keyExtractor={item => item}
+            // keyExtractor={item => item}
             />
             <TournamentsButton onPress={() => { navigation.navigate('Matches') }} title={LocalContext.translations.BACK_BUTTON_TITLE} />
         </View>
