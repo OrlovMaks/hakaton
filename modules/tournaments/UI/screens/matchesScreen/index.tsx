@@ -81,7 +81,6 @@ export const MatchesScreen: FC<IProps> = ({ navigation }) => {
 
 
     useEffect(() => {
-
         if (currentUserData.role === 'admin') {
             setIsAdmin(true)
         }
@@ -105,10 +104,11 @@ export const MatchesScreen: FC<IProps> = ({ navigation }) => {
     );
 
     return (
+
         <View style={[styles.container, {backgroundColor: theme.colors.BACKGROUND_COLOR}]}>
             <View style={[styles.header, {backgroundColor: theme.colors.TITLE_BACKGROUND_COLOR}]}>
                 <GoBackButton navigation={navigation} />
-                <Text style={[styles.textTitle, {color: theme.colors.TEXT_COLOR}]}>{LocalContext.translations.MATCHES_TITLE}</Text>
+                <Text style={[styles.textTitle, { color: theme.colors.TEXT_COLOR }]}>{LocalContext.translations.MATCHES_TITLE}</Text>
                 <InfoButton onPress={() => setModalVisible(true)} />
             </View>
             <SafeAreaView style={styles.container}>
