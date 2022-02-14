@@ -38,7 +38,7 @@ export const TournamentsScreen: FC<IProps> = ({ navigation }) => {
     }
 
     useEffect(() => {
-        sendFindTournamentsRequest(currentUserData.accessToken, currentUserData.client, currentUserData.uid, setTournamentsList)
+        sendFindTournamentsRequest(setTournamentsList)
     }, [])
 
     return (

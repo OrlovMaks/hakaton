@@ -7,17 +7,18 @@ import { styles } from './style';
 import { useDispatch } from 'react-redux';
 import { selectTableInformation } from '../../../../../src/appStore/redux/tableInformationState/tableInformationSelector';
 import { setTableInfoAction } from '../../../../../src/appStore/redux/tableInformationState/tableInformationActions';
+import { style } from '../checkBox/style';
 
 const axios = require("axios");
 
 interface IProps {
     navigation: NavigationProp<any>
-    data: []
+    data: [],
 }
 
 
 
-export const TournamentsList: FC<IProps> = memo(({ navigation, data },) => {
+export const TournamentsList: FC<IProps> = memo(({ navigation, data }) => {
     const [userRoomsListState, setUserRoomsListState] = useState([])
     const LocalContext = useContext(LocalizationContext)
     const theme = useContext(ThemesContext);
@@ -32,13 +33,22 @@ export const TournamentsList: FC<IProps> = memo(({ navigation, data },) => {
     const Item = ({ tournament }) => (
         <TouchableOpacity style={[styles.item, { backgroundColor: theme.colors.LIST_ITEMS }]} onPress={() => setInformation(tournament)}>
             <View style={styles.tournamentInfoButton}>
-                <View>
-                    <Text style={styles.itemText}>{tournament.name}</Text>
 
+                <View style={styles.itemTitle}>
+                    <Text style={styles.itemTitle}>{tournament.name}</Text>
+                </View >
+                <View style={styles.itemTextBlock}>
+                    <View>
+                        <Text style={styles.itemText}>{tournament.mode}</Text>
+                        <Text style={styles.itemText}>{tournament.scenario}</Text>
+                        <Text style={styles.itemText}>{tournament.status}</Text>
+                    </View>
+                    <View>
+                        <Text style={styles.itemText}>participants: {tournament.participants}</Text>
+                        <Text style={styles.itemText}>{tournament.place}</Text>
+                    </View>
                 </View>
-                <View>
 
-                </View>
             </View>
             <TouchableOpacity style={[styles.registrationButton, { backgroundColor: theme.colors.BUTTON_COLOR }]} >
                 <Text style={{ color: theme.colors.TEXT_COLOR }}>{LocalContext.translations.PARTICIPATE_TITLE}</Text>
