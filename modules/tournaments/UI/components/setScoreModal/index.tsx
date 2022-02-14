@@ -1,5 +1,7 @@
 import React, { FC, useState } from "react";
 import { View, TouchableOpacity, Text, Image, Keyboard, Modal, TextInput } from "react-native";
+import { sendSetScoreRequest } from "../../../useCases/setScore";
+import { DropDownPicker } from "../DropDownPicker";
 import { styles } from "./styles";
 
 interface IProps {
@@ -21,6 +23,14 @@ interface IProps {
 export const SetScoreModal: FC<IProps> = ({ modalVisible, setModalVisible, match }) => {
     const [scoreFirstPlayer, setScoreFirstPlayer] = useState('')
     const [scoreSecondPlayer, setScoreSecondPlayer] = useState('')
+    const [status, setStatus] = useState('in-process')
+    console.log(match)
+
+    const setScoreRequest = async()=>{
+        const response = await sendSetScoreRequest(match.id, scoreFirstPlayer, scoreSecondPlayer, status)
+        setModalVisible(false)
+    }
+
 
 
     return (
@@ -36,7 +46,7 @@ export const SetScoreModal: FC<IProps> = ({ modalVisible, setModalVisible, match
                 <View style={styles.modalView}>
                     <View style={styles.inputsWrapper}>
                         <View style={styles.playerWrapper}>
-                            <Text style={styles.playerText}>{match.firstPlayer}</Text>
+                            <Text style={styles.playerText}>{match.user_1}</Text>
                             <TextInput
                                 style={styles.scoreInput}
                                 onChangeText={setScoreFirstPlayer}
@@ -45,7 +55,7 @@ export const SetScoreModal: FC<IProps> = ({ modalVisible, setModalVisible, match
                             />
                         </View>
                         <View style={styles.playerWrapper}>
-                            <Text style={styles.playerText}>{match.secondPlayer}</Text>
+                            <Text style={styles.playerText}>{match.user_2}</Text>
                             <TextInput
                                 style={styles.scoreInput}
                                 onChangeText={setScoreSecondPlayer}
@@ -54,9 +64,12 @@ export const SetScoreModal: FC<IProps> = ({ modalVisible, setModalVisible, match
                             />
                         </View>
                     </View>
+                    <View style={styles.dropDawnWrapper}>
+                        <DropDownPicker options={['canceled', 'in-process', 'finished']} defaultText={"in-process"} setValue={setStatus} />
+                    </View>
                     <TouchableOpacity
                         style={[styles.button, styles.buttonClose]}
-                        onPress={() => setModalVisible(!modalVisible)}
+                        onPress={() => setScoreRequest()}
                     >
                         <Text style={styles.textStyle}>Add score</Text>
                     </TouchableOpacity>

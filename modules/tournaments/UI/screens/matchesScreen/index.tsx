@@ -100,12 +100,13 @@ export const MatchesScreen: FC<IProps> = ({ navigation }) => {
     };
 
     const renderItem: FC<MatchItemProps> = ({ item }) => (
-        <MatchItem item={item} disable={!isAdmin}/>
+        <MatchItem item={item} disable={!isAdmin} tournamentInfo={tournamentInfo}/>
     );
 
     return (
-        <View style={styles.container}>
-            <View style={[styles.header, { backgroundColor: theme.colors.TITLE_BACKGROUND_COLOR }]}>
+
+        <View style={[styles.container, {backgroundColor: theme.colors.BACKGROUND_COLOR}]}>
+            <View style={[styles.header, {backgroundColor: theme.colors.TITLE_BACKGROUND_COLOR}]}>
                 <GoBackButton navigation={navigation} />
                 <Text style={[styles.textTitle, { color: theme.colors.TEXT_COLOR }]}>{LocalContext.translations.MATCHES_TITLE}</Text>
                 <InfoButton onPress={() => setModalVisible(true)} />
