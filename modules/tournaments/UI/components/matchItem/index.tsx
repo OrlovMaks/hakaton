@@ -19,7 +19,7 @@ interface MatchItemProps {
     disable: boolean
 }
 
-export const MatchItem: FC<MatchItemProps> = ({ item, disable, tournamentInfo }) => {
+export const MatchItem: FC<MatchItemProps> = ({ item, disable, tournamentInfo, updateScore }) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [match, setMatch] = useState(false);
     const theme = useContext<IThemesContext>(ThemesContext);
@@ -53,7 +53,7 @@ export const MatchItem: FC<MatchItemProps> = ({ item, disable, tournamentInfo })
                     </View>
                 </View>
             </TouchableOpacity>
-            <SetScoreModal modalVisible={modalVisible} setModalVisible={setModalVisible} match={match} tournamentInfo={tournamentInfo}/>
+            <SetScoreModal modalVisible={modalVisible} setModalVisible={setModalVisible} match={match} tournamentInfo={tournamentInfo} updateScore={updateScore}/>
         </View>
     )
 };

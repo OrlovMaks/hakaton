@@ -20,7 +20,7 @@ interface IProps {
 }
 
 
-export const SetScoreModal: FC<IProps> = ({ modalVisible, setModalVisible, match }) => {
+export const SetScoreModal: FC<IProps> = ({ modalVisible, setModalVisible, match, updateScore }) => {
     const [scoreFirstPlayer, setScoreFirstPlayer] = useState('')
     const [scoreSecondPlayer, setScoreSecondPlayer] = useState('')
     const [status, setStatus] = useState('in-process')
@@ -28,10 +28,11 @@ export const SetScoreModal: FC<IProps> = ({ modalVisible, setModalVisible, match
 
     const setScoreRequest = async()=>{
         const response = await sendSetScoreRequest(match.id, scoreFirstPlayer, scoreSecondPlayer, status)
+        updateScore();
         setModalVisible(false)
     }
-
-
+    
+    
 
     return (
         <Modal
