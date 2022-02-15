@@ -52,16 +52,16 @@ export const CreateTournamentsScreen: FC<IProps> = memo(({ navigation }) => {
 
                 <View style={styles.selectorsBlock}>
                     <DropDownPicker options={['beginner', 'middle', 'advanced']} defaultText={'Tournament level'} setValue={setSelectedLevel} />
-                    <DropDownPicker options={['canceled', 'in_progress', 'finished']} defaultText={'Status'} setValue={setStatus} />
+                    <DropDownPicker options={['canceled', 'in-progress', 'finished']} defaultText={'Status'} setValue={setStatus} />
                     <DropDownPicker options={['cup', 'championship']} defaultText={'Tournament type'} setValue={setSelectedType} />
                     {selectedType === 'cup'
                         ?
                         <View>
                             <DropDownPicker options={['128', '64', '32', '16', '8', '4']} defaultText={'Count of members'} setValue={setCountOfMembers} />
-                            <DropDownPicker options={['one_match', 'two_match', 'to_three_win']} defaultText={'Scenario'} setValue={setScenario} />
+                            <DropDownPicker options={['one-match', 'two-match', 'to-three-win']} defaultText={'Scenario'} setValue={setScenario} />
                         </View>
                         :
-                        <DropDownPicker options={['1', '2', '3', '4', '5', '6', '7', '8', '9']} defaultText={'Count or members'} setValue={setCountOfMembers} />
+                        <DropDownPicker options={['1', '2', '3', '4', '5', '6', '7', '8', '9']} defaultText={'Count of members'} setValue={setCountOfMembers} />
                     }
                 </View>
                 <View style={styles.buttonsBlock}>

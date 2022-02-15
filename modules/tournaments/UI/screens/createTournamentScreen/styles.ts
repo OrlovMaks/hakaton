@@ -26,7 +26,11 @@ export const styles = StyleSheet.create({
         height: '35%',
     },
     selectorsBlock: {
-        height: '30%',
+
+        marginTop: -20,
+        height: '38%',
+
+
     },
     header: {
         justifyContent: 'center',

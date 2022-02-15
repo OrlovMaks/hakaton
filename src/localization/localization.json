@@ -30,8 +30,11 @@
         "MATCHES_TITLE":"Матчи",
         "TABLE_BUTTON_TITLE":"Таблица",
         "RESULT_MATCH_TITLE": "Результаты матчей",
-        "CHAMPIONSHIP_TITLE": "Чемпионат"
-
+        "CHAMPIONSHIP_TITLE": "Чемпионат",
+        "TOURNAMENTS_TITLE":"Турниры",
+        "PARTICIPATE_TITLE":"Участники",
+        "CREATETOURNAMENT_TITLE":"Создать турнир",
+        "FILTERS_TITLE": "Фильтры"
     },
     "EN": {
         "MATCHES_TITLE":"Matches",
@@ -63,7 +66,8 @@
         "CHAMPIONSHIP_TITLE": "Championship",
         "TOURNAMENTS_TITLE":"Tournaments",
         "PARTICIPATE_TITLE":"Participate",
-        "CREATETOURNAMENT_TITLE":"Create tournament"
+        "CREATETOURNAMENT_TITLE":"Create tournament",
+        "FILTERS_TITLE": "Filters"
     },
     "INITIAL_LANGUAGE": "EN"
 }

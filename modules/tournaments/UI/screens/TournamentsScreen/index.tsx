@@ -72,7 +72,7 @@ export const TournamentsScreen: FC<IProps> = ({ navigation }) => {
                     <Text style={{ color: theme.colors.TEXT_COLOR }}>{LocalContext.translations.CREATETOURNAMENT_TITLE}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.filterButton, { backgroundColor: theme.colors.BUTTON_COLOR }]} onPress={() => setIsFiltersActionSheetVisible(true)} >
-                    <Text style={{ color: theme.colors.TEXT_COLOR }}>{LocalContext.translations.PARTICIPATE_TITLE}</Text>
+                    <Text style={{ color: theme.colors.TEXT_COLOR }}>{LocalContext.translations.FILTERS_TITLE}</Text>
                 </TouchableOpacity>
             </View>
             {
