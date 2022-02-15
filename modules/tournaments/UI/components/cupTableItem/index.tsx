@@ -14,6 +14,10 @@ interface IProps {
 export const CupTableItem: FC<IProps> = ({ title, score1, title2, score2 }) => {
     const theme = useContext(ThemesContext);
 
+    const getWinner = () => {
+        return score1 > score2 ? title : title2;
+    }
+
     return (
         <View style={styles.container}>
             <View>
@@ -27,7 +31,7 @@ export const CupTableItem: FC<IProps> = ({ title, score1, title2, score2 }) => {
                 </View>
             </View>
             <View style={[styles.winner, { backgroundColor: theme.colors.LIST_ITEMS, borderColor: theme.colors.TEXT_COLOR }]}>
-                <Text style={[styles.title, { color: theme.colors.TEXT_COLOR }]}>{title}</Text>
+                <Text style={[styles.title, { color: theme.colors.TEXT_COLOR }]}>{getWinner()}</Text>
             </View>
         </View>
     );
