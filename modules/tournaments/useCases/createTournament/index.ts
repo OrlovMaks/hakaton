@@ -20,7 +20,6 @@ interface IProps {
 }
 
 export const sendCreateTournamentRequest = async (name, place, description, participants, mode, scenario, status, level, startDate, lastRegistrationDate, accessToken, uid, client) => {
-    console.log(name, place, description, participants, mode, scenario, status, level, startDate, lastRegistrationDate, accessToken, uid, client)
 
     try {
         let response = await axios.post('https://tournament-t.herokuapp.com/tournaments',

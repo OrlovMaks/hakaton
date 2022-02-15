@@ -1,10 +1,4 @@
-import { FC, useContext } from 'react';
-import { Dimensions, StyleSheet } from 'react-native';
-import { Text } from 'react-native-elements';
-import { color } from 'react-native-elements/dist/helpers';
-import { ThemesContext } from '../../../../../src/themes';
-
-const WINDOW_WIDTH = Dimensions.get('screen').width;
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     container: {

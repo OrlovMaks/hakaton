@@ -13,12 +13,10 @@ export const TournamentsButton: FC<IProps> = ({ onPress, title }) => {
     const theme = useContext<IThemesContext>(ThemesContext);
 
     return (
-        //<View style={[ { backgroundColor: theme.colors.BUTTON_COLOR }]}>
-            <TouchableOpacity onPress={onPress}>
-                <View style={[styles.titleContainer, { backgroundColor: theme.colors.BUTTON_COLOR }]}>
-                    <Text style={[styles.title, { color: theme.colors.TEXT_COLOR }]}>{title}</Text>
-                </View>
-            </TouchableOpacity>
-       //</View>
+        <TouchableOpacity onPress={onPress}>
+            <View style={[styles.titleContainer, { backgroundColor: theme.colors.BUTTON_COLOR }]}>
+                <Text style={[styles.title, { color: theme.colors.TEXT_COLOR }]}>{title}</Text>
+            </View>
+        </TouchableOpacity>
     );
 };

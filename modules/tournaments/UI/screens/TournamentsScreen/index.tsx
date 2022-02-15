@@ -21,13 +21,12 @@ interface IProps {
 }
 
 export const TournamentsScreen: FC<IProps> = ({ navigation }) => {
-
-    const currentUserData = useSelector(selectUserData)
+    const currentUserData = useSelector(selectUserData);
     const LocalContext = useContext(LocalizationContext);
-    const [isFiltersActionSheetVisible, setIsFiltersActionSheetVisible]: [boolean, Function] = useState(false)
-    const [tournamentsList, setTournamentsList]: [Array<string>, Function] = useState([])
+    const [isFiltersActionSheetVisible, setIsFiltersActionSheetVisible]: [boolean, Function] = useState(false);
+    const [tournamentsList, setTournamentsList]: [Array<string>, Function] = useState([]);
     const theme = useContext(ThemesContext);
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useState(1);
 
     const showActionSheet = () => {
         if (isFiltersActionSheetVisible) {

@@ -24,11 +24,12 @@ export const styles = StyleSheet.create({
     inputsBlock: {
         width: '90%',
         height: '35%',
-
     },
     selectorsBlock: {
+
         marginTop: -20,
         height: '38%',
+
 
     },
     header: {
@@ -42,7 +43,6 @@ export const styles = StyleSheet.create({
         fontWeight: '700',
         color: 'black'
     },
-
     buttons: {
         backgroundColor: '#004445',
         width: 200,

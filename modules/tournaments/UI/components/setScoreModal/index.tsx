@@ -1,5 +1,7 @@
 import React, { FC, useState } from "react";
-import { View, TouchableOpacity, Text, Image, Keyboard, Modal, TextInput } from "react-native";
+import { View, TouchableOpacity, Text, Modal, TextInput } from "react-native";
+import { useSelector } from "react-redux";
+import { selectUserData } from "../../../../../src/appStore/redux/authenticationState/authenticationStateSelector";
 import { sendSetScoreRequest } from "../../../useCases/setScore";
 import { DropDownPicker } from "../DropDownPicker";
 import { styles } from "./styles";
@@ -16,22 +18,22 @@ interface IProps {
         scoreFirstPlayer: string,
         scoreSecondPlayer: string,
         status: string
-    }
+    },
+    updateScore: any,
 }
 
-
-export const SetScoreModal: FC<IProps> = ({ modalVisible, setModalVisible, match }) => {
+export const SetScoreModal: FC<IProps> = ({ modalVisible, setModalVisible, match, updateScore }) => {
     const [scoreFirstPlayer, setScoreFirstPlayer] = useState('')
     const [scoreSecondPlayer, setScoreSecondPlayer] = useState('')
-    const [status, setStatus] = useState('in-process')
+    const userData = useSelector(selectUserData)
+    const [status, setStatus] = useState('in_progress')
     console.log(match)
 
-    const setScoreRequest = async()=>{
-        const response = await sendSetScoreRequest(match.id, scoreFirstPlayer, scoreSecondPlayer, status)
+    const setScoreRequest = async () => {
+        sendSetScoreRequest(match.id, scoreFirstPlayer, scoreSecondPlayer, status, userData.uid, userData.client, userData.accessToken)
+        updateScore();
         setModalVisible(false)
     }
-
-
 
     return (
         <Modal
@@ -65,7 +67,7 @@ export const SetScoreModal: FC<IProps> = ({ modalVisible, setModalVisible, match
                         </View>
                     </View>
                     <View style={styles.dropDawnWrapper}>
-                        <DropDownPicker options={['canceled', 'in-process', 'finished']} defaultText={"in-process"} setValue={setStatus} />
+                        <DropDownPicker options={['canceled', 'in_progress', 'finished']} defaultText={"in_progress"} setValue={setStatus} />
                     </View>
                     <TouchableOpacity
                         style={[styles.button, styles.buttonClose]}

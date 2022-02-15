@@ -14,17 +14,19 @@ interface MatchItemProps {
         place: string,
         score_user_1: string,
         score_user_2: string,
-        status: string
+        status: string,
     },
-    disable: boolean
+    disable: boolean,
+    tournamentInfo: any,
+    updateScore: any,
 }
 
-export const MatchItem: FC<MatchItemProps> = ({ item, disable, tournamentInfo }) => {
+export const MatchItem: FC<MatchItemProps> = ({ item, disable, tournamentInfo, updateScore }) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [match, setMatch] = useState(false);
     const theme = useContext<IThemesContext>(ThemesContext);
 
-    const setScore = (item)=>{
+    const setScore = (item) => {
         setMatch(item)
         setModalVisible(true)
     }
@@ -32,9 +34,9 @@ export const MatchItem: FC<MatchItemProps> = ({ item, disable, tournamentInfo })
     return (
         <View>
             <TouchableOpacity disabled={disable} onPress={() => setScore(item)}>
-                <View style={[styles.container, {backgroundColor: theme.colors.LIST_ITEMS}]}>
+                <View style={[styles.container, { backgroundColor: theme.colors.LIST_ITEMS }]}>
                     <View>
-                        <Text style={styles.scoreText} numberOfLines ={1}>{item.user_1}</Text>
+                        <Text style={styles.scoreText} numberOfLines={1}>{item.user_1}</Text>
                         <Text style={styles.dataText}>sfgh</Text>
                     </View>
                     <View>
@@ -48,12 +50,12 @@ export const MatchItem: FC<MatchItemProps> = ({ item, disable, tournamentInfo })
                         </View>
                     </View>
                     <View>
-                        <Text style={styles.scoreText} numberOfLines ={1}>{item.user_2}</Text>
+                        <Text style={styles.scoreText} numberOfLines={1}>{item.user_2}</Text>
                         <Text style={styles.dataText}>Stage {item.stage}</Text>
                     </View>
                 </View>
             </TouchableOpacity>
-            <SetScoreModal modalVisible={modalVisible} setModalVisible={setModalVisible} match={match} tournamentInfo={tournamentInfo}/>
+            <SetScoreModal modalVisible={modalVisible} setModalVisible={setModalVisible} match={match} tournamentInfo={tournamentInfo} updateScore={updateScore} />
         </View>
     )
 };

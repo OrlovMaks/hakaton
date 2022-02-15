@@ -9,7 +9,6 @@ interface IProps {
 }
 
 export const DateSelector: FC<IProps> = ({ setOpenState, setDate, date, openState }) => {
-
     return (
         <DatePicker
             modal
