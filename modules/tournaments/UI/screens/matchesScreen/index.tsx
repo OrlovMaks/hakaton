@@ -52,10 +52,12 @@ export const MatchesScreen: FC<IProps> = ({ navigation }) => {
         else {
             setIsAdmin(false)
         }
+
     }, [])
 
     useFocusEffect(useCallback(() => {
         getMatchesData();
+
     }, [tournamentInfo]))
 
     const getMatchesData = async () => {

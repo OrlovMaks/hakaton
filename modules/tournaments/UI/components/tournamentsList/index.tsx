@@ -54,13 +54,11 @@ export const TournamentsList: FC<IProps> = memo(({ navigation, data }) => {
         return (
             <TouchableOpacity style={[styles.item, { backgroundColor: theme.colors.LIST_ITEMS }]} onPress={() => setInformation(tournament)}>
                 <View style={styles.tournamentInfoButton}>
-                    <View>
-                        <Text style={styles.itemText}>{tournament.name}</Text>
-                    </View>
+               
                     <View>
                     </View>
                     <View style={styles.itemTitle}>
-                        <Text style={styles.itemTitle}>{tournament.name}</Text>
+                        <Text style={styles.itemTitleText} numberOfLines={1}>{tournament.name}</Text>
                     </View >
                     <View style={styles.itemTextBlock}>
                         <View>
@@ -70,7 +68,7 @@ export const TournamentsList: FC<IProps> = memo(({ navigation, data }) => {
                         </View>
                         <View>
                             <Text style={styles.itemText}>participants: {tournament.participants}</Text>
-                            <Text style={styles.itemText}>{tournament.place}</Text>
+                            <Text style={styles.itemText} numberOfLines={1}>place: {tournament.place}</Text>
                         </View>
                     </View>
                 </View>

@@ -15,6 +15,7 @@ export const styles = StyleSheet.create({
     itemText: {
         color: 'white',
         fontSize: 15,
+        
     },
     itemTextBlock: {
         marginTop: 10,
@@ -54,9 +55,13 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
     },
     itemTitle: {
-        fontSize: 25,
-        color: 'white',
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    itemTitleText:{
+        color: 'white',
+        fontSize: 25,
+        maxWidth: '90%',
+        maxHeight: 30
     },
 });
