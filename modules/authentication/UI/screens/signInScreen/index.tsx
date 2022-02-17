@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useContext, useEffect, useState } from 'react';
-import { View, Image } from 'react-native';
+import { View, Image,  KeyboardAvoidingView, } from 'react-native';
 import { SignHeader } from '../../components/signHeader';
 import { SignInput } from '../../components/signInput';
 import { SignButton } from '../../components/signButton';
@@ -15,6 +15,7 @@ import { ForgotPass } from '../../components/forgotPasswordButton';
 import { isValidSignInEmail, isValidSignInPassword } from '../../../useCases/signUpValidation';
 import { LocalizationContext } from '../../../../../src/localization';
 import { ILocalizationContext } from '../../../../../src/localization/entities/ILocalizationContext';
+import { ScrollView } from 'react-native-gesture-handler';
 
 interface IProps {
     navigation: NavigationProp<any>
@@ -96,6 +97,10 @@ export const SignInScreen: FC<IProps> = ({ navigation }) => {
     }, [email, password]);
 
     return (
+        <ScrollView
+        keyboardShouldPersistTaps='handled'
+        style={styles.keyboard}
+      >
         <View style={styles.container}>
             <Image source={require("../../../../../assets/signBackground.jpg")} resizeMode='cover' style={styles.image} />
             <View style={styles.componentsWrap}>
@@ -114,5 +119,6 @@ export const SignInScreen: FC<IProps> = ({ navigation }) => {
                 <ForgotPass color={'white'} />
             </View>
         </View>
+        </ScrollView>
     );
 };

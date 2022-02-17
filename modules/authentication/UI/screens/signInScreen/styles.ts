@@ -10,7 +10,8 @@ export const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'space-between',
         paddingVertical: 20,
-        paddingHorizontal: 20
+        paddingHorizontal: 20,
+        height: heightScreen * 87/100
     },
     image: {
         width: widthScreen,
@@ -27,5 +28,10 @@ export const styles = StyleSheet.create({
     },
     buttonWrapper: {
         marginBottom:20,
+    },
+    keyboard:{
+        flex: 1,
+        width: '100%',
+        height: 500
     }
 });
