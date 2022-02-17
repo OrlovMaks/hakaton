@@ -8,6 +8,7 @@ import { CupTablesScreen } from '../../../modules/tournaments/UI/screens/cupTabl
 import { CreateTournamentsScreen } from '../../../modules/tournaments/UI/screens/createTournamentScreen';
 import { ChampionshipTableScreen } from '../../../modules/tournaments/UI/screens/championshipTableScreen';
 import { AddScoreScreen } from '../../../modules/tournaments/UI/screens/addScoreForAdmin';
+import { AnimationScreen } from '../../../modules/tournaments/UI/screens/animationScreen';
 
 export const DrawerNavigator: FC = () => {
     const Drawer = createDrawerNavigator();
@@ -21,6 +22,7 @@ export const DrawerNavigator: FC = () => {
             <Drawer.Screen name={'CreateTournaments'} component={CreateTournamentsScreen} />
             <Drawer.Screen name={'ChampionshipTable'} component={ChampionshipTableScreen} />
             <Drawer.Screen name={'AddScore'} component={AddScoreScreen} />
+            <Drawer.Screen name={'AnimationScreen'} component={AnimationScreen} />
         </Drawer.Navigator>
     )
 }

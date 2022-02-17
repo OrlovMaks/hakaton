@@ -77,7 +77,7 @@ export const TournamentsScreen: FC<IProps> = ({ navigation }) => {
             </View>
             {
                 isFiltersActionSheetVisible
-                    ? <FiltersActionSheet changeVisibilityState={() => setIsFiltersActionSheetVisible()} />
+                    ? <FiltersActionSheet navigation={navigation} changeVisibilityState={() => setIsFiltersActionSheetVisible()} />
                     : <View />
             }
         </View>

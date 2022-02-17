@@ -8,7 +8,7 @@ interface IProps {
     changeVisibilityState: (param: boolean) => void;
 }
 
-export const FiltersActionSheet: FC<IProps> = memo(({ changeVisibilityState }) => {
+export const FiltersActionSheet: FC<IProps> = memo(({ changeVisibilityState, navigation }) => {
     return (
         <View style={styles.container}>
             <Pressable style={styles.hideButton} onPress={() => changeVisibilityState(false)} />
@@ -23,7 +23,7 @@ export const FiltersActionSheet: FC<IProps> = memo(({ changeVisibilityState }) =
                     <DropDownPicker options={['a', 'as']} />
                 </View>
                 <View style={styles.searchButton}>
-                    <SearchButton onPress={() => changeVisibilityState(false)} />
+                    <SearchButton onPress={() => navigation.navigate('AnimationScreen')} />
                 </View>
             </View>
         </View>
