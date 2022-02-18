@@ -10,28 +10,40 @@ interface IProps {
     contentHeight: number;
 }
 
+const OFFSET = 15;
+const BUTTON_SIZE = 48;
+const MIN_HEIGHT = BUTTON_SIZE + OFFSET * 2
+
+
 export const AnimatedSheet: FC<IProps> = ({ animatedValue, children, contentHeight }) => {
-    console.log(contentHeight)
     return (
         <Animated.View style={[styles.container, {
             height: animatedValue.interpolate({
                 inputRange: [0, 1],
-                outputRange: [48, contentHeight]
+                outputRange: [48, contentHeight + MIN_HEIGHT]
             }),
             width: animatedValue.interpolate({
                 inputRange: [0, 1],
                 outputRange: [48, width]
             }),
             right: animatedValue.interpolate({
-                inputRange: [0, 1],
-                outputRange: [15, 0]
+                inputRange: [0, 0.3, 1],
+                outputRange: [15, 0, 0]
             }),
             top: animatedValue.interpolate({
-                inputRange: [0, 0.1, 1],
+                inputRange: [0, 0.3, 1],
                 outputRange: [15, 0, 0]
             }),
         }]}>
-            {children}
+            <Animated.View style={{
+                position: 'absolute', right: 0,
+                top: animatedValue.interpolate({
+                    inputRange: [0, 0.3, 1],
+                    outputRange: [0, 15 + MIN_HEIGHT, 15 + MIN_HEIGHT]
+                }),
+            }}>
+                {children}
+            </Animated.View>
         </Animated.View>
     )
 };

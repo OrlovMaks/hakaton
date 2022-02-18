@@ -1,7 +1,7 @@
-import React, { FC, useContext } from "react";
+import React, { FC, useContext, useMemo } from "react";
 import { Text, View } from "react-native";
 import { ThemesContext } from "../../../../../src/themes";
-import { styles } from "./styles";
+import { getStyles } from "./styles";
 
 
 interface IProps {
@@ -13,6 +13,7 @@ interface IProps {
 
 export const CupTableItem: FC<IProps> = ({ title, score1, title2, score2 }) => {
     const theme = useContext(ThemesContext);
+    const styles = useMemo(() => getStyles(theme.colors), [theme.colors]);
 
     const getWinner = () => {
         return score1 > score2 ? title : title2;
@@ -22,7 +23,7 @@ export const CupTableItem: FC<IProps> = ({ title, score1, title2, score2 }) => {
         <View style={styles.container}>
             <View>
                 <View style={[styles.upperTitleContainer, { backgroundColor: theme.colors.LIST_ITEMS, borderColor: theme.colors.TEXT_COLOR }]}>
-                    <Text style={[styles.title, { color: theme.colors.TEXT_COLOR }]}>{title}</Text>
+                    <Text style={[styles.title]}>{title}</Text>
                     <Text style={[styles.title, { color: theme.colors.TEXT_COLOR }]}>{score1}</Text>
                 </View>
                 <View style={[styles.lowerTitleContainer, { backgroundColor: theme.colors.LIST_ITEMS, borderColor: theme.colors.TEXT_COLOR }]}>

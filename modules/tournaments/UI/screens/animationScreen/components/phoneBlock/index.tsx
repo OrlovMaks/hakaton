@@ -13,13 +13,8 @@ export const PhoneBlock: FC<IProps> = ({ }) => {
     const animatedValue = useRef(new Animated.Value(0)).current;
     const [contentHeight, setContentHeight] = useState(0)
 
-    // const phoneContentDimensions = (layout: LayoutRectangle) => {
-    //     const { x, y, width, height } = layout;
-    //     setContentHeight(height)
-    // }
-
     const onChangeAnimatedValue = useCallback(() => {
-        Animated.timing(animatedValue, { toValue: isSheetOpened ? 0 : 1, useNativeDriver: false }).start();
+        Animated.timing(animatedValue, { toValue: isSheetOpened ? 0 : 1, useNativeDriver: false, duration: 300 }).start();
         seIsSheetOpened(value => !value);
         console.log(contentHeight)
     }, [isSheetOpened]);
@@ -27,7 +22,7 @@ export const PhoneBlock: FC<IProps> = ({ }) => {
     return (
         <View style={styles.container}>
             <AnimatedSheet animatedValue={animatedValue} contentHeight={contentHeight} >
-                <PhoneContent setContentHeight={setContentHeight}/>
+                <PhoneContent setContentHeight={setContentHeight} />
             </AnimatedSheet>
             <MenuButton onPress={onChangeAnimatedValue} />
         </View>
