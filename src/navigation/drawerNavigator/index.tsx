@@ -14,7 +14,7 @@ export const DrawerNavigator: FC = () => {
     const Drawer = createDrawerNavigator();
 
     return (
-        <Drawer.Navigator drawerContent={() => <DrawerScreen />} screenOptions={{ headerShown: false }}>
+        <Drawer.Navigator drawerContent={() => <DrawerScreen />} screenOptions={{ headerShown: false }} initialRouteName={'AnimationScreen'}>
             <Drawer.Screen name={'Tournaments'} component={TournamentsScreen} />
             <Drawer.Screen name={'Matches'} component={MatchesScreen} />
             <Drawer.Screen name={'CupStages'} component={CupStagesScreen} />
